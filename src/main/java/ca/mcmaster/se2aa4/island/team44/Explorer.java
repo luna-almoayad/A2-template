@@ -1,21 +1,27 @@
 package ca.mcmaster.se2aa4.island.team44;
 
 import java.io.StringReader;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
-import eu.ace_design.island.bot.IExplorerRaid;
 import org.json.JSONObject;
 import org.json.JSONTokener;
+
+import eu.ace_design.island.bot.IExplorerRaid;
 
 public class Explorer implements IExplorerRaid {
 
     private final Logger logger = LogManager.getLogger();
 
+
+    private final Compass direction = new Compass(Direction.E);
+    
+    ExplorerPhase explore = new ExploreGround(); 
+
     @Override
     public void initialize(String s) {
         logger.info("** Initializing the Exploration Command Center");
-        JSONObject info = new JSONObject(new JSONTokener(new StringReader(s)));
+        JSONObject info = new JSONObject( new JSONTokener( new StringReader(s)));
         logger.info("** Initialization info:\n {}",info.toString(2));
         String direction = info.getString("heading");
         Integer batteryLevel = info.getInt("budget");
@@ -26,8 +32,7 @@ public class Explorer implements IExplorerRaid {
     @Override
     public String takeDecision() {
         JSONObject decision = new JSONObject();
-        decision.put("action", "stop"); // we stop the exploration immediately
-        logger.info("** Decision: {}",decision.toString());
+        decision = explore.getDecision();
         return decision.toString();
     }
 
@@ -41,6 +46,12 @@ public class Explorer implements IExplorerRaid {
         logger.info("The status of the drone is {}", status);
         JSONObject extraInfo = response.getJSONObject("extras");
         logger.info("Additional information received: {}", extraInfo);
+
+        explore.readDecision(response, extraInfo);
+
+        
+
+    
     }
 
     @Override
