@@ -14,7 +14,7 @@ public class Explorer implements IExplorerRaid {
     private final Logger logger = LogManager.getLogger();
 
 
-    private final Compass direction = new Compass(Direction.E);
+    //private final Compass direction = new Compass(Direction.E);
     
     ExplorerPhase explore = new ExploreGround(); 
 
