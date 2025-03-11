@@ -1,40 +1,30 @@
 package ca.mcmaster.se2aa4.island.team44;
 
-public class Compass{
+public enum Compass{
+    NORTH,
+    EAST, 
+    SOUTH, 
+    WEST;
 
 
-    Direction d;
-    public Compass( Direction d) {
-        this.d = d;
+    public Compass Right(){
+        switch (this){
+            case NORTH: return EAST;
+            case EAST: return SOUTH;
+            case SOUTH: return WEST;
+            case WEST: return NORTH; 
+            default: return this;
+        }
     }
 
-
-    public String right()
-    {
-        if(this.d == Direction.N) this.d = Direction.E;
-
-        else if(this.d == Direction.E) this.d = Direction.S;
-
-         else if(this.d== Direction.S) this.d = Direction.W;
-
-         else if(this.d==Direction.W) this.d = Direction.N;
-
-         return d.toString();
+    public Compass left(){
+         switch (this){
+            case NORTH: return WEST;
+            case EAST: return NORTH;
+            case SOUTH: return EAST;
+            case WEST: return SOUTH; 
+            default: return this;
+        }
     }
-
-    public String left()
-    {
-        if(this.d == Direction.N)  this.d=  Direction.W;
-
-        else if(this.d == Direction.E) this.d= Direction.N;
-
-         else if(this.d== Direction.S) this.d= Direction.E;
-
-         else if(this.d==Direction.W)  this.d= Direction.S;
-
-        return d.toString();
-    }
-
-
     
 }

@@ -47,6 +47,7 @@ public class ExploreGround implements ExplorerPhase{
         else if(foundGround){
             decision.put("action","heading");  
             decision.put("parameters", new JSONObject().put("direction", "S"));
+            // go to emergency site
         }
         else if(fly){
             decision.put("action","fly");
