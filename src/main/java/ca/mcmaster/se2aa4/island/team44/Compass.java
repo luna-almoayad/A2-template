@@ -6,7 +6,6 @@ public enum Compass{
     SOUTH, 
     WEST;
 
-
     public Compass Right(){
         switch (this){
             case NORTH: return EAST;
@@ -25,6 +24,8 @@ public enum Compass{
             case WEST: return SOUTH; 
             default: return this;
         }
+    
     }
     
+
 }

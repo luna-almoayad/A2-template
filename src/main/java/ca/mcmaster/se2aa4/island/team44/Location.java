@@ -1,4 +1,5 @@
 package ca.mcmaster.se2aa4.island.team44;
+import java.util.*;
 
 public class Location {
     private int x;
@@ -28,4 +29,33 @@ public class Location {
         }
 
     }
+
+    public int calculateDistance(Location target){
+        return Math.abs(this.x - target.x) + Math.abs(this.y-target.y);
+    }
+
+    @Override
+    public boolean equals(Object o){
+        if (this == o){
+            return true;
+        } 
+        if (o == null || this.getClass() != o.getClass()){
+            return false;
+        }
+        Location o = (Location) o;
+        return this.x == o.x && this.y == o.y;
+
+    }
+
+    @Override 
+    public int hashCode(){
+        return Objects.hash(this.x, this.y);
+    }
+
+    @Override 
+    public String toString(){
+        return "(" + x + "," + y + ")";
+
+    }
 }
+
