@@ -17,6 +17,7 @@ public class Explorer implements IExplorerRaid {
     ExplorerPhase explore = new ExploreGround(); 
 
     protected Translator translate = new Translator();
+    Integer budget=0;
 
     @Override
     public void initialize(String s) {
@@ -25,6 +26,7 @@ public class Explorer implements IExplorerRaid {
         logger.info("** Initialization info:\n {}",info.toString(2));
         String direction = info.getString("heading");
         Integer batteryLevel = info.getInt("budget");
+        budget=batteryLevel;
         logger.info("The drone is facing {}", direction);
         logger.info("Battery level is {}", batteryLevel);
 
@@ -51,6 +53,9 @@ public class Explorer implements IExplorerRaid {
         logger.info("The status of the drone is {}", status);
         JSONObject extraInfo = response.getJSONObject("extras");
         logger.info("Additional information received: {}", extraInfo);
+        budget=budget-cost;
+        logger.info("Budget: ",budget);
+
 
         explore.readDecision(response);
 
