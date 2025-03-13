@@ -32,6 +32,14 @@ public class Location {
     public int calculateDistance(Location target){
         return Math.abs(this.x - target.x) + Math.abs(this.y-target.y);
     }
+    
+    public int getYDist(Location target){
+        return (target.y - this.y);
+    }
+
+    public int getXDist(Location target){
+        return (target.x - this.y);
+    }
 
     @Override
     public boolean equals(Object o){
