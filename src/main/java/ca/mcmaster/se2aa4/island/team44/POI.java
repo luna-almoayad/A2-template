@@ -1,10 +1,9 @@
 package ca.mcmaster.se2aa4.island.team44;
-import java.util.*;
 
-public abstract class PointsOfInterest {
+public abstract class POI {
     protected Location location; 
 
-    public PointsOfInterest(Location location){
+    public POI(Location location){
         this.location= location; 
     }
     

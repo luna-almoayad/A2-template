@@ -10,6 +10,6 @@ public enum State{
     FOUNDGROUND,
     FLYTOGROUND,
     ONCOAST,
-    STOP,
+    STOP
 
 }
