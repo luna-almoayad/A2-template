@@ -113,4 +113,11 @@ public class Translator{
         decision.put( "parameters", new JSONObject().put("direction", direction.toString() ));
         return decision.toString();
     }
+
+    public String scan(){
+       JSONObject decision = new JSONObject();
+       decision.put("action", "scan");
+       return decision.toString();
+    }
+
 }

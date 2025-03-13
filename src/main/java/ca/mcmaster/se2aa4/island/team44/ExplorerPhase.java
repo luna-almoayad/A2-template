@@ -7,6 +7,6 @@ public interface ExplorerPhase{
 
     public String getDecision();
 
-    public void readDecision(JSONObject response); 
+    public boolean readDecision(JSONObject response); 
 
 }
