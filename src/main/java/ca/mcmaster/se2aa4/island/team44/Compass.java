@@ -1,28 +1,30 @@
 package ca.mcmaster.se2aa4.island.team44;
 
+
+//Chnage because the dron reads char
 public enum Compass{
-    NORTH,
-    EAST, 
-    SOUTH, 
-    WEST;
+    N,
+    E, 
+    S, 
+    W;
 
 
-    public Compass Right(){
+    public Compass right(){
         switch (this){
-            case NORTH: return EAST;
-            case EAST: return SOUTH;
-            case SOUTH: return WEST;
-            case WEST: return NORTH; 
+            case N: return E;
+            case E: return S;
+            case S: return W;
+            case W: return N; 
             default: return this;
         }
     }
 
     public Compass left(){
          switch (this){
-            case NORTH: return WEST;
-            case EAST: return NORTH;
-            case SOUTH: return EAST;
-            case WEST: return SOUTH; 
+            case N: return W;
+            case E: return N;
+            case S: return E;
+            case W: return S; 
             default: return this;
         }
     }

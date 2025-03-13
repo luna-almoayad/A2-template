@@ -16,7 +16,7 @@ public class Location {
     public int getYCoord(){
         return this.y;
     }
-
+/*
     public Location makeMove(Compass compass){
         switch (compass){
             case NORTH: return new Location(x, y-1);
@@ -27,5 +27,5 @@ public class Location {
 
         }
 
-    }
+    }*/
 }
