@@ -42,8 +42,8 @@ public class Location {
         if (o == null || this.getClass() != o.getClass()){
             return false;
         }
-        Location o = (Location) o;
-        return this.x == o.x && this.y == o.y;
+        Location other = (Location) o;
+        return this.x == other.x && this.y == other.y;
 
     }
 
