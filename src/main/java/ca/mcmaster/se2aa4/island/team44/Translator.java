@@ -48,6 +48,7 @@ public class Translator{
             throw new IllegalArgumentException("found not found");
     }
 
+    
 //scan response
     public String [] getBiomes(JSONObject info){
         JSONObject extraInfo = getExtraInfo(info);
@@ -81,11 +82,11 @@ public class Translator{
 
 
 //action
-    public JSONObject stop(){
+    public String stop(){
         JSONObject decision = new JSONObject();
         decision.put("action", "stop");
 
-        return decision;
+        return decision.toString();
 
     }
 
@@ -100,7 +101,7 @@ public class Translator{
     public String echo(Compass direction){
        JSONObject decision = new JSONObject();
        decision.put("action", "echo");
-       decision.put("parameters", new JSONObject().put("direction", direction) );
+       decision.put("parameters", new JSONObject().put("direction", direction.toString()) );
        return decision.toString();
     }
 
@@ -109,7 +110,7 @@ public class Translator{
     public String heading(Compass direction){
         JSONObject decision = new JSONObject();
         decision.put("action", "heading");
-        decision.put( "parameters", new JSONObject().put("direction", direction));
+        decision.put( "parameters", new JSONObject().put("direction", direction.toString() ));
         return decision.toString();
     }
 }
