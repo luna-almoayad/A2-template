@@ -5,8 +5,8 @@ import org.json.JSONObject;
 public interface ExplorerPhase{
 
 
-    public String getDecision();
+    public JSONObject getDecision(Drone d);
 
-    public void readDecision(JSONObject response); 
+    public void readDecision(JSONObject response, Drone d); 
 
 }
