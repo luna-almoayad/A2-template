@@ -6,11 +6,11 @@ public class Drone{
     private Compass direction;
     private Phases phase;
 
-    public Drone(Location location, int battery, Phase phase){
-        this.location = location;
-        Battery battery = new Battery(battery);
-        direction = EAST;
-        phase = GROUND;
+    public Drone(int battery){
+        this.location = new Location(0,0);
+        this.battery = new Battery(battery);
+        direction = Compass.E;
+        phase = Phases.GROUND;
     }
 
     public void switchPhase(){
@@ -35,21 +35,20 @@ public class Drone{
     }
 
     public void setBattery(int cost){
-        battery.useBudget(battery);
+        battery.useBudget(cost);
     }
 
     public int checkBattery(){
         return battery.getCurrentBudget();
     }
 
-    public int getDirection(){
+    public Compass getDirection(){
         return this.direction;
     }
 
     public void setDirection(Compass direction){
         this.direction = direction;
     }
-
 
 
 

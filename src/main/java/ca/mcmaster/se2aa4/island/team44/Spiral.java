@@ -1,4 +1,4 @@
-package ca.mcmaster.se2aa4.island.team44;
+/*package ca.mcmaster.se2aa4.island.team44;
 
 public class Spiral implements ExplorerPhase{
     @Override
@@ -11,4 +11,4 @@ public class Spiral implements ExplorerPhase{
 
     }
 
-}
+}*/

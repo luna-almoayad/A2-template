@@ -1,4 +1,5 @@
 package ca.mcmaster.se2aa4.island.team44;
+import java.util.Objects;
 
 public class Location {
     private int x;
@@ -16,7 +17,7 @@ public class Location {
     public int getYCoord(){
         return this.y;
     }
-/*
+
     public Location makeMove(Compass compass){
         switch (compass){
             case N: return new Location(x, y-1);
@@ -58,5 +59,4 @@ public class Location {
     }
 }
 
-    }*/
-}
+ 

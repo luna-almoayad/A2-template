@@ -17,8 +17,9 @@ public class Explorer implements IExplorerRaid {
     ExplorerPhase explore = new ExploreGround(); 
 
     protected Translator translate = new Translator();
-    Integer budget=0;
+    //Integer budget=0;
 
+    Controller control;
     @Override
     public void initialize(String s) {
         logger.info("** Initializing the Exploration Command Center");
@@ -26,20 +27,23 @@ public class Explorer implements IExplorerRaid {
         logger.info("** Initialization info:\n {}",info.toString(2));
         String direction = info.getString("heading");
         Integer batteryLevel = info.getInt("budget");
-        budget=batteryLevel;
+      
+      //  budget=batteryLevel;
         logger.info("The drone is facing {}", direction);
         logger.info("Battery level is {}", batteryLevel);
+
+         control = new Controller(batteryLevel );
 
     }
 
     @Override
     public String takeDecision() {
-       // JSONObject decision = transalte.fly();
-        //decision = explore.getDecision();
-       // decision.put("action", "stop");
-       // logger.info("** Decisions: {}", decision.toString());
+      //JSONObject decision = ;
+      //decision = explore.getDecision();
+      // decision.put("action", "stop");
+     //logger.info("** Decisions: {}", decision.toString());
      //transalte.fly().toString();
-       return explore.getDecision();
+       return control.getDecision();
  
     }
 
@@ -53,11 +57,11 @@ public class Explorer implements IExplorerRaid {
         logger.info("The status of the drone is {}", status);
         JSONObject extraInfo = response.getJSONObject("extras");
         logger.info("Additional information received: {}", extraInfo);
-        budget=budget-cost;
-        logger.info("Budget: ",budget);
+        //budget=budget-cost;
+        //logger.info("Budget: ",budget);
 
 
-        explore.readDecision(response);
+        control.getResponse(response);
 
 
     

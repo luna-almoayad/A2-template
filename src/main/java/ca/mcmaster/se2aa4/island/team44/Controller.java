@@ -1,24 +1,29 @@
 package ca.mcmaster.se2aa4.island.team44;
 
+import org.json.JSONObject;
+
 public class Controller{
     Drone drone;
-    PointOfInterests POI;
+    PointsOfInterest POI;
     Translator translator;
-    Phase phase;
+    ExplorerPhase phase;
 
-    public Controller(){
-        drone = new Drone();
-        POI = new PointOfInterests();
+    public Controller(int battery){
+        drone = new Drone(battery);
+       // POI = new PointsOfInterest();
         translator = new Translator();
         phase = new ExploreGround();
     }
 
     public String getDecision(){
-        return phase.takeDecision(Drone drone);
+        return phase.getDecision(drone);
     }
 
-    public String get_response(String s, Drone d){
-        phase.get_response(s, d);
+    public boolean getResponse(JSONObject response){
+
+        return phase.getResponse(response);
+
+       // phase.get_response(s, d);
     }
 
 
