@@ -4,7 +4,7 @@ import org.json.JSONObject;
 
 public class Controller{
     Drone drone;
-    PointsOfInterest POI;
+    POI POI;
     Translator translator;
     ExplorerPhase phase;
 
