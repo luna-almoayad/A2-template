@@ -19,13 +19,44 @@ public class Location {
 /*
     public Location makeMove(Compass compass){
         switch (compass){
-            case NORTH: return new Location(x, y-1);
-            case SOUTH: return new Location(x, y-1);
-            case WEST: return new Location (x-1, y);
-            case EAST: return new Location (x+1,y);
+            case N: return new Location(x, y-1);
+            case S: return new Location(x, y-1);
+            case W: return new Location (x-1, y);
+            case E: return new Location (x+1,y);
             default: return this;
 
         }
+
+    }
+
+    public int calculateDistance(Location target){
+        return Math.abs(this.x - target.x) + Math.abs(this.y-target.y);
+    }
+
+    @Override
+    public boolean equals(Object o){
+        if (this == o){
+            return true;
+        } 
+        if (o == null || this.getClass() != o.getClass()){
+            return false;
+        }
+        Location other = (Location) o;
+        return this.x == other.x && this.y == other.y;
+
+    }
+
+    @Override 
+    public int hashCode(){
+        return Objects.hash(this.x, this.y);
+    }
+
+    @Override 
+    public String toString(){
+        return "(" + x + "," + y + ")";
+
+    }
+}
 
     }*/
 }

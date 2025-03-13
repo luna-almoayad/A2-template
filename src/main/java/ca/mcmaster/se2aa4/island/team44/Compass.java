@@ -27,6 +27,8 @@ public enum Compass{
             case W: return S; 
             default: return this;
         }
+    
     }
     
+
 }
