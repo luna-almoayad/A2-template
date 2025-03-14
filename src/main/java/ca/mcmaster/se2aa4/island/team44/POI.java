@@ -5,6 +5,8 @@ public class POI { //shouldnt be abstract
     private ArrayList<Creeks> creeks;
     private EmergencySite esite;
 
+    
+
     public POI(){
         creeks=new ArrayList<Creeks>();
     }

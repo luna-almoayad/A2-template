@@ -1,4 +1,7 @@
 package ca.mcmaster.se2aa4.island.team44;
+import java.util.*;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class Drone{
     private Location location;
@@ -6,11 +9,13 @@ public class Drone{
     private Compass direction;
     private Phases phase;
     private POI POI;
+    private final Logger logger = LogManager.getLogger();
+
 
     public Drone(int battery){
         this.location = new Location(0,0);
         this.battery = new Battery(battery);
-        direction = Compass.E;
+        this.direction = Compass.E;
         phase = Phases.GROUND;
         POI = new POI();
     }
@@ -29,7 +34,7 @@ public class Drone{
     }
 
     public void fly(){
-        location.makeMove(this.direction);
+        this.location=location.makeMove(this.direction);
     }
 
     public void changeCost(int cost){
@@ -48,13 +53,14 @@ public class Drone{
         return this.direction;
     }
     public void right() {
-        fly();
-        direction = direction.right();
+        this.fly();
+        this.direction = this.direction.right();
     }
 
     public void left(){
-        fly();
-        direction = direction.left();
+        logger.info("Compare this btw "+this.direction);
+        this.fly();
+        this.direction = this.direction.left();
     }
 
     public void setDirection(Compass direction){
@@ -67,6 +73,14 @@ public class Drone{
 
     public void addCreek(Creeks creek){
         POI.addCreek(creek);
+    }
+
+    public ArrayList<Creeks> getCreek(){
+       return POI.getCreeks();
+    }
+
+    public String toString(){
+        return "Location: "+location.toString() + " Direction: "+this.direction;
     }
 
 

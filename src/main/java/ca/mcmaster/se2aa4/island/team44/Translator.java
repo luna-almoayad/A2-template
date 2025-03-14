@@ -43,7 +43,7 @@ public class Translator{
         JSONObject extraInfo = getExtraInfo(info);
 
         if(extraInfo.has("found")) return extraInfo.getString("found");
-            throw new IllegalArgumentException("found not found");
+            throw new IllegalArgumentException("Found not found");
     }
 
     

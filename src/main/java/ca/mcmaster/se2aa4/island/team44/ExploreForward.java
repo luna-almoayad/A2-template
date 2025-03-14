@@ -1,7 +1,7 @@
 package ca.mcmaster.se2aa4.island.team44;
 
-import java.util.*;
-import org.json.JSONArray;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.json.JSONObject;
 
 enum forwardPhases{
@@ -17,13 +17,17 @@ enum forwardPhases{
 public class ExploreForward implements ExplorerPhase{
     private forwardPhases phase = forwardPhases.SCAN;
     private Translator translator = new Translator();
-    private Compass direction;
+    private final Logger logger = LogManager.getLogger();
+    private Drone d;
+    
 
-    public boolean getResponse(JSONObject response, Drone d){
-        String found = translator.getFound(response);
-        if(translator.getFound(response).equals("OUT_OF_RANGE")){
-            phase = forwardPhases.STOP;
-        }
+    public ExploreForward(Drone d){
+        phase = forwardPhases.SCAN;
+        this.d=d;
+    }
+
+    public boolean getResponse(JSONObject response){
+        logger.info("shake"+phase);
         switch(phase){
             case SCAN -> {
                 if(translator.getBiomes(response).equals("sites")){
@@ -35,30 +39,41 @@ public class ExploreForward implements ExplorerPhase{
                     d.addCreek(creek);
                 }
                 phase = forwardPhases.FLY;
+
+                break;
             }
             case F_ECHO -> {
-                direction = d.getDirection();
-                phase = forwardPhases.L_ECHO;
-                if(translator.getFound(response).equals("OUT_OF_RANGE"))
+                phase = forwardPhases.SCAN;
+                logger.info("baboom"+translator.getFound(response));
+                if(translator.getFound(response).equals("OUT_OF_RANGE")){
                     return true;
+                }
+
+                break;
+                    
             }
             case L_ECHO -> {
                 phase = forwardPhases.R_ECHO;
-                direction = d.getDirection().left();
-                if(translator.getFound(response).equals("OUT_OF_RANGE"))
-                    phase = forwardPhases.STOP;
+                if(translator.getFound(response).equals("OUT_OF_RANGE")){
+                    //phase = forwardPhases.STOP;
+                }
+
+                break;
             }
             case R_ECHO -> {
-                phase = forwardPhases.FLY;
-                direction = d.getDirection().right();
+                phase = forwardPhases.SCAN;
                 if(translator.getFound(response).equals("OUT_OF_RANGE"))
-                    phase = forwardPhases.STOP;
+                    //phase = forwardPhases.STOP;
+
+                break;
             }
             case FLY -> {
                 phase = forwardPhases.F_ECHO;
+                break;
             }
             case STOP -> {
                 phase = forwardPhases.STOP;
+                break;
             }
             default -> {
                 return false;
@@ -67,28 +82,25 @@ public class ExploreForward implements ExplorerPhase{
         return false; 
     } 
 
-    public String getDecision(Drone d){
+    public String getDecision(){
         switch(phase){
             case SCAN -> {
                 return translator.scan();
             }
             case F_ECHO -> {
-                return translator.echo(direction);
+                return translator.echo(d.getDirection());
             }
             case L_ECHO -> {
-                direction = d.getDirection().left();
-                return translator.echo(direction);
+                return translator.echo(d.getDirection().left());
             }
             case R_ECHO -> {
-                direction = d.getDirection().right();
-                return translator.echo(direction);
+                return translator.echo(d.getDirection().right());
             }
             case FLY -> {
                 d.fly();
                 return translator.fly();
             }
             case STOP -> {
-                
                 return translator.stop();
             }
             default -> {

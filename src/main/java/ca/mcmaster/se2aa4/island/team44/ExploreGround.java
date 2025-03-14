@@ -5,22 +5,18 @@ import org.json.JSONObject;
 
 public class ExploreGround implements ExplorerPhase{
 
-
     private State state = State.FLY;
-
     protected Translator translate = new Translator();
-
     private int groundDistance;
     private Compass groundDirection;
+    Drone d;
 
-
-    //TAKE THIS OUT L
-
-    int t = 20;
-
+    public ExploreGround(Drone d){
+        this.d=d;
+    }
 
     @Override
-    public boolean getResponse(JSONObject response, Drone d)
+    public boolean getResponse(JSONObject response)
     {
         try{
             String found = translate.getFound(response);
@@ -32,69 +28,94 @@ public class ExploreGround implements ExplorerPhase{
         }catch( Exception e)
         {
 
-        }       
-        return state ==State.STOP;
+        }   
 
+        switch(this.state){
+        case State.FOUNDGROUND -> {
+            if(groundDistance ==0) state = State.ONCOAST;
+            break;
+        }
+        case State.FLY -> {
+            state = State.F_ECHO;
+            break;
+            }
 
+        case State.F_ECHO -> {
+            state = State.L_ECHO;
+            break;
+            }
+
+        case State.L_ECHO -> {
+            state = State.R_ECHO;
+            break;
+            }
+
+        case State.R_ECHO -> {
+            state = State.FLY;
+            break;
+            }
+
+        case State.ONCOAST -> {
+            state = State.STOP1;
+            break;
+            }
+        case State.STOP1 ->{
+            state = State.STOP2;
+            break;
+           
+        }
+        default ->{
+            break;
+        }
+          
+    }
+      return this.state==State.ONCOAST;
     }
 
 
     @Override
-    public String getDecision(Drone d){
+    public String getDecision(){
 
     switch(state){
         case State.FOUNDGROUND -> {
-
             if(groundDirection != d.getDirection()){
                 d.setDirection(groundDirection);
                 return translate.heading(groundDirection); //
             }
             
             groundDistance = groundDistance - 1;
-            if( groundDistance !=0) {
-            }else state = State.ONCOAST;
-
             d.fly();
             return translate.fly();
             }
 
         case State.FLY -> {
-            state = State.F_ECHO;
             d.fly();
             return translate.fly();
             }
 
         case State.F_ECHO -> {
             groundDirection = d.getDirection();
-            state = State.L_ECHO;
             return translate.echo(d.getDirection());
             }
 
         case State.L_ECHO -> {
-            state = State.R_ECHO;
             groundDirection = d.getDirection().left();
             return translate.echo(d.getDirection().left());
             }
 
         case State.R_ECHO -> {
-            state = State.FLY;
             groundDirection = d.getDirection().right();
             return translate.echo(d.getDirection().right());
             }
 
         case State.ONCOAST -> {
-            state = State.STOP;
             return translate.scan();
             }
-        case State.STOP -> {
-            state = State.E;
-            return translate.fly();
+        case State.STOP1 -> {
+            return translate.stop();
             }
-        case State.E ->{
-            state = State.STOP;
-            t--;
-            if(t ==0) return translate.stop();
-            return translate.scan();
+        case State.STOP2 ->{
+            return null;
         }
         default -> {
             return "Default";

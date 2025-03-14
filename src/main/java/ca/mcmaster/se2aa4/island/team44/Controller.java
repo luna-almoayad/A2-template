@@ -1,5 +1,7 @@
 package ca.mcmaster.se2aa4.island.team44;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.json.JSONObject;
 
 public class Controller{
@@ -9,30 +11,40 @@ public class Controller{
     ExplorerPhase actionPhase;
     Phases dronePhase;
 
+    private final Logger logger = LogManager.getLogger();
+
+
+
     public Controller(int battery){
         this.d = new Drone(battery);
        // POI = new PointsOfInterest();
         translator = new Translator();
-        actionPhase = new ExploreGround();
+        actionPhase = new ExploreGround(d);
+        dronePhase = Phases.GROUND;
     }
 
     public String getDecision(){
-        return actionPhase.getDecision(d);
+        return actionPhase.getDecision();
     }
 
     public void getResponse(JSONObject response){
-        boolean switchPhases = actionPhase.getResponse(response, d);
+        boolean switchPhases = actionPhase.getResponse(response);
+        logger.info("switchPhase:" + switchPhases);
+        logger.info("Drone stuff: "+d);
 
         if(switchPhases && dronePhase == Phases.GROUND){
-            dronePhase.switchPhase();
-            actionPhase= new ExploreGround();
+           // logger.info("bebebbeb:");
+            dronePhase = dronePhase.switchPhase();
+            actionPhase= new ExploreForward(d);
         }else if(switchPhases && dronePhase == Phases.GRIDSEARCH){
-            dronePhase.switchPhase();
-            actionPhase= new UTurn();
+            dronePhase = dronePhase.switchPhase();
+            actionPhase= new UTurn(d);
         }else if(switchPhases && dronePhase == Phases.UTURN){
-            dronePhase.switchPhase();
-            actionPhase= new ExploreForward();
+            dronePhase = dronePhase.switchPhase();
+            actionPhase= new ExploreForward(d);
         }
+
+        logger.info("Phase: " + dronePhase.toString());
 
     }
 

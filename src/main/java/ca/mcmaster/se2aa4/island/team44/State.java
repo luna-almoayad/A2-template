@@ -12,6 +12,8 @@ public enum State{
     ONCOAST,
     STOP,
     E,
-    CHANGEHEADING;
+    CHANGEHEADING,
+    STOP1,
+    STOP2;
     
 }

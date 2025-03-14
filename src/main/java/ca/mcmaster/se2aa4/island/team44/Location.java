@@ -24,7 +24,7 @@ public class Location {
 
     public Location makeMove(Compass compass){
         return switch (compass) {
-            case N -> new Location(x, y-1);
+            case N -> new Location(x, y+1);
             case S -> new Location(x, y-1);
             case W -> new Location (x-1, y);
             case E -> new Location (x+1,y);

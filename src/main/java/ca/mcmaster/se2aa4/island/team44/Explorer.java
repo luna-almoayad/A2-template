@@ -14,7 +14,6 @@ public class Explorer implements IExplorerRaid {
     private final Logger logger = LogManager.getLogger();
 
     
-    ExplorerPhase explore = new ExploreGround(); 
 
     protected Translator translate = new Translator();
     //Integer budget=0;
@@ -30,7 +29,7 @@ public class Explorer implements IExplorerRaid {
         logger.info("The drone is facing {}", direction);
         logger.info("Battery level is {}", batteryLevel);
 
-         control = new Controller(batteryLevel );
+         control = new Controller(batteryLevel);
 
     }
 
@@ -39,9 +38,11 @@ public class Explorer implements IExplorerRaid {
       //JSONObject decision = ;
       //decision = explore.getDecision();
       // decision.put("action", "stop");
-     //logger.info("** Decisions: {}", decision.toString());
      //transalte.fly().toString();
-       return control.getDecision();
+        String decision = control.getDecision();
+        logger.info("** Decisions: {}", decision);
+
+       return decision;
  
     }
 
