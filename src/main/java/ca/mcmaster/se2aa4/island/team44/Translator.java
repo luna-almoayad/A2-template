@@ -3,8 +3,6 @@ package ca.mcmaster.se2aa4.island.team44;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-
-
 //getHeading(JSONObject): String
 //getCost(JSONObject): String
 //getExtraInfo(JSONObject):String
@@ -63,8 +61,27 @@ public class Translator{
         }
         return result ;
     }
+    //returns biomes 
 
-    public String[] getCreekIDs(JSONObject info){
+    public String getSiteIDs(JSONObject info){
+        JSONObject extraInfo = getExtraInfo(info);
+
+        JSONArray creeks;
+
+        if(extraInfo.has("sites"))  creeks = extraInfo.optJSONArray("sites");
+        else
+            throw new IllegalArgumentException("found not found"); //wanna get rid 
+
+        String[] result = new String[creeks.length()];
+        for (int i = 0; i < creeks.length(); i++) {
+            result[i] = creeks.optString(i, ""); 
+        }
+        if(result.length == 0)
+            return null;
+        return result[0] ;
+    }
+
+    public String getCreekIDs(JSONObject info){
         JSONObject extraInfo = getExtraInfo(info);
 
         JSONArray creeks;
@@ -77,7 +94,9 @@ public class Translator{
         for (int i = 0; i < creeks.length(); i++) {
             result[i] = creeks.optString(i, ""); 
         }
-        return result ;
+        if(result.length == 0)
+            return null;
+        return result[0] ;
     }
 
 

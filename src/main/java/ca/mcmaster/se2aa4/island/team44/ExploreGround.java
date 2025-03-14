@@ -20,7 +20,7 @@ public class ExploreGround implements ExplorerPhase{
 
 
     @Override
-    public boolean getResponse(JSONObject response)
+    public boolean getResponse(JSONObject response, Drone d)
     {
         try{
             String found = translate.getFound(response);

@@ -5,12 +5,14 @@ public class Drone{
     private Battery battery;
     private Compass direction;
     private Phases phase;
+    private POI POI;
 
     public Drone(int battery){
         this.location = new Location(0,0);
         this.battery = new Battery(battery);
-        this.direction = Compass.E;
-        this.phase = Phases.GROUND;
+        direction = Compass.E;
+        phase = Phases.GROUND;
+        POI = new POI();
     }
 
     public void switchPhase(){
@@ -45,11 +47,27 @@ public class Drone{
     public Compass getDirection(){
         return this.direction;
     }
+    public void right() {
+        fly();
+        direction = direction.right();
+    }
+
+    public void left(){
+        fly();
+        direction = direction.left();
+    }
 
     public void setDirection(Compass direction){
         this.direction = direction;
     }
 
+    public void addEmergencySite(EmergencySite emergencySite){
+        POI.addEmergencySite(emergencySite);
+    }
+
+    public void addCreek(Creeks creek){
+        POI.addCreek(creek);
+    }
 
 
 }

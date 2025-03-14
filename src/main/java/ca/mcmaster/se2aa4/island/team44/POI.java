@@ -1,13 +1,31 @@
 package ca.mcmaster.se2aa4.island.team44;
+import java.util.*;
 
-public abstract class POI {
-    protected Location location; 
+public class POI { //shouldnt be abstract
+    private ArrayList<Creeks> creeks;
+    private EmergencySite esite;
 
-    public POI(Location location){
-        this.location= location; 
+    public POI(){
+        creeks=new ArrayList<Creeks>();
     }
     
-    public Location getLocation(){
-        return this.location; 
+
+    public void addCreek(Creeks creek){
+        creeks.add(creek);
     }
+
+    public void addEmergencySite(EmergencySite emergencySite){
+        this.esite= emergencySite;
+    }
+
+    public ArrayList<Creeks> getCreeks(){
+        return this.creeks;
+    }
+
+    public EmergencySite getEmergencySites(){
+        return this.esite;
+    }
+
+
+
 }

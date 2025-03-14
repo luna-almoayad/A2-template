@@ -3,27 +3,37 @@ package ca.mcmaster.se2aa4.island.team44;
 import org.json.JSONObject;
 
 public class Controller{
-    Drone drone;
+    Drone d;
     POI POI;
     Translator translator;
-    ExplorerPhase phase;
+    ExplorerPhase actionPhase;
+    Phases dronePhase;
 
     public Controller(int battery){
-        drone = new Drone(battery);
+        this.d = new Drone(battery);
        // POI = new PointsOfInterest();
         translator = new Translator();
-        phase = new ExploreGround();
+        actionPhase = new ExploreGround();
     }
 
     public String getDecision(){
-        return phase.getDecision(drone);
+        return actionPhase.getDecision(d);
     }
 
-    public boolean getResponse(JSONObject response){
+    public void getResponse(JSONObject response){
+        boolean switchPhases = actionPhase.getResponse(response, d);
 
-        return phase.getResponse(response);
+        if(switchPhases && dronePhase == Phases.GROUND){
+            dronePhase.switchPhase();
+            actionPhase= new ExploreGround();
+        }else if(switchPhases && dronePhase == Phases.GRIDSEARCH){
+            dronePhase.switchPhase();
+            actionPhase= new UTurn();
+        }else if(switchPhases && dronePhase == Phases.UTURN){
+            dronePhase.switchPhase();
+            actionPhase= new ExploreForward();
+        }
 
-       // phase.get_response(s, d);
     }
 
 

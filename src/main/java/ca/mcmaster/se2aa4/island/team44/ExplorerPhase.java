@@ -7,6 +7,6 @@ public interface ExplorerPhase{
 
     public String getDecision(Drone d);
 
-    public boolean getResponse(JSONObject response); 
+    public boolean getResponse(JSONObject response, Drone d); 
 
 }
