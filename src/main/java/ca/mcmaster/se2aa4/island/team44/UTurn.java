@@ -23,7 +23,7 @@ public class UTurn implements ExplorerPhase{
 
 
 
-    public boolean getResponse(JSONObject response){
+    public boolean getResponse(JSONObject response, Drone d){
         if( turns == Turns.FLY) return true;
         return false;
     }
