@@ -1,13 +1,9 @@
 package ca.mcmaster.se2aa4.island.team44;
-
-
-//Chnage because the dron reads char
 public enum Compass{
     N,
     E, 
     S, 
     W;
-
 
     public Compass right(){
         switch (this){
@@ -26,8 +22,20 @@ public enum Compass{
             case S: return E;
             case W: return S; 
             default: return this;
+        
         }
     
+    }
+
+    public Compass opposite(){
+        switch(this){
+            case N: return S;
+            case E: return W;
+            case W: return E;
+            case S: return N;
+            default: return this;
+        }
+
     }
     
 
