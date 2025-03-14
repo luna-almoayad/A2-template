@@ -14,6 +14,8 @@ public class Explorer implements IExplorerRaid {
     private final Logger logger = LogManager.getLogger();
 
     
+    private MissionReport missionReport;
+    private POI poi; 
 
     protected Translator translate = new Translator();
     //Integer budget=0;
@@ -70,7 +72,8 @@ public class Explorer implements IExplorerRaid {
 
     @Override
     public String deliverFinalReport() {
-        return "no creek found";
+        String finalReport= missionReport.generateReport(poi);
+        return finalReport;
     }
 
 }

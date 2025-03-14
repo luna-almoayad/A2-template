@@ -44,14 +44,10 @@ public class Drone{
     }
 
     public void fly(){
-        this.location=location.makeMove(this.direction);
+        this.location = this.location.makeMove(this.direction);
     }
 
     public void changeCost(int cost){
-        battery.useBudget(cost);
-    }
-
-    public void setBattery(int cost){
         battery.useBudget(cost);
     }
 

@@ -4,6 +4,7 @@ import java.util.*;
 public class POI { //shouldnt be abstract
     private ArrayList<Creeks> creeks;
     private EmergencySite esite;
+    private Location location; 
 
     
 
@@ -29,6 +30,16 @@ public class POI { //shouldnt be abstract
         return this.esite;
     }
 
+    public Creeks getClosestCreek(){
+        int min = 0;
+        Creeks closest= null; 
+        for (Creeks creek : creeks){
+            if (esite.getLocation().calculateDistance(creek.getLocation()) < min){
+                 closest = creek; 
+            }
+        }
+        return closest; 
+    }
 
 
 }

@@ -42,9 +42,15 @@ public class Location {
     }
 
     public int getXDist(Location target){
-        return (target.x - this.y);
+        return (target.x - this.x);
     }
 
+    /*public int findClosest (Location start, Location target){
+        int x= Math.abs(start.x - target.x);
+        int y= Math.abs(start.y - target.y);
+        return x+y;
+    
+    }*/
     @Override
     public boolean equals(Object o){
         if (this == o){

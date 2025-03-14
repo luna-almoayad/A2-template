@@ -39,6 +39,11 @@ public class EmergencySite extends POI {
     return this.location;
    }
 
+   public String getID(){
+    return this.id;
+   }
+
+
 
     
 }
