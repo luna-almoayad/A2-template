@@ -128,7 +128,7 @@ public class Translator{
                 hasOceans = true;
         }
         
-        return hasOceans;
+        return hasOceans&&biomes.length()==1;
     }
 
 

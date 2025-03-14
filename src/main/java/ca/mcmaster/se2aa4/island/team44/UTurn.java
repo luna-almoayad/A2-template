@@ -12,7 +12,9 @@ enum Turns{
     FLY1,
     FLY2,
     ECHOF,
-    STOP;
+    STOP,
+    ONCOAST,
+    FLY3;
 }
 
 public class UTurn implements ExplorerPhase{
@@ -23,6 +25,7 @@ public class UTurn implements ExplorerPhase{
     private final Logger logger = LogManager.getLogger();
     Compass start;
     boolean turned= false;
+    int groundDistance = -1;
 
 
     public UTurn(Drone d){
@@ -75,15 +78,21 @@ public class UTurn implements ExplorerPhase{
 
             case Turns.ECHOF -> {
                 turns= Turns.FLY1;
+                String found = translator.getFound(response);
+                if(found.equals("GROUND")){
+                    groundDistance = translator.getRange(response)+2;
+                    turns = Turns.ONCOAST;
+            }
                 
                 if(translator.getFound(response).equals("OUT_OF_RANGE") ){
                     logger.info("stopsposish");
                     turns = Turns.STOP;
                 }
-                else 
-                    turned = true;
 
                 break;
+            } case Turns.ONCOAST ->{
+
+                if(groundDistance == 0) return true;
             }
            /* case Turns.ECHOR ->{
                 turns=Turns.ECHOL;
@@ -179,6 +188,12 @@ public class UTurn implements ExplorerPhase{
                 return translator.echo(d.getDirection());
             }
 
+            case Turns.ONCOAST -> {
+               // if (groundDistance == 0 ) return translator.stop();
+                groundDistance = groundDistance - 1;
+                d.fly();
+                return translator.fly();
+            }
             case Turns.STOP ->{
                 return translator.stop();
             }   
@@ -189,5 +204,6 @@ public class UTurn implements ExplorerPhase{
     }
 
     }   
+
     
 }
