@@ -8,6 +8,6 @@ public abstract class POI {
     }
     
     public Location getLocation(){
-        return location; 
+        return this.location; 
     }
 }

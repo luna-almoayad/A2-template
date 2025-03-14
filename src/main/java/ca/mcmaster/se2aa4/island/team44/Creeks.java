@@ -1,6 +1,6 @@
 package ca.mcmaster.se2aa4.island.team44;
 
-public class Creeks extends PointsOfInterest{
+public class Creeks extends POI{
 
     private String id; 
     public Creeks (Location location, String id){
@@ -9,7 +9,7 @@ public class Creeks extends PointsOfInterest{
     }
 
     public String getID(){
-        return id; 
+        return this.id; 
     }
         
 }

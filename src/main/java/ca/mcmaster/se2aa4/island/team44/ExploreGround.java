@@ -1,20 +1,22 @@
 package ca.mcmaster.se2aa4.island.team44;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.json.JSONObject;
+
 
 public class ExploreGround implements ExplorerPhase{
 
 
     private State state = State.FLY;
 
-    private final Logger logger = LogManager.getLogger();
-
     protected Translator translate = new Translator();
 
     private int groundDistance;
     private Compass groundDirection;
+
+
+    //TAKE THIS OUT L
+
+    int t = 20;
 
 
     @Override
@@ -37,6 +39,7 @@ public class ExploreGround implements ExplorerPhase{
     }
 
 
+    @Override
     public String getDecision(Drone d){
 
     switch(state){
@@ -50,11 +53,14 @@ public class ExploreGround implements ExplorerPhase{
             groundDistance = groundDistance - 1;
             if( groundDistance !=0) {
             }else state = State.ONCOAST;
+
+            d.fly();
             return translate.fly();
             }
 
         case State.FLY -> {
             state = State.F_ECHO;
+            d.fly();
             return translate.fly();
             }
 
@@ -81,8 +87,15 @@ public class ExploreGround implements ExplorerPhase{
             return translate.scan();
             }
         case State.STOP -> {
-            return translate.stop();
+            state = State.E;
+            return translate.fly();
             }
+        case State.E ->{
+            state = State.STOP;
+            t--;
+            if(t ==0) return translate.stop();
+            return translate.scan();
+        }
         default -> {
             return "Default";
             }

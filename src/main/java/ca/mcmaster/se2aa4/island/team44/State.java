@@ -1,8 +1,8 @@
 
 package ca.mcmaster.se2aa4.island.team44;
 
+//MIGHT DELETE
 public enum State{
-
     L_ECHO,
     R_ECHO,
     F_ECHO,
@@ -10,6 +10,8 @@ public enum State{
     FOUNDGROUND,
     FLYTOGROUND,
     ONCOAST,
-    STOP
-
+    STOP,
+    E,
+    CHANGEHEADING;
+    
 }

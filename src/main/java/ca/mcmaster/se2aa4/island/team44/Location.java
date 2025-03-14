@@ -18,15 +18,18 @@ public class Location {
         return this.y;
     }
 
-    public Location makeMove(Compass compass){
-        switch (compass){
-            case N: return new Location(x, y-1);
-            case S: return new Location(x, y-1);
-            case W: return new Location (x-1, y);
-            case E: return new Location (x+1,y);
-            default: return this;
+    public Location getLocation(){
+        return this;
+    }
 
-        }
+    public Location makeMove(Compass compass){
+        return switch (compass) {
+            case N -> new Location(x, y-1);
+            case S -> new Location(x, y-1);
+            case W -> new Location (x-1, y);
+            case E -> new Location (x+1,y);
+            default -> this;
+        };
 
     }
 
