@@ -35,6 +35,10 @@ public class EmergencySite extends POI {
         this.location= location;
    }
 
+   public Location getLocation(){
+    return this.location;
+   }
+
 
     
 }

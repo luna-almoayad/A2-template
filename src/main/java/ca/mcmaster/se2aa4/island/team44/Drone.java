@@ -10,6 +10,7 @@ public class Drone{
     private Phases phase;
     private POI POI;
     private final Logger logger = LogManager.getLogger();
+    private Compass startDir;
 
 
     public Drone(int battery){
@@ -18,6 +19,15 @@ public class Drone{
         this.direction = Compass.E;
         phase = Phases.GROUND;
         POI = new POI();
+        this.startDir = Compass.E;
+    }
+
+    public Compass getStartDir(){
+        return this.startDir;
+    }
+
+    public void setStartDir(Compass dir){
+        this.startDir=dir;
     }
 
     public void switchPhase(){
@@ -69,6 +79,10 @@ public class Drone{
 
     public void addEmergencySite(EmergencySite emergencySite){
         POI.addEmergencySite(emergencySite);
+    }
+
+    public EmergencySite getESite(){
+        return POI.getEmergencySites();
     }
 
     public void addCreek(Creeks creek){

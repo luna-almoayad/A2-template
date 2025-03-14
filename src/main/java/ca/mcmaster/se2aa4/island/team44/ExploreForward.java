@@ -6,11 +6,7 @@ import org.json.JSONObject;
 
 enum forwardPhases{
     SCAN,
-    L_ECHO,
-    R_ECHO,
-    F_ECHO,
-    FLY,
-    STOP;
+    FLY;
     
 }
 
@@ -19,12 +15,14 @@ public class ExploreForward implements ExplorerPhase{
     private Translator translator = new Translator();
     private final Logger logger = LogManager.getLogger();
     private Drone d;
+
     
 
     public ExploreForward(Drone d){
         phase = forwardPhases.SCAN;
         this.d=d;
     }
+
 
     public boolean getResponse(JSONObject response){
         logger.info("shake"+phase);
@@ -38,41 +36,15 @@ public class ExploreForward implements ExplorerPhase{
                     Creeks creek = new Creeks(translator.getSiteIDs(response), d.getLocation());
                     d.addCreek(creek);
                 }
-                phase = forwardPhases.FLY;
-
-                break;
-            }
-            case F_ECHO -> {
-                phase = forwardPhases.SCAN;
-                logger.info("baboom"+translator.getFound(response));
-                if(translator.getFound(response).equals("OUT_OF_RANGE")){
+                if(translator.hasOcean(response)){
+                    logger.info("in here!");
                     return true;
                 }
-
-                break;
-                    
-            }
-            case L_ECHO -> {
-                phase = forwardPhases.R_ECHO;
-                if(translator.getFound(response).equals("OUT_OF_RANGE")){
-                    //phase = forwardPhases.STOP;
-                }
-
-                break;
-            }
-            case R_ECHO -> {
-                phase = forwardPhases.SCAN;
-                if(translator.getFound(response).equals("OUT_OF_RANGE"))
-                    //phase = forwardPhases.STOP;
-
+                phase = forwardPhases.FLY;
                 break;
             }
             case FLY -> {
-                phase = forwardPhases.F_ECHO;
-                break;
-            }
-            case STOP -> {
-                phase = forwardPhases.STOP;
+                phase = forwardPhases.SCAN;
                 break;
             }
             default -> {
@@ -87,21 +59,10 @@ public class ExploreForward implements ExplorerPhase{
             case SCAN -> {
                 return translator.scan();
             }
-            case F_ECHO -> {
-                return translator.echo(d.getDirection());
-            }
-            case L_ECHO -> {
-                return translator.echo(d.getDirection().left());
-            }
-            case R_ECHO -> {
-                return translator.echo(d.getDirection().right());
-            }
+
             case FLY -> {
                 d.fly();
                 return translator.fly();
-            }
-            case STOP -> {
-                return translator.stop();
             }
             default -> {
                 return "Default";

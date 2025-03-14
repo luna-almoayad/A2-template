@@ -2,6 +2,8 @@ package ca.mcmaster.se2aa4.island.team44;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 //getHeading(JSONObject): String
 //getCost(JSONObject): String
@@ -9,6 +11,8 @@ import org.json.JSONObject;
 
 
 public class Translator{
+
+    private final Logger logger = LogManager.getLogger();
 
     public String getHeading(JSONObject info){
         if(info.has("heading")) return info.getString("heading");
@@ -48,18 +52,19 @@ public class Translator{
 
     
 //scan response
-    public String [] getBiomes(JSONObject info){
+
+    public String getBiomes(JSONObject info){
         JSONObject extraInfo = getExtraInfo(info);
         JSONArray biomes;
         if(extraInfo.has("biomes"))  biomes = extraInfo.optJSONArray("biomes");
         else
-            throw new IllegalArgumentException("found not found");
+            return null;
 
         String[] result = new String[biomes.length()];
         for (int i = 0; i < biomes.length(); i++) {
             result[i] = biomes.optString(i, ""); 
         }
-        return result ;
+        return result[0] ;
     }
     //returns biomes 
 
@@ -70,7 +75,7 @@ public class Translator{
 
         if(extraInfo.has("sites"))  creeks = extraInfo.optJSONArray("sites");
         else
-            throw new IllegalArgumentException("found not found"); //wanna get rid 
+            return null;
 
         String[] result = new String[creeks.length()];
         for (int i = 0; i < creeks.length(); i++) {
@@ -88,7 +93,7 @@ public class Translator{
 
         if(extraInfo.has("creeks"))  creeks = extraInfo.optJSONArray("creeks");
         else
-            throw new IllegalArgumentException("found not found");
+            return null;
 
         String[] result = new String[creeks.length()];
         for (int i = 0; i < creeks.length(); i++) {
@@ -97,6 +102,33 @@ public class Translator{
         if(result.length == 0)
             return null;
         return result[0] ;
+    }
+
+    public boolean hasCreek(JSONObject info){
+        JSONObject extraInfo = getExtraInfo(info);
+        JSONArray creeks=extraInfo.optJSONArray("creeks");
+        return (creeks!=null && creeks.length()>0);
+    }
+
+    public boolean hasESite(JSONObject info){
+        JSONObject extraInfo = getExtraInfo(info);
+        JSONArray sites=extraInfo.optJSONArray("sites");
+        return (sites!=null && sites.length()>0);
+    }
+
+    public boolean hasOcean(JSONObject info){
+        logger.info("bro ur in");
+        JSONObject extraInfo = getExtraInfo(info);
+        JSONArray biomes=extraInfo.optJSONArray("biomes");
+        if (biomes == null) return false; 
+        boolean hasOceans=false;
+        logger.info("biomes length "+biomes.length()+" "+biomes.optString(0, ""));
+        for (int i = 0; i < biomes.length(); i++) {
+            if (biomes.optString(i, "").equals("OCEAN"))
+                hasOceans = true;
+        }
+        
+        return hasOceans;
     }
 
 

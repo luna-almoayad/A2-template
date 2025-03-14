@@ -42,7 +42,9 @@ public class Explorer implements IExplorerRaid {
         String decision = control.getDecision();
         logger.info("** Decisions: {}", decision);
 
-       return decision;
+        return decision;
+
+       //return decision;
  
     }
 

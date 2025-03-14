@@ -9,9 +9,9 @@ enum Turns{
     R2,
     F1,
     R3,
-    FLY,
-    ECHOR,
-    ECHOL,
+    FLY1,
+    FLY2,
+    ECHOF,
     STOP;
 }
 
@@ -22,16 +22,20 @@ public class UTurn implements ExplorerPhase{
     Translator translator = new Translator();
     private final Logger logger = LogManager.getLogger();
     Compass start;
+    boolean turned= false;
 
 
     public UTurn(Drone d){
         this.d=d;
         this.start=d.getDirection();
+        logger.info("Starting phase at"+start);
     }
 
 
 
     public boolean getResponse(JSONObject response){
+        turned = false;
+        logger.info("sheesh "+d.getDirection());
 
         switch(turns){
             case Turns.L1 -> {
@@ -55,112 +59,135 @@ public class UTurn implements ExplorerPhase{
             }
 
             case Turns.R3 ->{
-                turns = Turns.FLY;
+                turns = Turns.ECHOF;
                 break;
             }
             //d.setDirection(d.getDirection().right());
-            case Turns.FLY -> {
-                turns = Turns.ECHOR;
+            case Turns.FLY1 -> {
+                turns = Turns.FLY2;
+                //turned= true;
                 break;
             }
-            case Turns.ECHOR ->{
-                turns=Turns.ECHOL;
-                if(translator.getFound(response).equals("OUT_OF_RANGE") && !d.getCreek().isEmpty())
+            case Turns.FLY2 ->{
+                turns= Turns.L1;
+                break;
+            }
+
+            case Turns.ECHOF -> {
+                turns= Turns.FLY1;
+                
+                if(translator.getFound(response).equals("OUT_OF_RANGE") ){
+                    logger.info("stopsposish");
                     turns = Turns.STOP;
+                }
+                else 
+                    turned = true;
+
+                break;
+            }
+           /* case Turns.ECHOR ->{
+                turns=Turns.ECHOL;
+                if(translator.getFound(response).equals("OUT_OF_RANGE") && d.getDirection().right()==d.getStartDir() )
+                    turns = Turns.STOP;
+                else if (d.getESite()!=null)
+                    turns = Turns.STOP;
+
                 break;
             }
             case Turns.ECHOL ->{
                 //turns=Turns.L1;
-                if(translator.getFound(response).equals("OUT_OF_RANGE") && !d.getCreek().isEmpty()){
+                if(translator.getFound(response).equals("OUT_OF_RANGE") && d.getDirection().right()==d.getStartDir()){
                     turns = Turns.STOP;
+                }else if (d.getESite()!=null){
+                    turns = Turns.STOP;
+                
                 }else{
-                    turns=Turns.L1;
+                    turns= Turns.FLY;
+                    
                 }
                 break;
             }
+            */
             case Turns.STOP ->{
-                turns =  Turns.STOP;
                 break;
             }
              default -> {
             
             }
-         }
-        if( turns == Turns.L1){
-            return true;
         }
-        return false;
+        return turned;
     }
 
     public String getDecision(){
 
         switch(turns){
             case Turns.L1 -> {
-               if(start==Compass.N)
+               if(start==Compass.N || start == Compass.E)
                     d.left();
                 else
                     d.right();
-                turns = Turns.R1;
+            
                 logger.info("Comparing "+d.getDirection());
                 return translator.heading(d.getDirection());
             }
     
             case Turns.R1 -> { 
-                turns = Turns.R2;
-                if(start==Compass.N)
+                if(start==Compass.N || start == Compass.E){
                     d.right();
-                else
+                }else{
                     d.left();
+                }
                 return translator.heading(d.getDirection());
             }
 
             case Turns.R2 -> {
-                turns = Turns.F1;
-                if(start==Compass.N)
+                if(start==Compass.N || start == Compass.E){
                     d.right();
-                else
+                }else{
                     d.left();
+                }
                 //d.setDirection(d.getDirection().right());
                 return translator.heading(d.getDirection());
             }
 
             case Turns.F1 -> {
-                turns = Turns.R3;
                 
                 d.fly();
                 return translator.fly();
             }
 
             case Turns.R3 -> {
-                if(start==Compass.N)
+                if(start==Compass.N || start == Compass.E){
                     d.right();
-                else
+                } else{
                     d.left();
-                turns = Turns.FLY;
+                }
                 //d.setDirection(d.getDirection().right());
                 return translator.heading(d.getDirection());
             }
 
-            case Turns.FLY -> {
+            case Turns.FLY1 -> {
                 d.fly(); 
                 return translator.fly();
             }
-            case Turns.ECHOR -> {
-                return translator.echo(d.getDirection().right());
-            } 
-            case Turns.ECHOL -> {
-                return translator.echo(d.getDirection().left());
-            } 
+            case Turns.FLY2 ->{
+                d.fly();
+                return translator.fly();
+            }
+
+            case Turns.ECHOF ->{
+                return translator.echo(d.getDirection());
+            }
+
             case Turns.STOP ->{
                 return translator.stop();
             }   
             default -> {
                 return "YOU SHOUDNL HAVE GOT HERE LOL";
+                
             }
     }
 
-
-
-        
-    }
+    }   
+    
 }

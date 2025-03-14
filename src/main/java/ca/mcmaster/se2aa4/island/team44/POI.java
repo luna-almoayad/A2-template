@@ -9,6 +9,7 @@ public class POI { //shouldnt be abstract
 
     public POI(){
         creeks=new ArrayList<Creeks>();
+        this.esite = null;
     }
     
 
