@@ -4,11 +4,13 @@ import org.apache.logging.log4j.Logger;
 import org.json.JSONObject;
 
 enum Turns{
+    CHECKF,
     L1,
     R1,
     R2,
     F1,
     R3,
+    FLY,
     FLY1,
     FLY2,
     ECHOF,
@@ -18,7 +20,7 @@ enum Turns{
 }
 
 public class UTurn implements ExplorerPhase{
-   
+    private Explorer explorer;
     Turns turns = Turns.L1;
     Drone d;
     Translator translator = new Translator();
@@ -41,6 +43,15 @@ public class UTurn implements ExplorerPhase{
         logger.info("sheesh "+d.getDirection());
 
         switch(turns){
+            
+            case Turns.CHECKF -> {
+                turns= Turns.L1;
+                if (translator.getFound(response).equals("GROUND")){
+                    groundDistance = translator.getRange(response);
+                    turns=Turns.FLY;
+                }
+                break;
+            }
             case Turns.L1 -> {
                 turns = Turns.R1;
                 break;
@@ -65,6 +76,13 @@ public class UTurn implements ExplorerPhase{
                 turns = Turns.ECHOF;
                 break;
             }
+            case Turns.FLY->{
+                groundDistance--;
+                if(groundDistance==0)
+                    return true;
+                break;
+
+            }
             //d.setDirection(d.getDirection().right());
             case Turns.FLY1 -> {
                 turns = Turns.FLY2;
@@ -86,12 +104,12 @@ public class UTurn implements ExplorerPhase{
                 
                 if(translator.getFound(response).equals("OUT_OF_RANGE") ){
                     logger.info("stopsposish");
+                    logger.info(explorer.deliverFinalReport());
                     turns = Turns.STOP;
                 }
 
                 break;
             } case Turns.ONCOAST ->{
-
                 if(groundDistance == 0) return true;
             }
            /* case Turns.ECHOR ->{
@@ -130,6 +148,10 @@ public class UTurn implements ExplorerPhase{
     public String getDecision(){
 
         switch(turns){
+
+            case Turns.CHECKF ->{
+                return translator.echo(d.getDirection());
+            }
             case Turns.L1 -> {
                if(start==Compass.N || start == Compass.E)
                     d.left();
