@@ -80,9 +80,8 @@ public class ExploreGround implements ExplorerPhase{
         case State.FOUNDGROUND -> {
             if(groundDirection != d.getDirection()){
                 d.setDirection(groundDirection);
-                return translate.heading(groundDirection); //
+                return translate.heading(groundDirection); 
             }
-            
             groundDistance = groundDistance - 1;
             d.fly();
             return translate.fly();
