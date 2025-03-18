@@ -37,6 +37,7 @@ public class UTurn implements ExplorerPhase{
 
 
     public boolean getResponse(JSONObject response){
+
         turned = false;
         logger.info("sheesh "+d.getDirection());
 
