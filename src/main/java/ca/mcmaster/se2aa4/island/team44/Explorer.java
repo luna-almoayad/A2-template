@@ -65,7 +65,7 @@ public class Explorer implements IExplorerRaid {
 
 
         control.getResponse(response);
-
+        
 
     
     }
@@ -73,6 +73,7 @@ public class Explorer implements IExplorerRaid {
     @Override
     public String deliverFinalReport() {
         String finalReport= missionReport.generateReport(poi);
+        logger.info("final info", finalReport);
         return finalReport;
     }
 

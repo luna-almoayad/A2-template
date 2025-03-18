@@ -9,4 +9,5 @@ public interface ExplorerPhase{
 
     public boolean getResponse(JSONObject response); 
 
+
 }
