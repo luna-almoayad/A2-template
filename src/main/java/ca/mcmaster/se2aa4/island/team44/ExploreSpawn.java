@@ -1,7 +1,7 @@
 package ca.mcmaster.se2aa4.island.team44;
 
 //Positon the drone to the top left corner
-
+/* 
 import javax.naming.ldap.ExtendedResponse;
 
 import org.json.JSONObject;
@@ -43,7 +43,7 @@ public class ExploreSpawn implements ExplorerPhase{
 
     @Override
     public String getDecision(){
-
+/* 
         if(state == State.Echo_F){
 
         }
@@ -55,10 +55,11 @@ public class ExploreSpawn implements ExplorerPhase{
             if(d.getDirection() == Compass.N|| d.getDirection() == Compass.E ) d.left();
             else  d.right();
             return translator.heading(d.getDirection());
-        }else if
+        }
         
 
 
     }
     
 }
+*/

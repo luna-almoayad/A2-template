@@ -46,40 +46,28 @@ public class ExploreForward implements ExplorerPhase{
                     phase = forwardPhases.FLY;
                 break;
             }
-            if(translator.getBiomes(response).equals("creeks")){
-                Creeks creek = new Creeks(translator.getSiteIDs(response), d.getLocation());
-                d.addCreek(creek);
+            case FLY -> {
+                phase = forwardPhases.SCAN;
+                break;
+            }case FLY2->{
+                phase = forwardPhases.SCAN2;
+                break;
             }
-            if(translator.hasOcean(response)){
-                logger.info("in here!");
+            case SCAN2 ->{
                 return true;
             }
-            phase = forwardPhases.FLY;
+            default -> {
+                return false;
             }
         }
         return false; 
     } 
 
     public String getDecision(){
-<<<<<<< HEAD
         switch(phase){
             case SCAN -> {
                 return translator.scan();
             }
-=======
-
-<<<<<<< HEAD
-        if (phase == forwardPhases.SCAN){
-            return translator.scan();
-        }
-        else if (phase == forwardPhases.FLY){
-            d.fly();
-            return translator.fly();
-        }
-        else{
-            return "Default";
-=======
->>>>>>> af6c630ee4d82f5683f93b9277d41795dfc0d14f
             case FLY -> {
                 d.fly();
                 return translator.fly();
