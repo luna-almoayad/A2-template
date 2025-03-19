@@ -18,7 +18,7 @@ public class Translator implements JSONTranslator{
 
     @Override
     public int getCost(JSONObject info){
-        if(info.has("cost")) return Integer.parseInt(info.getString("cost"));
+        if(info.has("cost")) return (info.getInt("cost"));
                 throw new IllegalArgumentException("cost not found");
 
     }

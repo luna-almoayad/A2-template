@@ -27,7 +27,7 @@ public class DroneTest {
 
     @Test 
     public void testChangeCost(){
-        drone.changeCost(20);
+        drone.deductCost(20);
         assertEquals(80, drone.checkBattery());
     }
 

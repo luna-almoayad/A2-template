@@ -24,6 +24,7 @@ public class ExploreTurn implements ExplorerPhase{
     Drone d;
     private Explorer explorer;
     private final Logger logger = LogManager.getLogger();
+    JSONTranslator translator = new Translator();
     Compass start; 
     boolean turned= false;
     int groundDistance = -1;
@@ -35,9 +36,6 @@ public class ExploreTurn implements ExplorerPhase{
         logger.info("Starting phase at"+start);
     }
 
-    Steps step = Steps.ECHOF;
-    JSONTranslator translator = new Translator();
-    int groundDistance;
 
     public String getDecision(){
         switch(step){

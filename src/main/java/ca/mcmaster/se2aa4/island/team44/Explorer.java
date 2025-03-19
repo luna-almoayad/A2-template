@@ -17,7 +17,7 @@ public class Explorer implements IExplorerRaid {
     private MissionReport missionReport;
     private POI poi; 
 
-    protected Translator translate = new Translator();
+    protected JSONTranslator translate = new Translator();
     //Integer budget=0;
 
     Controller control;
