@@ -1,4 +1,4 @@
-package ca.mcmaster.se2aa4.island.team44;
+/*package ca.mcmaster.se2aa4.island.team44;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.json.JSONObject;
@@ -20,14 +20,7 @@ enum Turns{
 }
 
 public class UTurn implements ExplorerPhase{
-    private Explorer explorer;
-    Turns turns = Turns.L1;
-    Drone d;
-    Translator translator = new Translator();
-    private final Logger logger = LogManager.getLogger();
-    Compass start;
-    boolean turned= false;
-    int groundDistance = -1;
+    
 
 
     public UTurn(Drone d){
@@ -135,7 +128,7 @@ public class UTurn implements ExplorerPhase{
                 }
                 break;
             }
-            */
+            
             case Turns.STOP ->{
                 break;
             }
@@ -229,4 +222,4 @@ public class UTurn implements ExplorerPhase{
     }   
 
     
-}
+}*/

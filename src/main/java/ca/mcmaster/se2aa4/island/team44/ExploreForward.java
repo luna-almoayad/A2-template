@@ -6,7 +6,8 @@ import org.json.JSONObject;
 
 enum forwardPhases{
     SCAN,
-    FLY;
+    FLY,
+    FLY2;
     
 }
 
@@ -23,7 +24,7 @@ public class ExploreForward implements ExplorerPhase{
         this.d=d;
     }
 
-
+    @Override
     public boolean getResponse(JSONObject response){
         logger.info("shake"+phase);
         switch(phase){
@@ -46,7 +47,10 @@ public class ExploreForward implements ExplorerPhase{
             case FLY -> {
                 phase = forwardPhases.SCAN;
                 break;
-            }
+            }/*case FLY2 -> {
+                phase = forwardPhases.SCAN;
+                break;
+            }*/
             default -> {
                 return false;
             }
@@ -61,6 +65,9 @@ public class ExploreForward implements ExplorerPhase{
             }
 
             case FLY -> {
+                d.fly();
+                return translator.fly();
+            }case FLY2 -> {
                 d.fly();
                 return translator.fly();
             }

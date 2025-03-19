@@ -1,9 +1,9 @@
 package ca.mcmaster.se2aa4.island.team44;
 
-import org.json.JSONArray;
-import org.json.JSONObject;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 //getHeading(JSONObject): String
 //getCost(JSONObject): String
@@ -128,7 +128,7 @@ public class Translator{
                 hasOceans = true;
         }
         
-        return hasOceans&&biomes.length()==1;
+        return hasOceans&&biomes.length()==1; //&&biomes.length()==1
     }
 
 
