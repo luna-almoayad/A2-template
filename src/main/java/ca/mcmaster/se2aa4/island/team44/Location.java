@@ -23,14 +23,19 @@ public class Location {
     }
 
     public Location makeMove(Compass compass){
-        return switch (compass) {
-            case N -> new Location(x, y+1);
-            case S -> new Location(x, y-1);
-            case W -> new Location (x-1, y);
-            case E -> new Location (x+1,y);
-            default -> this;
-        };
-
+        if (compass == Compass.N){
+            return new Location(x, y+1);
+        }
+        else if (compass == Compass.S){
+            return new Location(x, y-1);
+        }
+        else if (compass == Compass.W){
+            return new Location (x-1, y);
+        }
+        else if (compass == Compass.E){
+            return new Location (x+1,y);
+        }
+        return this;
     }
 
     public int calculateDistance(Location target){

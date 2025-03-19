@@ -7,11 +7,19 @@ public enum Phases {
 
 
     public Phases switchPhase() {
-        switch (this) {
-            case GROUND: return GRIDSEARCH;
-            case GRIDSEARCH: return UTURN;
-            case UTURN: return GRIDSEARCH;
-            default: return this;
+        if (this == GROUND){
+            return GRIDSEARCH; 
         }
+        else if(this == GRIDSEARCH){
+            return UTURN;
+
+        }
+        else if(this == UTURN){
+            return GRIDSEARCH; 
+        }
+        else{
+            return this; 
+        }
+          
     }
 }

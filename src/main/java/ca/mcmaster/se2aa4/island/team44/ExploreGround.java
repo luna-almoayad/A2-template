@@ -6,7 +6,7 @@ import org.json.JSONObject;
 public class ExploreGround implements ExplorerPhase{
 
     private State state = State.FLY;
-    protected Translator translate = new Translator();
+    protected JSONTranslator translate = new Translator();
     private int groundDistance;
     private Compass groundDirection;
     Drone d;

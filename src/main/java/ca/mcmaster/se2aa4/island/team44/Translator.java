@@ -5,37 +5,37 @@ import org.json.JSONObject;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-//getHeading(JSONObject): String
-//getCost(JSONObject): String
-//getExtraInfo(JSONObject):String
-
-
-public class Translator{
+//Implement adapter for target interface JSONTranslator that clients will use 
+public class Translator implements JSONTranslator{
 
     private final Logger logger = LogManager.getLogger();
 
+    @Override
     public String getHeading(JSONObject info){
         if(info.has("heading")) return info.getString("heading");
             throw new IllegalArgumentException("heading not found");
     }
 
-    public String getCost(JSONObject info){
-        if(info.has("cost")) return info.getString("cost");
+    @Override
+    public int getCost(JSONObject info){
+        if(info.has("cost")) return Integer.parseInt(info.getString("cost"));
                 throw new IllegalArgumentException("cost not found");
 
     }
 
+    @Override
     public String getStatus(JSONObject info){
         if(info.has("status")) return info.getString("status");
             throw new IllegalArgumentException("status not found");
     }
 
+    @Override
     public JSONObject getExtraInfo(JSONObject info){
         if(info.has("extras")) return info.getJSONObject("extras");
             throw new IllegalArgumentException("extras not found");
     }
 
-//echo response
+    @Override
     public int getRange(JSONObject info){
         JSONObject extraInfo = getExtraInfo(info);
 
@@ -43,6 +43,7 @@ public class Translator{
             throw new IllegalArgumentException("range not found");
     }
 
+    @Override
     public String getFound(JSONObject info){
         JSONObject extraInfo = getExtraInfo(info);
 
@@ -52,7 +53,7 @@ public class Translator{
 
     
 //scan response
-
+    @Override
     public String getBiomes(JSONObject info){
         JSONObject extraInfo = getExtraInfo(info);
         JSONArray biomes;
@@ -67,7 +68,8 @@ public class Translator{
         return result[0] ;
     }
     //returns biomes 
-
+    
+    @Override
     public String getSiteIDs(JSONObject info){
         JSONObject extraInfo = getExtraInfo(info);
 
@@ -86,6 +88,7 @@ public class Translator{
         return result[0] ;
     }
 
+    @Override
     public String getCreekIDs(JSONObject info){
         JSONObject extraInfo = getExtraInfo(info);
 
@@ -104,18 +107,20 @@ public class Translator{
         return result[0] ;
     }
 
+    @Override
     public boolean hasCreek(JSONObject info){
         JSONObject extraInfo = getExtraInfo(info);
         JSONArray creeks=extraInfo.optJSONArray("creeks");
         return (creeks!=null && creeks.length()>0);
     }
 
+    @Override
     public boolean hasESite(JSONObject info){
         JSONObject extraInfo = getExtraInfo(info);
         JSONArray sites=extraInfo.optJSONArray("sites");
         return (sites!=null && sites.length()>0);
     }
-
+    @Override
     public boolean hasOcean(JSONObject info){
         logger.info("bro ur in");
         JSONObject extraInfo = getExtraInfo(info);
@@ -132,7 +137,7 @@ public class Translator{
     }
 
 
-//action
+    @Override
     public String stop(){
         JSONObject decision = new JSONObject();
         decision.put("action", "stop");
@@ -141,6 +146,7 @@ public class Translator{
 
     }
 
+    @Override
     public String fly(){
         JSONObject decision = new JSONObject();
         decision.put("action", "fly");
@@ -148,7 +154,7 @@ public class Translator{
 
     }
 
-//NEEDS TO BE CHANGED TO ENUM
+    @Override
     public String echo(Compass direction){
        JSONObject decision = new JSONObject();
        decision.put("action", "echo");
@@ -157,7 +163,7 @@ public class Translator{
     }
 
 
-//NEEDS TO BE CHANGED TO ENUM
+    @Override
     public String heading(Compass direction){
         JSONObject decision = new JSONObject();
         decision.put("action", "heading");
@@ -165,6 +171,7 @@ public class Translator{
         return decision.toString();
     }
 
+    @Override
     public String scan(){
        JSONObject decision = new JSONObject();
        decision.put("action", "scan");

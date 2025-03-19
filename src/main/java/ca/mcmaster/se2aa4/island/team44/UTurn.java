@@ -23,7 +23,7 @@ public class UTurn implements ExplorerPhase{
     private Explorer explorer;
     Turns turns = Turns.L1;
     Drone d;
-    Translator translator = new Translator();
+    JSONTranslator translator = new Translator();
     private final Logger logger = LogManager.getLogger();
     Compass start;
     boolean turned= false;

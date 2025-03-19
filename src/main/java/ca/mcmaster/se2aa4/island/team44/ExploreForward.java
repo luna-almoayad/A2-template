@@ -12,7 +12,7 @@ enum forwardPhases{
 
 public class ExploreForward implements ExplorerPhase{
     private forwardPhases phase = forwardPhases.SCAN;
-    private Translator translator = new Translator();
+    private JSONTranslator translator = new Translator();
     private final Logger logger = LogManager.getLogger();
     private Drone d;
 
@@ -26,48 +26,41 @@ public class ExploreForward implements ExplorerPhase{
 
     public boolean getResponse(JSONObject response){
         logger.info("shake"+phase);
-        switch(phase){
-            case SCAN -> {
-                if(translator.getBiomes(response).equals("sites")){
-                    EmergencySite esite= new EmergencySite(translator.getSiteIDs(response), d.getLocation());
-                    d.addEmergencySite(esite);
-                }
-                if(translator.getBiomes(response).equals("creeks")){
-                    Creeks creek = new Creeks(translator.getSiteIDs(response), d.getLocation());
-                    d.addCreek(creek);
-                }
-                if(translator.hasOcean(response)){
-                    logger.info("in here!");
-                    return true;
-                }
-                phase = forwardPhases.FLY;
-                break;
+        if (phase == forwardPhases.SCAN) {
+            if(translator.getBiomes(response).equals("sites")){
+                EmergencySite esite= new EmergencySite(translator.getSiteIDs(response), d.getLocation());
+                d.addEmergencySite(esite);
             }
-            case FLY -> {
-                phase = forwardPhases.SCAN;
-                break;
+            if(translator.getBiomes(response).equals("creeks")){
+                Creeks creek = new Creeks(translator.getSiteIDs(response), d.getLocation());
+                d.addCreek(creek);
             }
-            default -> {
-                return false;
+            if(translator.hasOcean(response)){
+                logger.info("in here!");
+                return true;
             }
+            phase = forwardPhases.FLY;
+            }
+        else if (phase == forwardPhases.FLY) {
+            phase = forwardPhases.SCAN;
         }
-        return false; 
+
+        return false;  
     } 
 
     public String getDecision(){
-        switch(phase){
-            case SCAN -> {
-                return translator.scan();
-            }
 
-            case FLY -> {
-                d.fly();
-                return translator.fly();
-            }
-            default -> {
-                return "Default";
-            }
+        if (phase == forwardPhases.SCAN){
+            return translator.scan();
         }
+        else if (phase == forwardPhases.FLY){
+            d.fly();
+            return translator.fly();
+        }
+        else{
+            return "Default";
+        }
+        
     }
 
     

@@ -19,7 +19,7 @@ public class ExploreTurn implements ExplorerPhase{
     }
 
     Steps step = Steps.ECHOF;
-    Translator translator = new Translator();
+    JSONTranslator translator = new Translator();
     int groundDistance;
 
     public String getDecision(){
@@ -48,11 +48,11 @@ public class ExploreTurn implements ExplorerPhase{
     public boolean getResponse(JSONObject response){
         switch(step){
             case Steps.ECHOF -> {
-                step= Steps.L11;
+                step= Steps.L1;
                 
             }
             case L1->{
-                if(start==Compass.N or start==Compass.E){
+                if(start==Compass.N  start==Compass.E){
                     d.left();
                 }
                 else   
