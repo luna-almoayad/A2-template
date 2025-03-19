@@ -2,6 +2,21 @@ package ca.mcmaster.se2aa4.island.team44;
 
 import org.json.JSONObject;
 
+enum State{
+    L_ECHO,
+    R_ECHO,
+    F_ECHO,
+    FLY,
+    FOUNDGROUND,
+    FLYTOGROUND,
+    ONCOAST,
+    STOP,
+    E,
+    CHANGEHEADING,
+    STOP1,
+    STOP2;
+    
+}
 
 public class ExploreGround implements ExplorerPhase{
 
@@ -62,7 +77,6 @@ public class ExploreGround implements ExplorerPhase{
         case State.STOP1 ->{
             state = State.STOP2;
             break;
-           
         }
         default ->{
             break;

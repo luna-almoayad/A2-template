@@ -25,8 +25,8 @@ public class Controller{
 
 
 
-    public Controller(int battery){
-        this.d = new Drone(battery);
+    public Controller(int battery, Compass direction){
+        this.d = new Drone(battery, direction);
        // POI = new PointsOfInterest();
         translator = new Translator();
         actionPhase = new ExploreGround(d);
@@ -43,7 +43,6 @@ public class Controller{
         logger.info("Drone stuff: "+d);
 
         if(switchPhases && dronePhase == Phases.GROUND){
-           // logger.info("bebebbeb:");
             dronePhase = dronePhase.switchPhase();
             actionPhase= new ExploreForward(d);
             logger.info("switching: " + dronePhase.toString());

@@ -1,5 +1,6 @@
 package ca.mcmaster.se2aa4.island.team44;
-import java.util.*;
+import java.util.ArrayList;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -13,10 +14,10 @@ public class Drone{
     private Compass startDir;
 
 
-    public Drone(int battery){
+    public Drone(int battery, Compass direction){
         this.location = new Location(0,0);
         this.battery = new Battery(battery);
-        this.direction = Compass.E;
+        this.direction = direction;
         phase = Phases.GROUND;
         POI = new POI();
         this.startDir = Compass.E;

@@ -8,7 +8,7 @@ public class DroneTest {
 
     @BeforeEach
     public void setUp(){
-        drone = new Drone(100); //fake battery val
+        drone = new Drone(100, Compass.E); //fake battery val
     }
     
     @Test 

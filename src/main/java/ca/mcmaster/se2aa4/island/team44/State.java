@@ -1,7 +1,7 @@
 
 package ca.mcmaster.se2aa4.island.team44;
 
-//MIGHT DELETE
+/* MIGHT DELETE
 public enum State{
     L_ECHO,
     R_ECHO,
@@ -16,4 +16,4 @@ public enum State{
     STOP1,
     STOP2;
     
-}
+}*/
