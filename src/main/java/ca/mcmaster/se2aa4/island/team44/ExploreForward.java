@@ -6,7 +6,8 @@ import org.json.JSONObject;
 
 enum forwardPhases{
     SCAN,
-    FLY;
+    FLY,
+    FLY2;
     
 }
 
@@ -23,7 +24,7 @@ public class ExploreForward implements ExplorerPhase{
         this.d=d;
     }
 
-
+    @Override
     public boolean getResponse(JSONObject response){
         logger.info("shake"+phase);
         if (phase == forwardPhases.SCAN) {
@@ -31,6 +32,7 @@ public class ExploreForward implements ExplorerPhase{
                 EmergencySite esite= new EmergencySite(translator.getSiteIDs(response), d.getLocation());
                 d.addEmergencySite(esite);
             }
+<<<<<<< HEAD
             if(translator.getBiomes(response).equals("creeks")){
                 Creeks creek = new Creeks(translator.getSiteIDs(response), d.getLocation());
                 d.addCreek(creek);
@@ -38,6 +40,17 @@ public class ExploreForward implements ExplorerPhase{
             if(translator.hasOcean(response)){
                 logger.info("in here!");
                 return true;
+=======
+            case FLY -> {
+                phase = forwardPhases.SCAN;
+                break;
+            }/*case FLY2 -> {
+                phase = forwardPhases.SCAN;
+                break;
+            }*/
+            default -> {
+                return false;
+>>>>>>> eb6ed8e8e58ee82ffb5d824153d00f262d7ac122
             }
             phase = forwardPhases.FLY;
             }
@@ -50,6 +63,7 @@ public class ExploreForward implements ExplorerPhase{
 
     public String getDecision(){
 
+<<<<<<< HEAD
         if (phase == forwardPhases.SCAN){
             return translator.scan();
         }
@@ -59,6 +73,18 @@ public class ExploreForward implements ExplorerPhase{
         }
         else{
             return "Default";
+=======
+            case FLY -> {
+                d.fly();
+                return translator.fly();
+            }case FLY2 -> {
+                d.fly();
+                return translator.fly();
+            }
+            default -> {
+                return "Default";
+            }
+>>>>>>> eb6ed8e8e58ee82ffb5d824153d00f262d7ac122
         }
         
     }

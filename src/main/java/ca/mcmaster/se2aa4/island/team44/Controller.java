@@ -49,7 +49,7 @@ public class Controller{
             logger.info("switching: " + dronePhase.toString());
         }else if(switchPhases && dronePhase == Phases.GRIDSEARCH){
             dronePhase = dronePhase.switchPhase();
-            actionPhase= new UTurn(d);
+            actionPhase= new ExploreTurn(d);
         }else if(switchPhases && dronePhase == Phases.UTURN){
             dronePhase = dronePhase.switchPhase();
             actionPhase= new ExploreForward(d);

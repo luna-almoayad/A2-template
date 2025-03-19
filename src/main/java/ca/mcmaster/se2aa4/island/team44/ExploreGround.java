@@ -1,5 +1,7 @@
 package ca.mcmaster.se2aa4.island.team44;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.json.JSONObject;
 
 
@@ -9,6 +11,7 @@ public class ExploreGround implements ExplorerPhase{
     protected JSONTranslator translate = new Translator();
     private int groundDistance;
     private Compass groundDirection;
+    private final Logger logger = LogManager.getLogger();
     Drone d;
 
     public ExploreGround(Drone d){
@@ -69,7 +72,9 @@ public class ExploreGround implements ExplorerPhase{
         }
           
     }
-      return this.state==State.ONCOAST;
+    d.deductCost(translate.getCost(response));
+    logger.info(d.checkBattery());
+    return this.state==State.ONCOAST;
     }
 
 

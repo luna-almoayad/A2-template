@@ -60,9 +60,6 @@ public class Explorer implements IExplorerRaid {
         logger.info("The status of the drone is {}", status);
         JSONObject extraInfo = response.getJSONObject("extras");
         logger.info("Additional information received: {}", extraInfo);
-        //budget=budget-cost;
-        //logger.info("Budget: ",budget);
-
 
         control.getResponse(response);
         

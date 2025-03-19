@@ -1,4 +1,4 @@
-package ca.mcmaster.se2aa4.island.team44;
+/*package ca.mcmaster.se2aa4.island.team44;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.json.JSONObject;
@@ -23,7 +23,7 @@ public class UTurn implements ExplorerPhase{
     private Explorer explorer;
     Turns turns = Turns.L1;
     Drone d;
-    JSONTranslator translator = new Translator();
+    Translator translator = new Translator();
     private final Logger logger = LogManager.getLogger();
     Compass start;
     boolean turned= false;
@@ -39,6 +39,7 @@ public class UTurn implements ExplorerPhase{
 
 
     public boolean getResponse(JSONObject response){
+
         turned = false;
         logger.info("sheesh "+d.getDirection());
 
@@ -134,7 +135,7 @@ public class UTurn implements ExplorerPhase{
                 }
                 break;
             }
-            */
+            
             case Turns.STOP ->{
                 break;
             }
@@ -228,4 +229,4 @@ public class UTurn implements ExplorerPhase{
     }   
 
     
-}
+}*/
