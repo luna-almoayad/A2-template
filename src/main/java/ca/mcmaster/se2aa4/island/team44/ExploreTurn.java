@@ -7,6 +7,7 @@ enum Steps{
         ECHOF,
         F1,
         F2,
+        F3,
         L,
         F,
         L2,
@@ -119,9 +120,13 @@ public class ExploreTurn implements ExplorerPhase{
                 break;
             }
             case Steps.F2 ->{
-                step=Steps.L;
+                step=Steps.F3;
                 break;
                 }
+            case Steps.F3 ->{
+                step=Steps.L;
+                break;
+            }
             case Steps.L -> {
                 step=Steps.F;
                 break;
@@ -140,14 +145,17 @@ public class ExploreTurn implements ExplorerPhase{
             case Steps.R1-> { step=Steps.R2; break;} 
             case Steps.R2-> {step=Steps.ECHOT; break;}
             case Steps.FG->{
-                if(groundDistance==0){
+                if(groundDistance==1 || groundDistance==0){
                     return true;
                 }
                 groundDistance--;
             break;
             }case Steps.ECHOT->{
                 if( translator.getFound(response).equals("OUT_OF_RANGE") ) step = Steps.END;
-                else step = Steps.CONTINUE;
+                else{ 
+                    groundDistance=translator.getRange(response);
+                    step = Steps.FG;
+                }
                 break;
             }
             case Steps.CONTINUE->{
