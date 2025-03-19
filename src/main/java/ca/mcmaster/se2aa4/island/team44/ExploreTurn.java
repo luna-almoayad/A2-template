@@ -24,7 +24,6 @@ enum Steps{
 public class ExploreTurn implements ExplorerPhase{
     Drone d;
     private Explorer explorer;
-    Translator translator = new Translator();
     private final Logger logger = LogManager.getLogger();
     Compass start; 
     boolean turned= false;
@@ -37,8 +36,10 @@ public class ExploreTurn implements ExplorerPhase{
         logger.info("Starting phase at"+start);
     }
 
- 
-    @Override
+    Steps step = Steps.ECHOF;
+    JSONTranslator translator = new Translator();
+    int groundDistance;
+
     public String getDecision(){
         switch(step){
             case Steps.ECHOF ->{
