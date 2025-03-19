@@ -20,7 +20,14 @@ enum Turns{
 }
 
 public class UTurn implements ExplorerPhase{
-    
+    private Explorer explorer;
+    Turns turns = Turns.L1;
+    Drone d;
+    Translator translator = new Translator();
+    private final Logger logger = LogManager.getLogger();
+    Compass start;
+    boolean turned= false;
+    int groundDistance = -1;
 
 
     public UTurn(Drone d){

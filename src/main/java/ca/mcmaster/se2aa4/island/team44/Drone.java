@@ -48,7 +48,7 @@ public class Drone{
         this.location = this.location.makeMove(this.direction);
     }
 
-    public void changeCost(int cost){
+    public void deductCost(int cost){
         battery.useBudget(cost);
     }
 

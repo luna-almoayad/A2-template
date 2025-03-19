@@ -17,7 +17,7 @@ might need to scan at first fly in uturn*/
 public class Controller{
     Drone d;
     POI POI;
-    Translator translator;
+    JSONTranslator translator;
     ExplorerPhase actionPhase;
     Phases dronePhase;
 

@@ -7,7 +7,8 @@ import org.json.JSONObject;
 enum forwardPhases{
     SCAN,
     FLY,
-    FLY2;
+    FLY2,
+    SCAN2;
     
 }
 
@@ -41,35 +42,54 @@ public class ExploreForward implements ExplorerPhase{
                     logger.info("in here!");
                     return true;
                 }
-                phase = forwardPhases.FLY;
+                else
+                    phase = forwardPhases.FLY;
                 break;
             }
-            case FLY -> {
-                phase = forwardPhases.SCAN;
-                break;
-            }/*case FLY2 -> {
-                phase = forwardPhases.SCAN;
-                break;
-            }*/
-            default -> {
-                return false;
+            if(translator.getBiomes(response).equals("creeks")){
+                Creeks creek = new Creeks(translator.getSiteIDs(response), d.getLocation());
+                d.addCreek(creek);
+            }
+            if(translator.hasOcean(response)){
+                logger.info("in here!");
+                return true;
+            }
+            phase = forwardPhases.FLY;
             }
         }
         return false; 
     } 
 
     public String getDecision(){
+<<<<<<< HEAD
         switch(phase){
             case SCAN -> {
                 return translator.scan();
             }
+=======
 
+<<<<<<< HEAD
+        if (phase == forwardPhases.SCAN){
+            return translator.scan();
+        }
+        else if (phase == forwardPhases.FLY){
+            d.fly();
+            return translator.fly();
+        }
+        else{
+            return "Default";
+=======
+>>>>>>> af6c630ee4d82f5683f93b9277d41795dfc0d14f
             case FLY -> {
                 d.fly();
                 return translator.fly();
-            }case FLY2 -> {
+            }
+            case FLY2 ->{
                 d.fly();
                 return translator.fly();
+            }
+            case SCAN2->{
+                return translator.scan();
             }
             default -> {
                 return "Default";
