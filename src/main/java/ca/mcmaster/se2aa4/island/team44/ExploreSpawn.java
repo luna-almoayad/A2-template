@@ -1,8 +1,6 @@
-/*package ca.mcmaster.se2aa4.island.team44;
+package ca.mcmaster.se2aa4.island.team44;
 
 //Positon the drone to the top left corner
-
-import javax.naming.ldap.ExtendedResponse;
 
 import org.json.JSONObject;
 
@@ -10,12 +8,12 @@ enum State{
     ECHO_L,
     ECHO_R,
     ECHO_F,
+    TURN1,
+    TURN2,
+    FLYCHECK,
     FLY,
-    TURN_RIGHT,
-
-    TURNF_RIGHT,
-    TURNF_LEFT;
-}
+    END; 
+} 
 
 public class ExploreSpawn implements ExplorerPhase{
 
@@ -25,16 +23,76 @@ public class ExploreSpawn implements ExplorerPhase{
     private State state;
     public ExploreSpawn(Drone d){
         this.d =d;
-        state= State.ECHO_F;
+        state= State.ECHO_R;
     }
-    private JSONObject echof;
-    private JSONObject echol;
-    private JSONObject echor;
+    int groundCount = 0;  
+    boolean leftGround;
+    boolean rightGround;
+    boolean fwdGround;
+    int flyCount;
+   //private JSONObject echof;
+    //private JSONObject echol;
+    //private JSONObject echor;
 //echof,echor,echol --> fly determines turn or continue echoing
 //ECHO ALL DIRECTION
     @Override
     public boolean getResponse(JSONObject response){
-        if(state ==State.FLY){
+        if (state == State.ECHO_R){
+            if (translator.getFound(response).equals("GROUND")){
+                groundCount+= 1;                
+                leftGround= true;  
+            }
+            state= State.ECHO_L;
+        }
+        else if (state == State.ECHO_L){
+            if (translator.getFound(response).equals("GROUND")){
+                groundCount+= 1;
+                rightGround = true; 
+            }
+            state= State.ECHO_F;
+        }
+        else if (state == State.ECHO_F){
+            if(translator.getFound(response).equals("GROUND")){
+                groundCount+= 1;
+                fwdGround = true; 
+            }else if(translator.getFound(response).equals("OUT_OF_RANGE")){
+                flyCount = translator.getRange(response);
+            }
+            if(fwdGround){
+                state= State.TURN1; 
+            }else{
+                state = State.FLY;
+            }
+        }
+        else if (state == State.TURN1){
+            state = State.TURN2;
+
+        }
+        else if (state == State.TURN2){
+            state = State.FLYCHECK;
+
+        }
+        else if (state == State.FLYCHECK){
+            flyCount= translator.getRange(response);
+        }
+
+        else if(state == State.FLY){
+            if (flyCount <= 2){
+                state= State.END; 
+            }
+            else{
+                state = State.FLY;
+            }
+
+        }
+        else if (state == State.END){
+            return true; 
+        }
+        return false;
+
+
+        
+        /*if(state ==State.FLY){
             state=State.ECHO_F;
         }
         if(state == State.ECHO_F){
@@ -68,12 +126,30 @@ public class ExploreSpawn implements ExplorerPhase{
             return true;
 
         return false;
+        */
     }
 
     @Override
     public String getDecision(){
+        if (state == State.ECHO_R) return translator.echo(d.getDirection().right());
+        else if(state == State.ECHO_L) return translator.echo(d.getDirection().left());
+        else if (state == State.ECHO_F) return translator.echo(d.getDirection() );
+        else if (state == State.TURN1){
+            d.right();
+            return translator.heading(d.getDirection());
+        }else if (state == State.TURN2){
+            d.right();
+            return translator.heading(d.getDirection());
+        }
+        else if(state == State.FLYCHECK) return translator.echo(d.getDirection());
+        else if (state == State. FLY){
+            flyCount = flyCount -1;
+            return translator.fly();
+        }
+        return "Default";
+        
 
-        if(state == State.ECHO_F) return translator.echo(d.getDirection() );
+       /*  if(state == State.ECHO_F) return translator.echo(d.getDirection() );
         else if(state == State.ECHO_R) return translator.echo(d.getDirection().right());
         else if(state == State.ECHO_L) return translator.echo(d.getDirection().left());
         else if(state == State.FLY){
@@ -84,12 +160,12 @@ public class ExploreSpawn implements ExplorerPhase{
             d.right();
             return translator.heading(d.getDirection());
         }
-        else if(state == State.TURN_LEFT||state == State.TURNF_LEFT){
+        else if(state == State.TURNF_LEFT||state == State.TURNF_LEFT){
              d.left();
             return translator.heading(d.getDirection());
         }
 
-    } 
+    } */
     
 }
-*/
+}
