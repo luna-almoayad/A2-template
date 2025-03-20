@@ -30,7 +30,7 @@ public class ExploreTurn implements ExplorerPhase{
     boolean turned= false;
     int groundDistance = -1;
     Steps step=Steps.ECHOF;
- 
+    POI poi; 
     public ExploreTurn(Drone d){
         this.d=d;
         this.start=d.getDirection();
@@ -156,6 +156,20 @@ public class ExploreTurn implements ExplorerPhase{
                     groundDistance=translator.getRange(response);
                     step = Steps.FG;
                 }
+
+                Location closest = poi.getClosestCreek().getLocation(); 
+                Location site= poi.getEmergencySites().getLocation(); 
+                int closestx= site.getXCoord()- closest.getXCoord();
+                int closesty= site.getYCoord()- closest.getYCoord();
+                int sitex= site.getXCoord();
+                int sitey= site.getYCoord();
+
+                while (site != null){
+                    if ((d.getLocation().getXCoord() - sitex) > closestx && (d.getLocation().getYCoord() - sitey > closesty)){
+                        step = Steps.END; 
+                    }
+                }
+
                 break;
             }
             case Steps.CONTINUE->{
