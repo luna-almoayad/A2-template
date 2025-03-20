@@ -27,7 +27,6 @@ public class Controller{
 
     public Controller(int battery, Compass direction){
         this.d = new Drone(battery, direction);
-       // POI = new PointsOfInterest();
         translator = new Translator();
         actionPhase = new ExploreGround(d);
         dronePhase = Phases.GROUND;
