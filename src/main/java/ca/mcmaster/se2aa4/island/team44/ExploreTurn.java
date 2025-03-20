@@ -16,7 +16,9 @@ enum Steps{
         R1,
         R2,
         FG,
+        ECHOR,
         ECHOT,
+        FR,
         END,
         CONTINUE;
     }
@@ -89,7 +91,14 @@ public class ExploreTurn implements ExplorerPhase{
                 return translator.echo(d.getDirection() );
             }case Steps.END->{
                 return translator.stop();
-            }default ->{
+            }case Steps.ECHOR ->{
+                return translator.echo(d.getDirection().right());
+            }
+            case Steps.FR->{
+                d.fly();
+                return translator.fly();
+            }
+            default ->{
                 d.fly();
                 return translator.fly();
             }
@@ -107,10 +116,10 @@ public class ExploreTurn implements ExplorerPhase{
                     groundDistance=translator.getRange(response);
 
                 }else if(translator.getFound(response).equals("OUT_OF_RANGE")){
-                    if(translator.getRange(response)<=2)
+                    if(translator.getRange(response)<=5)
                         step=Steps.L; //skip to uturn uturn
                     else 
-                        step=Steps.F1; //fly twice then uturn
+                        step=Steps.FR; //fly twice then uturn
                 }
                 break;
             }
@@ -160,6 +169,17 @@ public class ExploreTurn implements ExplorerPhase{
             }
             case Steps.CONTINUE->{
                 return true;   
+            }
+            case Steps.FR->{
+                step=Steps.ECHOR;
+                break;
+            }
+            case Steps.ECHOR->{
+                if(translator.getRange(response)>=1)
+                    step=Steps.L; //safe to do uturn
+                else
+                    step=Steps.FR;
+                break;
             }
     
 
