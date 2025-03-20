@@ -1,4 +1,4 @@
-package ca.mcmaster.se2aa4.island.team44;
+/*package ca.mcmaster.se2aa4.island.team44;
 
 //Positon the drone to the top left corner
 
@@ -92,3 +92,4 @@ public class ExploreSpawn implements ExplorerPhase{
     } 
     
 }
+*/

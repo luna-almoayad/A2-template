@@ -32,6 +32,7 @@ public class Explorer implements IExplorerRaid {
         logger.info("Battery level is {}", batteryLevel);
 
         control = new Controller(batteryLevel, Compass.toEnum(direction) );
+         logger.info(Compass.toEnum(direction));
         this.missionReport = new MissionReport();
         this.poi= new POI();//unsure abt this may be messing smth up 
 

@@ -48,7 +48,7 @@ public enum Compass{
         if(direction.equals("N")) return N;
         else if (direction.equals("E"))  return E;
          else if (direction.equals("S")) return S;
-         else if (direction.equals("W")) return S;
+         else if (direction.equals("W")) return W;
          else   return  null;
     }
     
