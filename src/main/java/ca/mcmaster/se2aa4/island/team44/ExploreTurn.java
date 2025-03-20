@@ -166,7 +166,7 @@ public class ExploreTurn implements ExplorerPhase{
                     step = Steps.FG;
                 }
 
-                Location closest = poi.getClosestCreek().getLocation(); 
+               /* Location closest = poi.getClosestCreek().getLocation(); 
                 Location site= poi.getEmergencySites().getLocation(); 
                 int closestx= site.getXCoord()- closest.getXCoord();
                 int closesty= site.getYCoord()- closest.getYCoord();
@@ -177,7 +177,7 @@ public class ExploreTurn implements ExplorerPhase{
                     if ((d.getLocation().getXCoord() - sitex) > closestx && (d.getLocation().getYCoord() - sitey > closesty)){
                         step = Steps.END; 
                     }
-                }
+                }*/
 
                 break;
             }

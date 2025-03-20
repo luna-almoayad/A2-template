@@ -28,8 +28,8 @@ public class Controller{
     public Controller(int battery, Compass direction){
         this.d = new Drone(battery, direction);
         translator = new Translator();
-        actionPhase = new ExploreGround(d);
-        dronePhase = Phases.GROUND;
+        actionPhase = new ExploreSpawn(d);
+        dronePhase = Phases.SPAWN;
     }
 
     public String getDecision(){
@@ -41,7 +41,11 @@ public class Controller{
         logger.info("switchPhase:" + switchPhases);
         logger.info("Drone stuff: "+d);
 
-        if(switchPhases && dronePhase == Phases.GROUND){
+        if(switchPhases && dronePhase ==Phases.SPAWN){
+            dronePhase = dronePhase.switchPhase();
+            actionPhase= new ExploreGround(d);
+        }
+        else if(switchPhases && dronePhase == Phases.GROUND){
             dronePhase = dronePhase.switchPhase();
             actionPhase= new ExploreForward(d);
             logger.info("switching: " + dronePhase.toString());

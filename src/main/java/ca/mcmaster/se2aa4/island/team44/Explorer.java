@@ -34,9 +34,11 @@ public class Explorer implements IExplorerRaid {
         control = new Controller(batteryLevel, Compass.toEnum(direction) );
          logger.info(Compass.toEnum(direction));
         this.missionReport = new MissionReport();
-        this.poi= new POI();//unsure abt this may be messing smth up 
+        //this.poi= new POI();//unsure abt this may be messing smth up 
 
     }
+
+    boolean once = true;
 
     @Override
     public String takeDecision() {
@@ -47,9 +49,8 @@ public class Explorer implements IExplorerRaid {
         String decision = control.getDecision();
         logger.info("** Decisions: {}", decision);
 
+       // return translate.scan();
         return decision;
-
-       //return decision;
  
     }
 
