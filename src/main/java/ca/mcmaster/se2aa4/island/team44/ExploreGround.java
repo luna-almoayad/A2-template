@@ -10,11 +10,6 @@ enum State{
     F_ECHO,
     FLY,
     FOUNDGROUND,
-    ONCOAST,
-    STOP,
-    E,
-    STOP1,
-    STOP2,
     UTURN1,
     UTURN2,
     UTURN3,
@@ -31,28 +26,20 @@ public class ExploreGround implements ExplorerPhase{
     private final Logger logger = LogManager.getLogger();
     Drone d;
     private Compass start;
-    private Compass foundDir;
 
     public ExploreGround(Drone d){
         this.d=d;
         start=d.getDirection();
-        foundDir = d.getDirection();
     }
 
     @Override
     public boolean getResponse(JSONObject response)
     {
-        try{
-            
-
-        }catch( Exception e)
-        {
-
-        }   
+        
 
         switch(this.state){
         case State.FOUNDGROUND -> {
-            if(groundDistance ==0) state = State.ONCOAST;
+            if(groundDistance ==0) return true;
             break;
         }
         case State.FLY -> {
@@ -72,7 +59,7 @@ public class ExploreGround implements ExplorerPhase{
 
         case State.L_ECHO -> {
             if(translate.getFound(response).equals("GROUND")){
-                state = State.FOUNDGROUND;
+                state = State.UTURN1;
                 groundDistance = translate.getRange(response);
             } 
             else  
@@ -82,7 +69,7 @@ public class ExploreGround implements ExplorerPhase{
 
         case State.R_ECHO -> {
             if(translate.getFound(response).equals("GROUND")){
-                state = State.FOUNDGROUND;
+                state = State.UTURN1;
                 groundDistance = translate.getRange(response);
             }
             else
@@ -90,14 +77,6 @@ public class ExploreGround implements ExplorerPhase{
             break;
             }
 
-        case State.ONCOAST -> {
-            state = State.STOP1;
-            break;
-            }
-        case State.STOP1 ->{
-            state = State.STOP2;
-            break;
-        }
         case State.UTURN1->{
             state = State.UTURN2;
             break;
@@ -111,7 +90,7 @@ public class ExploreGround implements ExplorerPhase{
             break;
         }
         case State.UTURN4->{
-            state = State.FLY;
+            state = State.FOUNDGROUND;
             break;
         }
         default ->{
@@ -121,7 +100,7 @@ public class ExploreGround implements ExplorerPhase{
     }
     d.deductCost(translate.getCost(response));
     logger.info(d.checkBattery());
-    return this.state==State.ONCOAST;
+    return false;
     }
 
 
@@ -159,35 +138,27 @@ public class ExploreGround implements ExplorerPhase{
             return translate.echo(d.getDirection().right());
             }
 
-        case State.ONCOAST -> {
-            return translate.scan();
-            }
-        case State.STOP1 -> {
-            return translate.stop();
-            }
-        case State.STOP2 ->{
-            return null;
-        }
         case State.UTURN1 ->{
             d.fly();
             return translate.fly();
         }
         case State.UTURN2->{
-            if(foundDir==d.getDirection().right())
+            if(groundDirection==start.right())
                 d.right();
             else
                 d.left();
             return translate.heading(d.getDirection());
         }
         case State.UTURN3->{
-            if(foundDir==d.getDirection().right())
+            if(groundDirection==start.right())
                 d.right();
             else
                 d.left();
             return translate.heading(d.getDirection());
         }
         case State.UTURN4->{
-            if(foundDir==d.getDirection().right())
+            groundDistance-=3;
+            if(groundDirection==start.right())
                 d.left();
             else
                 d.right();
@@ -197,10 +168,8 @@ public class ExploreGround implements ExplorerPhase{
         default -> {
             return "Default";
             }
-
         
     }
- 
 
     }
          
