@@ -31,7 +31,9 @@ public class Explorer implements IExplorerRaid {
         logger.info("The drone is facing {}", direction);
         logger.info("Battery level is {}", batteryLevel);
 
-         control = new Controller(batteryLevel, Compass.toEnum(direction) );
+        control = new Controller(batteryLevel, Compass.toEnum(direction) );
+        this.missionReport = new MissionReport();
+        this.poi= new POI();//unsure abt this may be messing smth up 
 
     }
 
