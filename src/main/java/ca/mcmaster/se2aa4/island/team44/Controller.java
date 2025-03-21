@@ -20,7 +20,7 @@ public class Controller{
     JSONTranslator translator;
     ExplorerPhase actionPhase;
     Phases dronePhase;
-
+    private MissionReport report;
     private final Logger logger = LogManager.getLogger();
 
 
@@ -30,11 +30,10 @@ public class Controller{
         translator = new Translator();
         actionPhase = new ExploreSpawn(d);
         dronePhase = Phases.SPAWN;
+        report= new MissionReport(d);
     }
-    //LEAKY ABSTRACTION FIX !!!!
-    public Drone getDrone(){
-        return this.d;
-    }
+
+    
 
     public String getDecision(){
         return actionPhase.getDecision();
@@ -63,6 +62,10 @@ public class Controller{
 
         logger.info("Phase: " + dronePhase.toString());
 
+    }
+
+    public String finishMission(){
+        return report.generateReport();
     }
 
 

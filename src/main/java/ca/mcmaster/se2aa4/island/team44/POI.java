@@ -7,14 +7,11 @@ public class POI { //shouldnt be abstract
     private Location location; 
     Creeks closest= null; 
 
-    
-
     public POI(){
         creeks=new ArrayList<Creeks>();
         this.esite = null;  
     }
     
-
     public void addCreek(Creeks creek){
         creeks.add(creek);
         closest=creek;
