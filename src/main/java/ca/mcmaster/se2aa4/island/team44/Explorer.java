@@ -12,15 +12,11 @@ import eu.ace_design.island.bot.IExplorerRaid;
 public class Explorer implements IExplorerRaid {
 
     private final Logger logger = LogManager.getLogger();
-
-    
     private MissionReport missionReport;
     private POI poi; 
-
     protected JSONTranslator translate = new Translator();
-    //Integer budget=0;
-
     Controller control;
+
     @Override
     public void initialize(String s) {
         logger.info("** Initializing the Exploration Command Center");
@@ -32,24 +28,16 @@ public class Explorer implements IExplorerRaid {
         logger.info("Battery level is {}", batteryLevel);
 
         control = new Controller(batteryLevel, Compass.toEnum(direction) );
-         logger.info(Compass.toEnum(direction));
+        logger.info(Compass.toEnum(direction));
         this.missionReport = new MissionReport();
-        //this.poi= new POI();//unsure abt this may be messing smth up 
 
     }
 
-    boolean once = true;
 
     @Override
     public String takeDecision() {
-      //JSONObject decision = ;
-      //decision = explore.getDecision();
-      // decision.put("action", "stop");
-     //transalte.fly().toString();
         String decision = control.getDecision();
         logger.info("** Decisions: {}", decision);
-
-       // return translate.scan();
         return decision;
  
     }

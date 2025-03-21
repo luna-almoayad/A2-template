@@ -31,11 +31,12 @@ public class POI { //shouldnt be abstract
     }
 
     public Creeks getClosestCreek(){
-        int min = 0;
+        int min = 50;
         Creeks closest= null; 
         for (Creeks creek : creeks){
             if (esite.getLocation().calculateDistance(creek.getLocation()) < min){
-                 closest = creek; 
+                min = esite.getLocation().calculateDistance(creek.getLocation());
+                closest = creek; 
             }
         }
         return closest; 

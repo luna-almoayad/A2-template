@@ -25,10 +25,11 @@ public class ExploreSpawn implements ExplorerPhase{
         this.d =d;
         state= States.ECHO_R;
     }
+
     int groundCount = 0;  
-    boolean leftGround;
-    boolean rightGround;
-    boolean fwdGround;
+    boolean Lground;
+    boolean Rground;
+    boolean fground; 
     int flyCount;
     boolean or;
    //private JSONObject echof;
@@ -68,9 +69,9 @@ public class ExploreSpawn implements ExplorerPhase{
                 or= true; 
                 }if (or && !rightGround && !leftGround){
                     return true;
-            }else{
-                state = States.FLY;
-            }
+                }else if (!fwdGround && leftGround && rightGround){ 
+                    state = States.FLYCHECK;
+                }
         }else if (state == States.TURN1){
             state = States.TURN2;
 
@@ -81,6 +82,7 @@ public class ExploreSpawn implements ExplorerPhase{
         }
         else if (state == States.FLYCHECK){
             flyCount= translator.getRange(response);
+            state= States.FLY;
         }
 
         else if(state == States.FLY){

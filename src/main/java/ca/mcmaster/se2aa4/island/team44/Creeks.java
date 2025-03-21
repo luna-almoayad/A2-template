@@ -16,10 +16,6 @@ public class Creeks{
     public String getID(){
         return this.id; 
     }
-
-
-
-
         
 }
 
