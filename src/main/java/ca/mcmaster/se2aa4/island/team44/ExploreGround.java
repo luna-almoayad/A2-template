@@ -66,6 +66,8 @@ public class ExploreGround implements ExplorerPhase{
 
     public String findGroundPhase(){
         if(this.groundDirection != d.getDirection()){
+                
+                
                 d.setDirection(this.groundDirection);
                 return translate.heading(this.groundDirection); 
             }
@@ -165,7 +167,8 @@ public class ExploreGround implements ExplorerPhase{
 
     public boolean getEchoResponse(JSONObject response){
         if(this.state == State.R_ECHO){
-
+            d.setStartDir(d.getDirection());
+            logger.info("NEWStart Direction: "+ d.getStartDir());
             this.echoRightResponse = response;
             if(translate.getFound(response).equals("GROUND")){
                 this.state = State.UTURN1;
@@ -177,6 +180,8 @@ public class ExploreGround implements ExplorerPhase{
 
             this.echoLeftResponse = response;
             if(translate.getFound(response).equals("GROUND")){
+                d.setStartDir(d.getDirection());
+                logger.info("NEWStart Direction: "+ d.getStartDir());
                 this.state = State.UTURN1;
                 this.groundDistance = translate.getRange(response);
                 
@@ -184,6 +189,8 @@ public class ExploreGround implements ExplorerPhase{
         }else if(this.state == State.F_ECHO ) {
 
             if(translate.getFound(response).equals("GROUND")){
+                d.setStartDir(d.getDirection());
+                logger.info("NEWStart Direction: "+ d.getStartDir());
                 this.state = State.FINDGROUND;
                 this.groundDistance = translate.getRange(response);
 

@@ -23,17 +23,20 @@ public class ExploreTurn implements ExplorerPhase{
    private Explorer explorer;
    private final Logger logger = LogManager.getLogger();
    JSONTranslator translator = new Translator();
-   Compass start;
+   Compass startTurn;
    int groundDistance = -1;
    Steps step=Steps.ECHOF;
    int LCount =0;
    int RCount=0;
+   Compass startDir;
 
 
    public ExploreTurn(Drone d){
        this.d=d;
-       this.start=d.getDirection();
-       logger.info("Starting phase at"+start);
+       this.startTurn=d.getDirection();
+       logger.info("startTurning phase at"+startTurn);
+       this.startDir=d.getStartDir();
+       logger.info("startDIR phase at"+startDir);
    }
 
    public String getDecision(){
@@ -50,7 +53,7 @@ public class ExploreTurn implements ExplorerPhase{
                return translator.echo(d.getDirection());
            }
            case Steps.L ->{
-               turnLeft(start, d);
+               turnLeft(startTurn, d);
                return translator.heading(d.getDirection());
            }
            case Steps.F -> {
@@ -58,13 +61,13 @@ public class ExploreTurn implements ExplorerPhase{
                return translator.fly();
            }
            case Steps.L3 ->{
-               turnLeft(start, d);
+               turnLeft(startTurn, d);
                LCount ++;
                logger.info("l" + LCount);
                return translator.heading( d.getDirection());
            }
            case Steps.R1 ->{
-               turnRight(start, d);
+               turnRight(startTurn, d);
                RCount++;
                logger.info("R" + RCount);
                return translator.heading( d.getDirection());
@@ -86,8 +89,8 @@ public class ExploreTurn implements ExplorerPhase{
    }
 
 
-   private void turnLeft(Compass start,Drone d){
-       if(start==Compass.N || start == Compass.E){
+   private void turnLeft(Compass startTurn,Drone d){
+       if((startTurn==Compass.N &&startDir==Compass.E) || (startTurn==Compass.S &&startDir==Compass.W)){
            d.left();               
        }else{
            d.right();
@@ -95,8 +98,8 @@ public class ExploreTurn implements ExplorerPhase{
    }
 
 
-   private void turnRight(Compass start,Drone d){
-       if(start==Compass.N || start == Compass.E){
+   private void turnRight(Compass startTurn,Drone d){
+       if((startTurn==Compass.N &&startDir==Compass.E) || (startTurn==Compass.S &&startDir==Compass.W)){
            d.right();               
        }else{
            d.left();
