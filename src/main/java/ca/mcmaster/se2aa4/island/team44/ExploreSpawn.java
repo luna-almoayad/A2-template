@@ -1,8 +1,11 @@
 package ca.mcmaster.se2aa4.island.team44;
 
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.json.JSONObject;
+
+
 
 
 enum States{
@@ -16,7 +19,11 @@ enum States{
 }
 
 
+
+
 public class ExploreSpawn implements ExplorerPhase{
+
+
 
 
     private Translator translator = new Translator();
@@ -24,12 +31,15 @@ public class ExploreSpawn implements ExplorerPhase{
     private final Logger logger = LogManager.getLogger();
 
 
+
+
     private Drone d;
     private States state;
     public ExploreSpawn(Drone d){
         this.d =d;
-        state= States.ECHO_F;
+        state= States.ECHO_F; //echor, echol, echof
     }
+
 
     private JSONObject echof;
     private JSONObject echol;
@@ -41,6 +51,7 @@ public class ExploreSpawn implements ExplorerPhase{
         d.deductCost(translator.getCost(response));
         logger.info("**Battery" + d.checkBattery());
 
+
         if(this.state == States.FLY){
             distance--;
             if(distance<=2)
@@ -50,17 +61,19 @@ public class ExploreSpawn implements ExplorerPhase{
         }
         //goes f, r, l
         else if(this.state == States.ECHO_F || state == States.ECHO_R ||state == States.ECHO_L){
-            return getEchoRespons(response);
+            return getEchoResponse(response);
         }else if(this.state==States.TURN_LEFT){
             this.state=States.ECHO_F;
         }else if(this.state == States.TURN_RIGHT){
-             state = States.ECHO_F;
+            state = States.ECHO_F;
         }
+
 
         return false;
     }
 
-    public Boolean getEchoRespons(JSONObject response){
+
+    public Boolean getEchoResponse(JSONObject response){
         if(state == States.ECHO_F){
             echof=response;
             if (translator.getFound(echof).equals("OUT_OF_RANGE") && translator.getRange(echof)==0 ){
@@ -74,8 +87,9 @@ public class ExploreSpawn implements ExplorerPhase{
         }else if (state == States.ECHO_R) {
             echor=response;
             state=States.ECHO_L;
-        
+       
         }else if(state==States.ECHO_L){
+
 
             echol=response;
             if(translator.getFound(echor).equals("GROUND")&&translator.getFound(echol).equals("GROUND"))
@@ -88,10 +102,12 @@ public class ExploreSpawn implements ExplorerPhase{
                 }
             }else
                 return true;
-                
+               
         }
         return false;
     }
+
+
 
 
     @Override
@@ -101,12 +117,14 @@ public class ExploreSpawn implements ExplorerPhase{
         return translator.stop();
         }
 
+
         if(state == States.ECHO_F)  
             return translator.echo(d.getDirection() );
 
-        else if(state == States.ECHO_R) 
+
+        else if(state == States.ECHO_R)
             return translator.echo(d.getDirection().right());
-        else if(state == States.ECHO_L) 
+        else if(state == States.ECHO_L)
              return translator.echo(d.getDirection().left());
         else if(state == States.FLY){
             d.fly();
@@ -127,5 +145,4 @@ public class ExploreSpawn implements ExplorerPhase{
     }
    
 }
-
 
