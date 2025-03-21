@@ -1,9 +1,9 @@
 package ca.mcmaster.se2aa4.island.team44;
-/* 
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.json.JSONObject;
-
+/* 
 public class ExploreEnd implements ExplorerPhase {
     enum steps{
         ECHO_F,
@@ -13,6 +13,8 @@ public class ExploreEnd implements ExplorerPhase {
     private Translator translator; 
     private final Logger logger = LogManager.getLogger()
     steps step = steps.ECHO_F;
+
+
     public ExploreEnd(Drone d){
         this.d=d;
     }
@@ -28,5 +30,4 @@ public class ExploreEnd implements ExplorerPhase {
 
 
 
-}
-*/
+}*/

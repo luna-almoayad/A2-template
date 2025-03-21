@@ -7,8 +7,7 @@ import org.json.JSONObject;
 enum forwardPhases{
     SCAN,
     FLY,
-    FLY2,
-    SCAN2;
+    
 }
 //FLY2 and SCAN 2 is unreachable ask sama.
 

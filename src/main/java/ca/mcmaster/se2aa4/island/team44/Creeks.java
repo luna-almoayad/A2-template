@@ -20,10 +20,6 @@ public class Creeks{
     public String toString(){
         return location.toString();
     }
-
-
-
-
         
 }
 

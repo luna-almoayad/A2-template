@@ -28,7 +28,7 @@ public class Explorer implements IExplorerRaid {
 
         control = new Controller(batteryLevel, Compass.toEnum(direction) );
         logger.info(Compass.toEnum(direction));
-        this.missionReport = new MissionReport();
+        //this.missionReport = new MissionReport();
 
     }
 
@@ -63,7 +63,7 @@ public class Explorer implements IExplorerRaid {
 
     @Override
     public String deliverFinalReport() {
-        String finalReport= missionReport.generateReport(control.getDrone());
+        String finalReport= control.finishMission();
         logger.info("Final Info\n" + finalReport);
         return finalReport;
     }

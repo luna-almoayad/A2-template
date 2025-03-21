@@ -28,11 +28,10 @@ public class Controller{
         this.d = new Drone(battery, direction);
         actionPhase = new ExploreSpawn(d);
         dronePhase = Phases.SPAWN;
+        report= new MissionReport(d);
     }
-    //LEAKY ABSTRACTION FIX !!!!
-    public Drone getDrone(){
-        return this.d;
-    }
+
+    
 
     public String getDecision(){
         return actionPhase.getDecision();
@@ -52,6 +51,10 @@ public class Controller{
         }
         logger.info("Phase: " + dronePhase.toString());
 
+    }
+
+    public String finishMission(){
+        return report.generateReport();
     }
 
 
