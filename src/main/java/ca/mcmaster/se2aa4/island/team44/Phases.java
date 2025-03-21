@@ -4,7 +4,8 @@ public enum Phases {
     SPAWN,
     GROUND,
     GRIDSEARCH,
-    UTURN;
+    UTURN,
+    CHECKCONTINUE;
 
 
     public Phases switchPhase() {
@@ -19,7 +20,9 @@ public enum Phases {
 
         }
         else if(this == UTURN){
-            return GRIDSEARCH; 
+            return CHECKCONTINUE; 
+        }else if(this == CHECKCONTINUE){
+            return GRIDSEARCH;
         }
         else{
             return this; 
