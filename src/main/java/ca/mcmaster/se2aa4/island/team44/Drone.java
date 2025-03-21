@@ -104,6 +104,8 @@ public class Drone{
     public boolean ifPossiblyFound(){
         return (POI.getEmergencySites()!=null&&POI.getCreeks().size()>0);
     }
-
+    public boolean sufficientBattery(){
+        return this.battery.sufficientBattery();
+    }
 
 }
