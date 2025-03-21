@@ -79,8 +79,9 @@ public class ExploreGround implements ExplorerPhase{
                 state = State.FOUNDGROUND;
                 groundDistance = translate.getRange(response);
             }
+
             //If almost out of range turn
-            else if(translate.getFound(response).equals("OUT_OF_RANGE") && translate.getRange(response)<1 ){
+            else if(translate.getFound(response).equals("OUT_OF_RANGE") && translate.getRange(response)<3 ){
                 //Turn in direction with more cells
                 if( translate.getRange(echoLeftResponse) > translate.getRange(echoRightResponse) ) state = State.TURN_L_1;
                 else  state = State.TURN_R_1;
@@ -88,7 +89,8 @@ public class ExploreGround implements ExplorerPhase{
                 else
                     state = State.FLY;
                 break;
-                }case State.FLY -> {
+                }
+            case State.FLY -> {
                     state = State.R_ECHO;
                     break;
                     }
@@ -173,6 +175,7 @@ public class ExploreGround implements ExplorerPhase{
             }
 
         case State.UTURN1 ->{
+            start=d.getDirection();
             d.fly();
             return translate.fly();
         }

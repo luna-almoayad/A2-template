@@ -94,5 +94,9 @@ public class Drone{
         return "Location: "+location.toString() + " Direction: "+this.direction;
     }
 
+    public Creeks getClosestCreek(){
+        return POI.getClosestCreek();
+    }
+
 
 }
