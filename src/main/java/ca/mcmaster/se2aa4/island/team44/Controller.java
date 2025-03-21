@@ -31,6 +31,10 @@ public class Controller{
         actionPhase = new ExploreSpawn(d);
         dronePhase = Phases.SPAWN;
     }
+    //LEAKY ABSTRACTION FIX !!!!
+    public Drone getDrone(){
+        return this.d;
+    }
 
     public String getDecision(){
         return actionPhase.getDecision();

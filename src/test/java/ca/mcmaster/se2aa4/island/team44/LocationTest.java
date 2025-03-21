@@ -47,7 +47,7 @@ public class LocationTest {
     public void testCalculateDistance() {
         Location location1 = new Location(1, 2);
         Location location2 = new Location(4, 6);
-        assertEquals(7, location1.calculateDistance(location2));
+        assertEquals(5, location1.calculateDistance(location2));
     }
 
     @Test

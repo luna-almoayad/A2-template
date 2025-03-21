@@ -36,7 +36,7 @@ public class ExploreForward implements ExplorerPhase{
                     logger.info("1223esite found");
                 }
                 if(translator.getCreekIDs(response)!=null){
-                    Creeks creek = new Creeks(translator.getSiteIDs(response), d.getLocation());
+                    Creeks creek = new Creeks(translator.getCreekIDs(response), d.getLocation());
                     d.addCreek(creek);
                     logger.info("lesh enta wein");
                 }
