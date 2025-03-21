@@ -30,13 +30,15 @@ public class ExploreForward implements ExplorerPhase{
         logger.info("shake"+phase);
         switch(phase){
             case SCAN -> {
-                if(translator.getBiomes(response).equals("sites")){
+                if(translator.getSiteIDs(response)!=null){
                     EmergencySite esite= new EmergencySite(translator.getSiteIDs(response), d.getLocation());
                     d.addEmergencySite(esite);
+                    logger.info("1223esite found");
                 }
-                if(translator.getBiomes(response).equals("creeks")){
+                if(translator.getCreekIDs(response)!=null){
                     Creeks creek = new Creeks(translator.getSiteIDs(response), d.getLocation());
                     d.addCreek(creek);
+                    logger.info("lesh enta wein");
                 }
                 if(translator.hasOcean(response)){
                     logger.info("in here!");

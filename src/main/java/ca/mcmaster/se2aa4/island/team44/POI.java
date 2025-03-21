@@ -5,17 +5,19 @@ public class POI { //shouldnt be abstract
     private ArrayList<Creeks> creeks;
     private EmergencySite esite;
     private Location location; 
+    Creeks closest= null; 
 
     
 
     public POI(){
         creeks=new ArrayList<Creeks>();
-        this.esite = null;
+        this.esite = null;  
     }
     
 
     public void addCreek(Creeks creek){
         creeks.add(creek);
+        closest=creek;
     }
 
     public void addEmergencySite(EmergencySite emergencySite){
@@ -30,15 +32,18 @@ public class POI { //shouldnt be abstract
         return this.esite;
     }
 
-    public Creeks getClosestCreek(){
-        int min = 0;
-        Creeks closest= null; 
+    public Creeks findClosestCreek(){
+        Creeks closest= creeks.get(0); 
         for (Creeks creek : creeks){
-            if (esite.getLocation().calculateDistance(creek.getLocation()) < min){
-                 closest = creek; 
+            if (esite.getLocation().calculateDistance(creek.getLocation()) <= esite.getLocation().calculateDistance(closest.getLocation())){
+                closest = creek;
             }
         }
         return closest; 
+    }
+
+    public Creeks getClosestCreek(){
+        return findClosestCreek();
     }
 
 

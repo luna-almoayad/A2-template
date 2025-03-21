@@ -89,6 +89,7 @@ public class ExploreTurn implements ExplorerPhase{
             }case Steps.ECHOT ->{
                 return translator.echo(d.getDirection() );
             }case Steps.END->{
+                logger.info("booo "+d.getClosestCreek());
                 return translator.stop();
             }case Steps.ECHOR ->{
                 if(d.getDirection()==Compass.N)
@@ -168,7 +169,24 @@ public class ExploreTurn implements ExplorerPhase{
                     step = Steps.FG;
                 }
 
-                
+                if(d.ifPossiblyFound()){
+                    Location closest = d.getClosestCreek().getLocation(); 
+                    Location site= d.getESite().getLocation(); 
+                    logger.info("hardtime");
+                    logger.info("my creeks: "+d.getCreek());
+                    logger.info("closest creek "+d.getClosestCreek());
+                    logger.info("my site "+d.getESite());
+                    logger.info("where");
+                    logger.info("location to site: "+d.getLocation().calculateDistance(site.getLocation())+" site to closest: "+(site.getLocation().calculateDistance(closest.getLocation())));
+                    if(Math.abs(d.getLocation().getXCoord()-site.getLocation().getXCoord())>(Math.abs(closest.getLocation().getXCoord()-site.getLocation().getXCoord()))){
+                        logger.info("MAYBE bebebbe");
+                        step = Steps.END; 
+                    }
+
+//                    if(d.getLocation().calculateDistance(site.getLocation())>(site.getLocation().calculateDistance(closest.getLocation()))){
+
+                    break;
+                }
             }
             case Steps.CONTINUE->{
                 return true;   
