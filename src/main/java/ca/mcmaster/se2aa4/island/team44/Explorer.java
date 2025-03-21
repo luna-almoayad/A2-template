@@ -63,7 +63,7 @@ public class Explorer implements IExplorerRaid {
     @Override
     public String deliverFinalReport() {
         String finalReport= missionReport.generateReport(control.getDrone());
-        logger.info("final info" + finalReport);
+        logger.info("Final Info\n" + finalReport);
         return finalReport;
     }
 

@@ -27,6 +27,8 @@ public class ExploreForward implements ExplorerPhase{
 
     @Override
     public boolean getResponse(JSONObject response){
+        d.deductCost(translator.getCost(response));
+        logger.info("**Battery" + d.checkBattery());
         logger.info("shake"+phase);
         switch(phase){
             case SCAN -> {
@@ -66,6 +68,11 @@ public class ExploreForward implements ExplorerPhase{
     } 
 
     public String getDecision(){
+        //Stop if Battery Low
+        if(!d.sufficientBattery()){
+        logger.info("**Low Battery: Returning to Base");
+        return translator.stop();
+        }
         switch(phase){
             case SCAN -> {
                 return translator.scan();

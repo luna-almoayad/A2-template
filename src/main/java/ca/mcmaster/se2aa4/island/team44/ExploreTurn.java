@@ -40,6 +40,11 @@ public class ExploreTurn implements ExplorerPhase{
 
 
     public String getDecision(){
+        //Stop if Battery Low
+        if(!d.sufficientBattery()){
+        logger.info("**Low Battery: Returning to Base");
+        return translator.stop();
+        }
         switch(step){
             case Steps.ECHOF ->{
                 return translator.echo(d.getDirection());
@@ -112,6 +117,8 @@ public class ExploreTurn implements ExplorerPhase{
     }
  
     public boolean getResponse(JSONObject response){
+        d.deductCost(translator.getCost(response));
+        logger.info("**Battery" + d.checkBattery());
         switch(step){
             case Steps.ECHOF -> {
                 if(translator.getFound(response).equals("GROUND")){

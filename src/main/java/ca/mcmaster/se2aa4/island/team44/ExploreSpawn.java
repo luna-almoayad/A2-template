@@ -38,6 +38,9 @@ public class ExploreSpawn implements ExplorerPhase{
 //ECHO ALL DIRECTION
     @Override
     public boolean getResponse(JSONObject response){
+        d.deductCost(translator.getCost(response));
+        logger.info("**Battery" + d.checkBattery());
+
         logger.info("statey "+state);
         logger.info("responsey "+response);
         if(state ==States.FLY){
@@ -92,6 +95,10 @@ public class ExploreSpawn implements ExplorerPhase{
 
     @Override
     public String getDecision(){
+        if(!d.sufficientBattery()){
+        logger.info("**Low Battery: Returning to Base");
+        return translator.stop();
+        }
 
 
         if(state == States.ECHO_F) return translator.echo(d.getDirection() );
