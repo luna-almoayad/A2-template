@@ -11,7 +11,8 @@ enum States{
     ECHO_F,
     FLY,
     TURN_RIGHT,
-    TURN_LEFT;
+    TURN_LEFT,
+    END;
 }
 
 
@@ -62,7 +63,9 @@ public class ExploreSpawn implements ExplorerPhase{
     public Boolean getEchoRespons(JSONObject response){
         if(state == States.ECHO_F){
             echof=response;
-            if( (translator.getFound(echof).equals("OUT_OF_RANGE") && translator.getRange(echof)<2 ) || (translator.getFound(echof).equals("GROUND") ) ){
+            if (translator.getFound(echof).equals("OUT_OF_RANGE") && translator.getRange(echof)==0 ){
+                state = States.END;
+            }else if( (translator.getFound(echof).equals("OUT_OF_RANGE") && translator.getRange(echof)<2 ) || (translator.getFound(echof).equals("GROUND") ) ){
                 state = States.TURN_RIGHT; //if the front is out of range <2 or ground, turn right
             } else {
                 distance = translator.getRange(response);
@@ -116,9 +119,11 @@ public class ExploreSpawn implements ExplorerPhase{
         else if(state == States.TURN_LEFT){
             d.left();
             return translator.heading(d.getDirection());
+        }else if(state == States.END){
+            return translator.stop();
         }
-    d.fly();
-    return translator.fly();
+        d.fly();
+        return translator.fly();
     }
    
 }

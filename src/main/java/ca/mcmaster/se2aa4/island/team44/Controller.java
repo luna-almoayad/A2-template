@@ -16,10 +16,9 @@ might need to scan at first fly in uturn*/
 
 public class Controller{
     Drone d;
-    POI POI;
-    JSONTranslator translator;
     ExplorerPhase actionPhase;
     Phases dronePhase;
+    private final ExplorerFactory exploreFactory = new ExplorerFactory();
 
     private final Logger logger = LogManager.getLogger();
 
@@ -27,7 +26,6 @@ public class Controller{
 
     public Controller(int battery, Compass direction){
         this.d = new Drone(battery, direction);
-        translator = new Translator();
         actionPhase = new ExploreSpawn(d);
         dronePhase = Phases.SPAWN;
     }
@@ -40,27 +38,18 @@ public class Controller{
         return actionPhase.getDecision();
     }
 
+
+    //Implements Factory Pattern
     public void getResponse(JSONObject response){
         boolean switchPhases = actionPhase.getResponse(response);
-        logger.info("switchPhase:" + switchPhases);
-        logger.info("Drone stuff: "+d);
+        logger.info("***SwitchPhase:" + switchPhases);
+        logger.info("***Drone: "+d);
 
-        if(switchPhases && dronePhase ==Phases.SPAWN){
+        if(switchPhases){
             dronePhase = dronePhase.switchPhase();
-            actionPhase= new ExploreGround(d);
+            actionPhase= exploreFactory.getPhase(dronePhase, d);
+            logger.info("***Switching: " + dronePhase.toString());
         }
-        else if(switchPhases && dronePhase == Phases.GROUND){
-            dronePhase = dronePhase.switchPhase();
-            actionPhase= new ExploreForward(d);
-            logger.info("switching: " + dronePhase.toString());
-        }else if(switchPhases && dronePhase == Phases.GRIDSEARCH){
-            dronePhase = dronePhase.switchPhase();
-            actionPhase= new ExploreTurn(d);
-        }else if(switchPhases && dronePhase == Phases.UTURN){
-            dronePhase = dronePhase.switchPhase();
-            actionPhase= new ExploreForward(d);
-        }
-
         logger.info("Phase: " + dronePhase.toString());
 
     }
