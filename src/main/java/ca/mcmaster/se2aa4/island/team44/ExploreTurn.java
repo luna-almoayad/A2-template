@@ -196,7 +196,6 @@ public class ExploreTurn implements ExplorerPhase{
                 break;
             }
     
-
         }
  
     return false;
