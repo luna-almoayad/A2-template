@@ -73,15 +73,15 @@ public class Translator implements JSONTranslator{
     public String getSiteIDs(JSONObject info){
         JSONObject extraInfo = getExtraInfo(info);
 
-        JSONArray creeks;
+        JSONArray sites;
 
-        if(extraInfo.has("sites"))  creeks = extraInfo.optJSONArray("sites");
+        if(extraInfo.has("sites"))  sites = extraInfo.optJSONArray("sites");
         else
             return null;
 
-        String[] result = new String[creeks.length()];
-        for (int i = 0; i < creeks.length(); i++) {
-            result[i] = creeks.optString(i, ""); 
+        String[] result = new String[sites.length()];
+        for (int i = 0; i < sites.length(); i++) {
+            result[i] = sites.optString(i, ""); 
         }
         if(result.length == 0)
             return null;

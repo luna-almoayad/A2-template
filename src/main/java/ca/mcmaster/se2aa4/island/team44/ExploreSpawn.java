@@ -2,18 +2,9 @@ package ca.mcmaster.se2aa4.island.team44;
 
 //Positon the drone to the top left corner
 
-import org.json.JSONObject;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
-
-
-import javax.naming.ldap.ExtendedResponse;
-
-
 import org.json.JSONObject;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 
 enum States{
@@ -123,6 +114,5 @@ public class ExploreSpawn implements ExplorerPhase{
     }
    
 }
-
 
 
