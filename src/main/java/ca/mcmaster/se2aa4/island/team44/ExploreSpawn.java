@@ -1,7 +1,5 @@
 package ca.mcmaster.se2aa4.island.team44;
 
-//Positon the drone to the top left corner
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.json.JSONObject;
@@ -13,7 +11,8 @@ enum States{
     ECHO_F,
     FLY,
     TURN_RIGHT,
-    TURN_LEFT;
+    TURN_LEFT,
+    END;
 }
 
 
@@ -31,6 +30,7 @@ public class ExploreSpawn implements ExplorerPhase{
         this.d =d;
         state= States.ECHO_F;
     }
+
     private JSONObject echof;
     private JSONObject echol;
     private JSONObject echor;
@@ -41,34 +41,42 @@ public class ExploreSpawn implements ExplorerPhase{
         d.deductCost(translator.getCost(response));
         logger.info("**Battery" + d.checkBattery());
 
-        logger.info("statey "+state);
-        logger.info("responsey "+response);
-        if(state ==States.FLY){
+        if(this.state == States.FLY){
             distance--;
             if(distance<=2)
-                state=States.ECHO_R;//go to echor then echol to see which is less
+                this.state=States.ECHO_R;//go to echor then echol to see which is less
             //else stay in fly until u echoR
-            return false;
+            else this.state = States.FLY;
         }
         //goes f, r, l
-        else if(state == States.ECHO_F){
+        else if(this.state == States.ECHO_F || state == States.ECHO_R ||state == States.ECHO_L){
+            return getEchoRespons(response);
+        }else if(this.state==States.TURN_LEFT){
+            this.state=States.ECHO_F;
+        }else if(this.state == States.TURN_RIGHT){
+             state = States.ECHO_F;
+        }
+
+        return false;
+    }
+
+    public Boolean getEchoRespons(JSONObject response){
+        if(state == States.ECHO_F){
             echof=response;
-            if( (translator.getFound(echof).equals("OUT_OF_RANGE") && translator.getRange(echof)<2 ) || (translator.getFound(echof).equals("GROUND") ) ){
+            if (translator.getFound(echof).equals("OUT_OF_RANGE") && translator.getRange(echof)==0 ){
+                state = States.END;
+            }else if( (translator.getFound(echof).equals("OUT_OF_RANGE") && translator.getRange(echof)<2 ) || (translator.getFound(echof).equals("GROUND") ) ){
                 state = States.TURN_RIGHT; //if the front is out of range <2 or ground, turn right
             } else {
                 distance = translator.getRange(response);
                 state = States.FLY; //else fly in that direction until out of range
             }
-        }else if(state == States.TURN_RIGHT){
-                state = States.ECHO_F; //turn right and check whats in front
-        }
-        else if (state == States.ECHO_R) {
+        }else if (state == States.ECHO_R) {
             echor=response;
-            logger.info("pepep + "+echor.toString());
             state=States.ECHO_L;
-            return false;
-        }
-        else if(state==States.ECHO_L){
+        
+        }else if(state==States.ECHO_L){
+
             echol=response;
             if(translator.getFound(echor).equals("GROUND")&&translator.getFound(echol).equals("GROUND"))
                 state=States.FLY; //ensures no ground in forward direction
@@ -78,17 +86,10 @@ public class ExploreSpawn implements ExplorerPhase{
                 }else {
                     state=States.TURN_LEFT;
                 }
-            }else{
-                logger.info("babum tu est vrais");
+            }else
                 return true;
-                }
-            }
-        else if(state==States.TURN_LEFT){
-            state=States.ECHO_F;
-            return false;
+                
         }
-
-
         return false;
     }
 
@@ -100,10 +101,13 @@ public class ExploreSpawn implements ExplorerPhase{
         return translator.stop();
         }
 
+        if(state == States.ECHO_F)  
+            return translator.echo(d.getDirection() );
 
-        if(state == States.ECHO_F) return translator.echo(d.getDirection() );
-        else if(state == States.ECHO_R) return translator.echo(d.getDirection().right());
-        else if(state == States.ECHO_L)  return translator.echo(d.getDirection().left());
+        else if(state == States.ECHO_R) 
+            return translator.echo(d.getDirection().right());
+        else if(state == States.ECHO_L) 
+             return translator.echo(d.getDirection().left());
         else if(state == States.FLY){
             d.fly();
             return translator.fly();
@@ -115,9 +119,11 @@ public class ExploreSpawn implements ExplorerPhase{
         else if(state == States.TURN_LEFT){
             d.left();
             return translator.heading(d.getDirection());
+        }else if(state == States.END){
+            return translator.stop();
         }
-    d.fly();
-    return translator.fly();
+        d.fly();
+        return translator.fly();
     }
    
 }
