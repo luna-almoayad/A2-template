@@ -21,6 +21,7 @@ enum State{
     
 }
 
+
 public class ExploreGround implements ExplorerPhase{
 
     private State state = State.R_ECHO;
@@ -28,7 +29,7 @@ public class ExploreGround implements ExplorerPhase{
     private int groundDistance;
     private Compass groundDirection;
     private final Logger logger = LogManager.getLogger();
-    Drone d;
+    private Drone d;
     private Compass start;
 
     private JSONObject echoLeftResponse;
@@ -36,8 +37,108 @@ public class ExploreGround implements ExplorerPhase{
 
     public ExploreGround(Drone d){
         this.d=d;
-        start=d.getDirection();
+        this.start=d.getDirection();
     }
+
+    @Override
+    public String getDecision(){
+    logger.info("***ExploreGround State: "+ state);
+
+    //Stop if Battery Low
+    if(!d.sufficientBattery()){
+        logger.info("**Low Battery: Returning to Base");
+        return translate.stop();
+    }
+
+    if(this.state == State.FOUNDGROUND ){
+
+        if(this.groundDirection != d.getDirection()){
+                d.setDirection(this.groundDirection);
+                return translate.heading(this.groundDirection); 
+            }
+            this.groundDistance = this.groundDistance - 1;
+            d.fly();
+            return translate.fly();
+           
+    }else if(this.state == State.FLY){
+            d.fly();
+            return translate.fly();
+
+    }else if(this.state == State.F_ECHO || this.state == State.L_ECHO || this.state == State.R_ECHO){
+        return this.echoPhase();
+    }else if(this.state == State.UTURN1 || this.state == State.UTURN2 || this.state == State.UTURN3 || this.state == State.UTURN4 ){
+        return this.uTurnPhase();
+    }else if(this.state == State.TURN_L_1 || this.state == State.TURN_L_2 || this.state == State.TURN_R_1 ||this.state == State.TURN_R_2 ){
+        return this.turnPhase();
+    }
+    return translate.stop();
+    }
+
+
+    public String turnPhase(){
+        if(this.state == State.TURN_L_1) {
+                d.left();
+                return translate.heading(d.getDirection());
+        }
+        else if(this.state == State.TURN_L_2){
+                d.left();
+                return translate.heading(d.getDirection());
+        }else if(this.state == State.TURN_R_1){
+                d.right();
+                return translate.heading(d.getDirection());
+        }else if(this.state == State.TURN_R_2){
+                d.right();
+                return translate.heading(d.getDirection());
+        }
+        return translate.stop();
+    }
+
+    public String uTurnPhase(){
+        if(this.state == State.UTURN1) {
+            start=d.getDirection();
+            d.fly();
+            return translate.fly();
+
+        }else if(this.state == State.UTURN2){
+            if(groundDirection==start.right())  d.right();
+            else d.left();
+
+            return translate.heading(d.getDirection());
+
+        }else if(this.state == State.UTURN3) {
+
+            if(this.groundDirection==start.right()) d.right();
+            else d.left();
+
+            return translate.heading(d.getDirection());
+        }else if (this.state == State.UTURN4) {
+            this.groundDistance-=3;
+
+            if(this.groundDirection==start.right())  d.left();
+            else  d.right();
+
+            return translate.heading(d.getDirection());
+        }
+        return translate.stop();
+    }
+
+    public String echoPhase(){
+        if(this.state == State.F_ECHO ){
+            this.groundDirection = d.getDirection();
+            return translate.echo(d.getDirection());
+
+        }else if( this.state == State.L_ECHO){
+
+            this.groundDirection = d.getDirection().left();
+            return translate.echo(d.getDirection().left());
+
+        }else if( this.state == State.R_ECHO ) {
+            this.groundDirection = d.getDirection().right();
+            return translate.echo(d.getDirection().right());
+        }
+        return translate.stop();
+    }
+
 
     @Override
     public boolean getResponse(JSONObject response)
@@ -46,180 +147,70 @@ public class ExploreGround implements ExplorerPhase{
         d.deductCost(translate.getCost(response));
         logger.info("**Battery" + d.checkBattery());
 
+        if(this.state == State.FOUNDGROUND ){
+           if(this.groundDistance ==0) return true;
 
-        //Switch state based on response
-        switch(this.state){
-            case State.FOUNDGROUND -> {
-                if(groundDistance ==0) return true;
-                break;
-            }
-            case State.R_ECHO -> {
-            echoRightResponse = response;
+        }else if(this.state == State.FLY) this.state = State.R_ECHO;
+
+        else if(this.state == State.F_ECHO || this.state == State.L_ECHO || this.state == State.R_ECHO) return this.getEchoResponse(response);
+        else if(this.state == State.UTURN1 || this.state == State.UTURN2 || this.state == State.UTURN3 || this.state == State.UTURN4 )  return this.uTurnGetResponse();
+        else if(this.state == State.TURN_L_1 || this.state == State.TURN_L_2 || this.state == State.TURN_R_1 ||this.state == State.TURN_R_2 )  return this.turnGetResponse();
+
+        return false;
+         
+    }
+
+
+    public boolean getEchoResponse(JSONObject response){
+
+        if(this.state == State.R_ECHO){
+
+            this.echoRightResponse = response;
             if(translate.getFound(response).equals("GROUND")){
-                state = State.UTURN1;
-                groundDistance = translate.getRange(response);
-            }
-            else
-                state = State.L_ECHO;
-            break;
-            }
-            case State.L_ECHO -> {
+                this.state = State.UTURN1;
+                this.groundDistance = translate.getRange(response);
 
-            echoLeftResponse = response;
+            }else this.state = State.L_ECHO;
+
+        } else if( this.state ==State.L_ECHO ) {
+
+            this.echoLeftResponse = response;
             if(translate.getFound(response).equals("GROUND")){
-                state = State.UTURN1;
-                groundDistance = translate.getRange(response);
-            } 
-            else  
-                state = State.F_ECHO;
-            break;
-            }case State.F_ECHO -> {
+                this.state = State.UTURN1;
+                this.groundDistance = translate.getRange(response);
+                
+            } else this.state = State.F_ECHO;
+        }else if(this.state == State.F_ECHO ) {
 
             if(translate.getFound(response).equals("GROUND")){
-                state = State.FOUNDGROUND;
-                groundDistance = translate.getRange(response);
-            }
+                this.state = State.FOUNDGROUND;
+                this.groundDistance = translate.getRange(response);
 
-            //If almost out of range turn
-            else if(translate.getFound(response).equals("OUT_OF_RANGE") && translate.getRange(response)<3 ){
-                //Turn in direction with more cells
-                if( translate.getRange(echoLeftResponse) > translate.getRange(echoRightResponse) ) state = State.TURN_L_1;
-                else  state = State.TURN_R_1;
-                }
-                else
-                    state = State.FLY;
-                break;
-                }
-            case State.FLY -> {
-                    state = State.R_ECHO;
-                    break;
-                    }
-            case State.UTURN1->{
-                state = State.UTURN2;
-                break;
-            }
-            case State.UTURN2->{
-                state = State.UTURN3;
-                break;
-            }
-            case State.UTURN3->{
-                state = State.UTURN4;
-                break;
-            }
-            case State.UTURN4->{
-                state = State.FOUNDGROUND;
-                break;
-            }
-            case State.TURN_L_1 ->{
-                state = State.TURN_L_2;
-                break;
-            }case State.TURN_L_2 ->{
-                state = State.F_ECHO;
-                break;
-            }case State.TURN_R_1 ->{
-                state = State.TURN_R_2;
-                break;
-            }case State.TURN_R_2 ->{
-                state = State.F_ECHO;
-                break;
-            }
-            default ->{
-                break;
-            }
-            
-        }
+            }else if(translate.getFound(response).equals("OUT_OF_RANGE") && translate.getRange(response)<3 ){            
+                    if( translate.getRange(this.echoLeftResponse) > translate.getRange(this.echoRightResponse) ) this.state = State.TURN_L_1;
+                    else this.state = State.TURN_R_1; 
+            }else   this.state = State.FLY;
+         }
         return false;
     }
-
-
-    @Override
-    public String getDecision(){
-    logger.info("***ExploreGround State: "+ state);
-
-
-    //End if Battery Low
-    if(d.checkBattery()<50){
-        logger.info("**Low Battery: Returning to Base");
-        return translate.stop();
-    }
-
-    switch(state){
-        case State.FOUNDGROUND -> {
-            if(groundDirection != d.getDirection()){
-                d.setDirection(groundDirection);
-                return translate.heading(groundDirection); 
-            }
-            groundDistance = groundDistance - 1;
-            d.fly();
-            return translate.fly();
-            }
-
-        case State.FLY -> {
-            d.fly();
-            return translate.fly();
-            }
-
-        case State.F_ECHO -> {
-            groundDirection = d.getDirection();
-            return translate.echo(d.getDirection());
-            }
-
-        case State.L_ECHO -> {
-            groundDirection = d.getDirection().left();
-            return translate.echo(d.getDirection().left());
-            }
-
-        case State.R_ECHO -> {
-            groundDirection = d.getDirection().right();
-            return translate.echo(d.getDirection().right());
-            }
-
-        case State.UTURN1 ->{
-            start=d.getDirection();
-            d.fly();
-            return translate.fly();
-        }
-        case State.UTURN2->{
-            if(groundDirection==start.right())
-                d.right();
-            else
-                d.left();
-            return translate.heading(d.getDirection());
-        }
-        case State.UTURN3->{
-            if(groundDirection==start.right())
-                d.right();
-            else
-                d.left();
-            return translate.heading(d.getDirection());
-        }
-        case State.UTURN4->{
-            groundDistance-=3;
-            if(groundDirection==start.right())
-                d.left();
-            else
-                d.right();
-            return translate.heading(d.getDirection());
-        }case State.TURN_L_1 ->{
-                d.left();
-                return translate.heading(d.getDirection());
-            }case State.TURN_L_2 ->{
-                d.left();
-                return translate.heading(d.getDirection());
-            }case State.TURN_R_1 ->{
-                d.right();
-                return translate.heading(d.getDirection());
-            }case State.TURN_R_2 ->{
-                d.right();
-                return translate.heading(d.getDirection());
-            }
+//Change state of turn
+    public boolean turnGetResponse(){
+        if(this.state == State.TURN_L_1 )   this.state = State.TURN_L_2;
+        else if(this.state == State.TURN_L_2)  this.state = State.F_ECHO;
+        else if(this.state ==  State.TURN_R_1) this.state = State.TURN_R_2;
+        else if(this.state ==  State.TURN_R_2 ) this.state = State.F_ECHO;
         
-        default -> {
-            return "Default";
-            }
-        
+        return false;
     }
+//Change state of Utunr
+    public boolean uTurnGetResponse(){
 
+            if( this.state == State.UTURN1) this.state = State.UTURN2;
+            else if(this.state== State.UTURN2)   this.state = State.UTURN3;
+            else if(this.state == State.UTURN3)  this.state = State.UTURN4;
+            else if(this.state == State.UTURN4)  this.state = State.FOUNDGROUND;
+
+            return false;
     }
-         
+        
 }
