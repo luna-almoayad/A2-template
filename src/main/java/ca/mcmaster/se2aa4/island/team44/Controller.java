@@ -21,7 +21,7 @@ public class Controller{
     private final ExplorerFactory exploreFactory = new ExplorerFactory();
 
     private final Logger logger = LogManager.getLogger();
-
+    MissionReport report;
 
 
     public Controller(int battery, Compass direction){

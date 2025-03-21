@@ -36,15 +36,13 @@ public class ExploreTurn implements ExplorerPhase{
        logger.info("Starting phase at"+start);
    }
 
-
-
-
    public String getDecision(){
        //Stop if Battery Low
        if(!d.sufficientBattery()){
        logger.info("**Low Battery: Returning to Base");
        return translator.stop();
        }
+        logger.info("**Step" + step);
 
 
        switch(step){
@@ -65,17 +63,11 @@ public class ExploreTurn implements ExplorerPhase{
                logger.info("l" + LCount);
                return translator.heading( d.getDirection());
            }
-        
            case Steps.R1 ->{
                turnRight(start, d);
                RCount++;
                logger.info("R" + RCount);
                return translator.heading( d.getDirection());
-           }case Steps.ECHOT ->{
-               return translator.echo(d.getDirection() );
-           }case Steps.END->{
-               logger.info("booo "+d.getClosestCreek());
-               return translator.stop();
            }case Steps.ECHOR ->{
                if(d.getDirection()==Compass.N)
                    return translator.echo(d.getDirection().right());
@@ -116,10 +108,7 @@ public class ExploreTurn implements ExplorerPhase{
        switch(step){
            case Steps.ECHOF -> {
                if(translator.getFound(response).equals("GROUND")){
-                   step=Steps.FG;        
-                   groundDistance=translator.getRange(response);
-
-
+                   return true;        
                }else if(translator.getFound(response).equals("OUT_OF_RANGE")){
                    if(translator.getRange(response)<=2)
                        step=Steps.L; //skip to uturn uturn
@@ -150,47 +139,11 @@ public class ExploreTurn implements ExplorerPhase{
      
            case Steps.R1-> {
                if (RCount == 2){
-                   step = Steps.ECHOT;
+                   return true;
                }else if(0 < RCount && RCount< 2 ){
                    step=Steps.R1;
                }
                break;
-           }
-   
-           case Steps.FG->{
-               if(groundDistance==1 || groundDistance==0){
-                   return true;
-               }
-               groundDistance--;
-           break;
-           }case Steps.ECHOT->{
-               if( translator.getFound(response).equals("OUT_OF_RANGE") ) step = Steps.END;
-               else{
-                   groundDistance=translator.getRange(response);
-                   step = Steps.FG;
-               }
-
-
-               if(d.ifPossiblyFound()){
-                   Location closest = d.getClosestCreek().getLocation();
-                   Location site= d.getESite().getLocation();
-                   logger.info("hardtime");
-                   logger.info("my creeks: "+d.getCreek());
-                   logger.info("closest creek "+d.getClosestCreek());
-                   logger.info("my site "+d.getESite());
-                   logger.info("where");
-                   logger.info("location to site: "+d.getLocation().calculateDistance(site.getLocation())+" site to closest: "+(site.getLocation().calculateDistance(closest.getLocation())));
-                   if(Math.abs(d.getLocation().getXCoord()-site.getLocation().getXCoord())>(Math.abs(closest.getLocation().getXCoord()-site.getLocation().getXCoord()))){
-                       logger.info("MAYBE bebebbe");
-                       step = Steps.END;
-                   }
-
-
-//                    if(d.getLocation().calculateDistance(site.getLocation())>(site.getLocation().calculateDistance(closest.getLocation()))){
-
-
-                   break;
-               }
            }
            case Steps.FR->{
                step=Steps.ECHOR;
@@ -204,8 +157,6 @@ public class ExploreTurn implements ExplorerPhase{
                    step=Steps.FR;
                break;
            }
-  
-
 
        }
    return false;

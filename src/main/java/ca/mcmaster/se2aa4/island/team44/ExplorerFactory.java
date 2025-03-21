@@ -15,6 +15,8 @@ public class ExplorerFactory{
 
         }else if( phase == Phases.UTURN){
             return new ExploreTurn(d);
+        }else if(phase == Phases.CHECKCONTINUE){
+            return new ExploreEnd(d);
         }
 
         return null;
