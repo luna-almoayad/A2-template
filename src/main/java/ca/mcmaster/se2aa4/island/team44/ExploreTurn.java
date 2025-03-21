@@ -32,7 +32,6 @@ public class ExploreTurn implements ExplorerPhase{
     boolean turned= false;
     int groundDistance = -1;
     Steps step=Steps.ECHOF;
-    POI poi; 
     public ExploreTurn(Drone d){
         this.d=d;
         this.start=d.getDirection();
@@ -92,7 +91,10 @@ public class ExploreTurn implements ExplorerPhase{
             }case Steps.END->{
                 return translator.stop();
             }case Steps.ECHOR ->{
-                return translator.echo(d.getDirection().right());
+                if(d.getDirection()==Compass.N)
+                    return translator.echo(d.getDirection().right());
+                else
+                    return translator.echo(d.getDirection().left());
             }
             case Steps.FR->{
                 d.fly();
@@ -116,10 +118,10 @@ public class ExploreTurn implements ExplorerPhase{
                     groundDistance=translator.getRange(response);
 
                 }else if(translator.getFound(response).equals("OUT_OF_RANGE")){
-                    if(translator.getRange(response)<=5)
+                    if(translator.getRange(response)<=2)
                         step=Steps.L; //skip to uturn uturn
                     else 
-                        step=Steps.FR; //fly twice then uturn
+                        step=Steps.FR; //fly until no longer have ground to the right then uturn
                 }
                 break;
             }
@@ -166,20 +168,7 @@ public class ExploreTurn implements ExplorerPhase{
                     step = Steps.FG;
                 }
 
-               /* Location closest = poi.getClosestCreek().getLocation(); 
-                Location site= poi.getEmergencySites().getLocation(); 
-                int closestx= site.getXCoord()- closest.getXCoord();
-                int closesty= site.getYCoord()- closest.getYCoord();
-                int sitex= site.getXCoord();
-                int sitey= site.getYCoord();
-
-                while (site != null){
-                    if ((d.getLocation().getXCoord() - sitex) > closestx && (d.getLocation().getYCoord() - sitey > closesty)){
-                        step = Steps.END; 
-                    }
-                }*/
-
-                break;
+                
             }
             case Steps.CONTINUE->{
                 return true;   
@@ -189,6 +178,7 @@ public class ExploreTurn implements ExplorerPhase{
                 break;
             }
             case Steps.ECHOR->{
+                logger.info("DO U EXIST");
                 if(translator.getRange(response)>=1)
                     step=Steps.L; //safe to do uturn
                 else
@@ -196,10 +186,10 @@ public class ExploreTurn implements ExplorerPhase{
                 break;
             }
     
+
         }
  
     return false;
     }
- 
    
 }
