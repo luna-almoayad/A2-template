@@ -6,12 +6,12 @@ public class EmergencySite extends POI {
     String id;
 
     public EmergencySite(String id, Location location){
-       this.location = location;
-       this.id = id;
+      this.location = location;
+      this.id = id;
     }
 
     public void setLocation(Location location){
-        this.location= location;
+      this.location= location;
    }
 
    public Location getLocation(){
@@ -19,7 +19,7 @@ public class EmergencySite extends POI {
    }
 
    public String getID(){
-    return this.id;
+      return this.id;
    }
 }
 

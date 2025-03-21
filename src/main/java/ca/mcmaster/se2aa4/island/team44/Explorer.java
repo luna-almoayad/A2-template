@@ -13,7 +13,6 @@ public class Explorer implements IExplorerRaid {
 
     private final Logger logger = LogManager.getLogger();
     private MissionReport missionReport;
-    private POI poi; 
     protected JSONTranslator translate = new Translator();
     Controller control;
 
@@ -38,6 +37,9 @@ public class Explorer implements IExplorerRaid {
     public String takeDecision() {
         String decision = control.getDecision();
         logger.info("** Decisions: {}", decision);
+        if (decision.toLowerCase().contains("stop")){
+            deliverFinalReport();
+        }
         return decision;
  
     }
@@ -54,15 +56,14 @@ public class Explorer implements IExplorerRaid {
         logger.info("Additional information received: {}", extraInfo);
 
         control.getResponse(response);
-        
 
     
     }
 
     @Override
     public String deliverFinalReport() {
-        String finalReport= missionReport.generateReport(poi);
-        logger.info("final info", finalReport);
+        String finalReport= missionReport.generateReport(control.getDrone());
+        logger.info("final info" + finalReport);
         return finalReport;
     }
 
