@@ -38,9 +38,10 @@ public class Location {
         return this;
     }
 
-    public int calculateDistance(Location target){
-        return Math.abs(this.x - target.x) + Math.abs(this.y-target.y);
+    public double calculateDistance(Location target){
+        return Math.pow((Math.pow((this.x - target.x),2) + Math.pow((this.y-target.y),2)),0.5);
     }
+   
     
     public int getYDist(Location target){
         return (target.y - this.y);

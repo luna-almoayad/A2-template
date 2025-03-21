@@ -16,6 +16,14 @@ public class Creeks{
     public String getID(){
         return this.id; 
     }
+
+    public String toString(){
+        return location.toString();
+    }
+
+
+
+
         
 }
 

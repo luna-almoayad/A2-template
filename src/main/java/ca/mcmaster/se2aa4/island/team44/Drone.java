@@ -46,6 +46,7 @@ public class Drone{
 
     public void fly(){
         this.location = this.location.makeMove(this.direction);
+        this.setLocation(this.location);
     }
 
     public void deductCost(int cost){
@@ -60,14 +61,16 @@ public class Drone{
         return this.direction;
     }
     public void right() {
-        this.fly();
+        this.fly(); 
         this.direction = this.direction.right();
+        this.fly();
     }
 
     public void left(){
         logger.info("Compare this btw "+this.direction);
         this.fly();
         this.direction = this.direction.left();
+        this.fly();
     }
 
     public void setDirection(Compass direction){
@@ -92,6 +95,14 @@ public class Drone{
 
     public String toString(){
         return "Location: "+location.toString() + " Direction: "+this.direction;
+    }
+
+    public Creeks getClosestCreek(){
+        return POI.getClosestCreek();
+    }
+
+    public boolean ifPossiblyFound(){
+        return (POI.getEmergencySites()!=null&&POI.getCreeks().size()>0);
     }
 
 
