@@ -24,20 +24,20 @@
 
 ## Emergency site & Creeks
 
-  - Emergency site [a86a6e7f-ee38-4914-bbf6-42f3b079f9e1] located at (1010.16,1073.09)
+  - Emergency site [22148f77-9193-4402-82e2-a20156e6fa59] located at (1010.16,1073.09)
 
 | Rank | Creek ID | Distance to site | x | y |
 |------|----------|------------------|---|---|
-| C01 | 0a867ef8-f548-4f33-a36e-bb1c9fb7b014 | 273.82 | 1144.75 | 1311.55 |
-| C02 | 00a42542-db36-4b3c-98a3-7d0d27e1e360 | 275.51 | 1049.15 | 1345.82 |
-| C03 | cab26cff-de3d-42d9-9fed-c6be48aa45e4 | 418.08 | 1353.53 | 1311.61 |
-| C04 | e77796af-d0fc-4f6b-b21e-5000f0ad0f6e | 511.25 | 499.01 | 1063.27 |
-| C05 | 96b9f56b-1cd3-478f-bba7-b835e3aed92c | 559.36 | 463.37 | 1191.01 |
-| C06 | c7d4eb2a-9126-4993-aca3-26afbb4e76c3 | 571.40 | 891.58 | 514.13 |
-| C07 | 41ac60f4-6b81-40bf-8c39-1106e4020f26 | 609.77 | 608.28 | 614.50 |
-| C08 | be3fe9df-a596-41fa-b644-99c45036d372 | 740.99 | 1336.32 | 407.74 |
-| C09 | 83e304a4-8b30-4346-a047-228ef89beba8 | 895.43 | 119.21 | 983.65 |
-| C10 | 0697f208-3715-4a7f-bc7a-e24d29efa215 | 1046.37 | 180.08 | 436.03 |
+| C01 | e97384a8-50a2-4899-a024-9ac64dfdf199 | 273.82 | 1144.75 | 1311.55 |
+| C02 | 46bed65a-6cf9-4c22-8354-0ab83bd70982 | 275.51 | 1049.15 | 1345.82 |
+| C03 | 0832a2a4-3c10-4f45-9277-b4403ac289c9 | 418.08 | 1353.53 | 1311.61 |
+| C04 | d5698622-a748-473d-b368-60ec80d8318a | 511.25 | 499.01 | 1063.27 |
+| C05 | 8c8355f6-5cbc-412f-953d-6cb250986bb9 | 559.36 | 463.37 | 1191.01 |
+| C06 | 6cd5e3cc-d206-4b3e-b80f-86a007ae44fc | 571.40 | 891.58 | 514.13 |
+| C07 | 9705557d-8d4d-4139-94d0-685f4cfae9e1 | 609.77 | 608.28 | 614.50 |
+| C08 | c280085c-619a-4d8a-b4d9-8a76ba30d3f6 | 740.99 | 1336.32 | 407.74 |
+| C09 | 6c5f51e5-65ce-411c-8cf0-22c301b3e567 | 895.43 | 119.21 | 983.65 |
+| C10 | 98c207f5-9a62-4c52-aeda-b4b494df106f | 1046.37 | 180.08 | 436.03 |
 
 ```
 [INFO ] Island/Arena Processing player [Explorer] with island [Island]
@@ -46,7 +46,7 @@
 [INFO ] Explorer ** Initializing the Exploration Command Center
 [INFO ] Explorer ** Initialization info:
  {
-  "heading": "E",
+  "heading": "S",
   "men": 5,
   "contracts": [{
     "amount": 1000,
@@ -54,28 +54,28 @@
   }],
   "budget": 70000
 }
-[INFO ] Explorer The drone is facing E
+[INFO ] Explorer The drone is facing S
 [INFO ] Explorer Battery level is 70000
-[INFO ] Explorer E
+[INFO ] Explorer S
 [INFO ] Island/Game [Engine] Asking for user's decision [explorer.takeDecision()]
-[INFO ] Explorer ** Decisions: {"action":"echo","parameters":{"direction":"E"}}
+[INFO ] Explorer ** Decisions: {"action":"echo","parameters":{"direction":"S"}}
 [INFO ] Island/Game [Engine] Applying user's decision to the board
 [INFO ] Island/Game [Engine] Acknowledging results [explorer.acknowledgeResults(...)]
 [INFO ] Explorer ** Response received:
 {
-  "cost": 6,
+  "cost": 3,
   "extras": {
     "found": "OUT_OF_RANGE",
-    "range": 49
+    "range": 52
   },
   "status": "OK"
 }
-[INFO ] Explorer The cost of the action was 6
+[INFO ] Explorer The cost of the action was 3
 [INFO ] Explorer The status of the drone is OK
-[INFO ] Explorer Additional information received: {"found":"OUT_OF_RANGE","range":49}
-[INFO ] ExploreSpawn **Battery69994
+[INFO ] Explorer Additional information received: {"found":"OUT_OF_RANGE","range":52}
+[INFO ] ExploreSpawn **Battery69997
 [INFO ] Controller ***SwitchPhase:false
-[INFO ] Controller ***Drone: Location: (0,0) Direction: E
+[INFO ] Controller ***Drone: Location: (0,0) Direction: S
 [INFO ] Controller Phase: SPAWN
 [INFO ] Island/Game [Engine] Asking for user's decision [explorer.takeDecision()]
 [INFO ] Explorer ** Decisions: {"action":"fly"}
@@ -83,16 +83,16 @@
 [INFO ] Island/Game [Engine] Acknowledging results [explorer.acknowledgeResults(...)]
 [INFO ] Explorer ** Response received:
 {
-  "cost": 6,
+  "cost": 5,
   "extras": {},
   "status": "OK"
 }
-[INFO ] Explorer The cost of the action was 6
+[INFO ] Explorer The cost of the action was 5
 [INFO ] Explorer The status of the drone is OK
 [INFO ] Explorer Additional information received: {}
-[INFO ] ExploreSpawn **Battery69988
+[INFO ] ExploreSpawn **Battery69992
 [INFO ] Controller ***SwitchPhase:false
-[INFO ] Controller ***Drone: Location: (1,0) Direction: E
+[INFO ] Controller ***Drone: Location: (0,-1) Direction: S
 [INFO ] Controller Phase: SPAWN
 [INFO ] Island/Game [Engine] Asking for user's decision [explorer.takeDecision()]
 [INFO ] Explorer ** Decisions: {"action":"fly"}
@@ -107,9 +107,43 @@
 [INFO ] Explorer The cost of the action was 3
 [INFO ] Explorer The status of the drone is OK
 [INFO ] Explorer Additional information received: {}
-[INFO ] ExploreSpawn **Battery69985
+[INFO ] ExploreSpawn **Battery69989
 [INFO ] Controller ***SwitchPhase:false
-[INFO ] Controller ***Drone: Location: (2,0) Direction: E
+[INFO ] Controller ***Drone: Location: (0,-2) Direction: S
+[INFO ] Controller Phase: SPAWN
+[INFO ] Island/Game [Engine] Asking for user's decision [explorer.takeDecision()]
+[INFO ] Explorer ** Decisions: {"action":"fly"}
+[INFO ] Island/Game [Engine] Applying user's decision to the board
+[INFO ] Island/Game [Engine] Acknowledging results [explorer.acknowledgeResults(...)]
+[INFO ] Explorer ** Response received:
+{
+  "cost": 6,
+  "extras": {},
+  "status": "OK"
+}
+[INFO ] Explorer The cost of the action was 6
+[INFO ] Explorer The status of the drone is OK
+[INFO ] Explorer Additional information received: {}
+[INFO ] ExploreSpawn **Battery69983
+[INFO ] Controller ***SwitchPhase:false
+[INFO ] Controller ***Drone: Location: (0,-3) Direction: S
+[INFO ] Controller Phase: SPAWN
+[INFO ] Island/Game [Engine] Asking for user's decision [explorer.takeDecision()]
+[INFO ] Explorer ** Decisions: {"action":"fly"}
+[INFO ] Island/Game [Engine] Applying user's decision to the board
+[INFO ] Island/Game [Engine] Acknowledging results [explorer.acknowledgeResults(...)]
+[INFO ] Explorer ** Response received:
+{
+  "cost": 5,
+  "extras": {},
+  "status": "OK"
+}
+[INFO ] Explorer The cost of the action was 5
+[INFO ] Explorer The status of the drone is OK
+[INFO ] Explorer Additional information received: {}
+[INFO ] ExploreSpawn **Battery69978
+[INFO ] Controller ***SwitchPhase:false
+[INFO ] Controller ***Drone: Location: (0,-4) Direction: S
 [INFO ] Controller Phase: SPAWN
 [INFO ] Island/Game [Engine] Asking for user's decision [explorer.takeDecision()]
 [INFO ] Explorer ** Decisions: {"action":"fly"}
@@ -124,9 +158,60 @@
 [INFO ] Explorer The cost of the action was 4
 [INFO ] Explorer The status of the drone is OK
 [INFO ] Explorer Additional information received: {}
-[INFO ] ExploreSpawn **Battery69981
+[INFO ] ExploreSpawn **Battery69974
 [INFO ] Controller ***SwitchPhase:false
-[INFO ] Controller ***Drone: Location: (3,0) Direction: E
+[INFO ] Controller ***Drone: Location: (0,-5) Direction: S
+[INFO ] Controller Phase: SPAWN
+[INFO ] Island/Game [Engine] Asking for user's decision [explorer.takeDecision()]
+[INFO ] Explorer ** Decisions: {"action":"fly"}
+[INFO ] Island/Game [Engine] Applying user's decision to the board
+[INFO ] Island/Game [Engine] Acknowledging results [explorer.acknowledgeResults(...)]
+[INFO ] Explorer ** Response received:
+{
+  "cost": 5,
+  "extras": {},
+  "status": "OK"
+}
+[INFO ] Explorer The cost of the action was 5
+[INFO ] Explorer The status of the drone is OK
+[INFO ] Explorer Additional information received: {}
+[INFO ] ExploreSpawn **Battery69969
+[INFO ] Controller ***SwitchPhase:false
+[INFO ] Controller ***Drone: Location: (0,-6) Direction: S
+[INFO ] Controller Phase: SPAWN
+[INFO ] Island/Game [Engine] Asking for user's decision [explorer.takeDecision()]
+[INFO ] Explorer ** Decisions: {"action":"fly"}
+[INFO ] Island/Game [Engine] Applying user's decision to the board
+[INFO ] Island/Game [Engine] Acknowledging results [explorer.acknowledgeResults(...)]
+[INFO ] Explorer ** Response received:
+{
+  "cost": 4,
+  "extras": {},
+  "status": "OK"
+}
+[INFO ] Explorer The cost of the action was 4
+[INFO ] Explorer The status of the drone is OK
+[INFO ] Explorer Additional information received: {}
+[INFO ] ExploreSpawn **Battery69965
+[INFO ] Controller ***SwitchPhase:false
+[INFO ] Controller ***Drone: Location: (0,-7) Direction: S
+[INFO ] Controller Phase: SPAWN
+[INFO ] Island/Game [Engine] Asking for user's decision [explorer.takeDecision()]
+[INFO ] Explorer ** Decisions: {"action":"fly"}
+[INFO ] Island/Game [Engine] Applying user's decision to the board
+[INFO ] Island/Game [Engine] Acknowledging results [explorer.acknowledgeResults(...)]
+[INFO ] Explorer ** Response received:
+{
+  "cost": 4,
+  "extras": {},
+  "status": "OK"
+}
+[INFO ] Explorer The cost of the action was 4
+[INFO ] Explorer The status of the drone is OK
+[INFO ] Explorer Additional information received: {}
+[INFO ] ExploreSpawn **Battery69961
+[INFO ] Controller ***SwitchPhase:false
+[INFO ] Controller ***Drone: Location: (0,-8) Direction: S
 [INFO ] Controller Phase: SPAWN
 [INFO ] Island/Game [Engine] Asking for user's decision [explorer.takeDecision()]
 [INFO ] Explorer ** Decisions: {"action":"fly"}
@@ -141,9 +226,26 @@
 [INFO ] Explorer The cost of the action was 6
 [INFO ] Explorer The status of the drone is OK
 [INFO ] Explorer Additional information received: {}
-[INFO ] ExploreSpawn **Battery69975
+[INFO ] ExploreSpawn **Battery69955
 [INFO ] Controller ***SwitchPhase:false
-[INFO ] Controller ***Drone: Location: (4,0) Direction: E
+[INFO ] Controller ***Drone: Location: (0,-9) Direction: S
+[INFO ] Controller Phase: SPAWN
+[INFO ] Island/Game [Engine] Asking for user's decision [explorer.takeDecision()]
+[INFO ] Explorer ** Decisions: {"action":"fly"}
+[INFO ] Island/Game [Engine] Applying user's decision to the board
+[INFO ] Island/Game [Engine] Acknowledging results [explorer.acknowledgeResults(...)]
+[INFO ] Explorer ** Response received:
+{
+  "cost": 4,
+  "extras": {},
+  "status": "OK"
+}
+[INFO ] Explorer The cost of the action was 4
+[INFO ] Explorer The status of the drone is OK
+[INFO ] Explorer Additional information received: {}
+[INFO ] ExploreSpawn **Battery69951
+[INFO ] Controller ***SwitchPhase:false
+[INFO ] Controller ***Drone: Location: (0,-10) Direction: S
 [INFO ] Controller Phase: SPAWN
 [INFO ] Island/Game [Engine] Asking for user's decision [explorer.takeDecision()]
 [INFO ] Explorer ** Decisions: {"action":"fly"}
@@ -158,94 +260,9 @@
 [INFO ] Explorer The cost of the action was 3
 [INFO ] Explorer The status of the drone is OK
 [INFO ] Explorer Additional information received: {}
-[INFO ] ExploreSpawn **Battery69972
+[INFO ] ExploreSpawn **Battery69948
 [INFO ] Controller ***SwitchPhase:false
-[INFO ] Controller ***Drone: Location: (5,0) Direction: E
-[INFO ] Controller Phase: SPAWN
-[INFO ] Island/Game [Engine] Asking for user's decision [explorer.takeDecision()]
-[INFO ] Explorer ** Decisions: {"action":"fly"}
-[INFO ] Island/Game [Engine] Applying user's decision to the board
-[INFO ] Island/Game [Engine] Acknowledging results [explorer.acknowledgeResults(...)]
-[INFO ] Explorer ** Response received:
-{
-  "cost": 5,
-  "extras": {},
-  "status": "OK"
-}
-[INFO ] Explorer The cost of the action was 5
-[INFO ] Explorer The status of the drone is OK
-[INFO ] Explorer Additional information received: {}
-[INFO ] ExploreSpawn **Battery69967
-[INFO ] Controller ***SwitchPhase:false
-[INFO ] Controller ***Drone: Location: (6,0) Direction: E
-[INFO ] Controller Phase: SPAWN
-[INFO ] Island/Game [Engine] Asking for user's decision [explorer.takeDecision()]
-[INFO ] Explorer ** Decisions: {"action":"fly"}
-[INFO ] Island/Game [Engine] Applying user's decision to the board
-[INFO ] Island/Game [Engine] Acknowledging results [explorer.acknowledgeResults(...)]
-[INFO ] Explorer ** Response received:
-{
-  "cost": 3,
-  "extras": {},
-  "status": "OK"
-}
-[INFO ] Explorer The cost of the action was 3
-[INFO ] Explorer The status of the drone is OK
-[INFO ] Explorer Additional information received: {}
-[INFO ] ExploreSpawn **Battery69964
-[INFO ] Controller ***SwitchPhase:false
-[INFO ] Controller ***Drone: Location: (7,0) Direction: E
-[INFO ] Controller Phase: SPAWN
-[INFO ] Island/Game [Engine] Asking for user's decision [explorer.takeDecision()]
-[INFO ] Explorer ** Decisions: {"action":"fly"}
-[INFO ] Island/Game [Engine] Applying user's decision to the board
-[INFO ] Island/Game [Engine] Acknowledging results [explorer.acknowledgeResults(...)]
-[INFO ] Explorer ** Response received:
-{
-  "cost": 5,
-  "extras": {},
-  "status": "OK"
-}
-[INFO ] Explorer The cost of the action was 5
-[INFO ] Explorer The status of the drone is OK
-[INFO ] Explorer Additional information received: {}
-[INFO ] ExploreSpawn **Battery69959
-[INFO ] Controller ***SwitchPhase:false
-[INFO ] Controller ***Drone: Location: (8,0) Direction: E
-[INFO ] Controller Phase: SPAWN
-[INFO ] Island/Game [Engine] Asking for user's decision [explorer.takeDecision()]
-[INFO ] Explorer ** Decisions: {"action":"fly"}
-[INFO ] Island/Game [Engine] Applying user's decision to the board
-[INFO ] Island/Game [Engine] Acknowledging results [explorer.acknowledgeResults(...)]
-[INFO ] Explorer ** Response received:
-{
-  "cost": 5,
-  "extras": {},
-  "status": "OK"
-}
-[INFO ] Explorer The cost of the action was 5
-[INFO ] Explorer The status of the drone is OK
-[INFO ] Explorer Additional information received: {}
-[INFO ] ExploreSpawn **Battery69954
-[INFO ] Controller ***SwitchPhase:false
-[INFO ] Controller ***Drone: Location: (9,0) Direction: E
-[INFO ] Controller Phase: SPAWN
-[INFO ] Island/Game [Engine] Asking for user's decision [explorer.takeDecision()]
-[INFO ] Explorer ** Decisions: {"action":"fly"}
-[INFO ] Island/Game [Engine] Applying user's decision to the board
-[INFO ] Island/Game [Engine] Acknowledging results [explorer.acknowledgeResults(...)]
-[INFO ] Explorer ** Response received:
-{
-  "cost": 5,
-  "extras": {},
-  "status": "OK"
-}
-[INFO ] Explorer The cost of the action was 5
-[INFO ] Explorer The status of the drone is OK
-[INFO ] Explorer Additional information received: {}
-[INFO ] ExploreSpawn **Battery69949
-[INFO ] Controller ***SwitchPhase:false
-[INFO ] Controller ***Drone: Location: (10,0) Direction: E
+[INFO ] Controller ***Drone: Location: (0,-11) Direction: S
 [INFO ] Controller Phase: SPAWN
 [INFO ] Island/Game [Engine] Asking for user's decision [explorer.takeDecision()]
 [INFO ] Explorer ** Decisions: {"action":"fly"}
@@ -260,9 +277,9 @@
 [INFO ] Explorer The cost of the action was 6
 [INFO ] Explorer The status of the drone is OK
 [INFO ] Explorer Additional information received: {}
-[INFO ] ExploreSpawn **Battery69943
+[INFO ] ExploreSpawn **Battery69942
 [INFO ] Controller ***SwitchPhase:false
-[INFO ] Controller ***Drone: Location: (11,0) Direction: E
+[INFO ] Controller ***Drone: Location: (0,-12) Direction: S
 [INFO ] Controller Phase: SPAWN
 [INFO ] Island/Game [Engine] Asking for user's decision [explorer.takeDecision()]
 [INFO ] Explorer ** Decisions: {"action":"fly"}
@@ -270,33 +287,16 @@
 [INFO ] Island/Game [Engine] Acknowledging results [explorer.acknowledgeResults(...)]
 [INFO ] Explorer ** Response received:
 {
-  "cost": 2,
+  "cost": 3,
   "extras": {},
   "status": "OK"
 }
-[INFO ] Explorer The cost of the action was 2
-[INFO ] Explorer The status of the drone is OK
-[INFO ] Explorer Additional information received: {}
-[INFO ] ExploreSpawn **Battery69941
-[INFO ] Controller ***SwitchPhase:false
-[INFO ] Controller ***Drone: Location: (12,0) Direction: E
-[INFO ] Controller Phase: SPAWN
-[INFO ] Island/Game [Engine] Asking for user's decision [explorer.takeDecision()]
-[INFO ] Explorer ** Decisions: {"action":"fly"}
-[INFO ] Island/Game [Engine] Applying user's decision to the board
-[INFO ] Island/Game [Engine] Acknowledging results [explorer.acknowledgeResults(...)]
-[INFO ] Explorer ** Response received:
-{
-  "cost": 2,
-  "extras": {},
-  "status": "OK"
-}
-[INFO ] Explorer The cost of the action was 2
+[INFO ] Explorer The cost of the action was 3
 [INFO ] Explorer The status of the drone is OK
 [INFO ] Explorer Additional information received: {}
 [INFO ] ExploreSpawn **Battery69939
 [INFO ] Controller ***SwitchPhase:false
-[INFO ] Controller ***Drone: Location: (13,0) Direction: E
+[INFO ] Controller ***Drone: Location: (0,-13) Direction: S
 [INFO ] Controller Phase: SPAWN
 [INFO ] Island/Game [Engine] Asking for user's decision [explorer.takeDecision()]
 [INFO ] Explorer ** Decisions: {"action":"fly"}
@@ -313,7 +313,7 @@
 [INFO ] Explorer Additional information received: {}
 [INFO ] ExploreSpawn **Battery69934
 [INFO ] Controller ***SwitchPhase:false
-[INFO ] Controller ***Drone: Location: (14,0) Direction: E
+[INFO ] Controller ***Drone: Location: (0,-14) Direction: S
 [INFO ] Controller Phase: SPAWN
 [INFO ] Island/Game [Engine] Asking for user's decision [explorer.takeDecision()]
 [INFO ] Explorer ** Decisions: {"action":"fly"}
@@ -330,7 +330,7 @@
 [INFO ] Explorer Additional information received: {}
 [INFO ] ExploreSpawn **Battery69929
 [INFO ] Controller ***SwitchPhase:false
-[INFO ] Controller ***Drone: Location: (15,0) Direction: E
+[INFO ] Controller ***Drone: Location: (0,-15) Direction: S
 [INFO ] Controller Phase: SPAWN
 [INFO ] Island/Game [Engine] Asking for user's decision [explorer.takeDecision()]
 [INFO ] Explorer ** Decisions: {"action":"fly"}
@@ -338,16 +338,16 @@
 [INFO ] Island/Game [Engine] Acknowledging results [explorer.acknowledgeResults(...)]
 [INFO ] Explorer ** Response received:
 {
-  "cost": 6,
+  "cost": 4,
   "extras": {},
   "status": "OK"
 }
-[INFO ] Explorer The cost of the action was 6
+[INFO ] Explorer The cost of the action was 4
 [INFO ] Explorer The status of the drone is OK
 [INFO ] Explorer Additional information received: {}
-[INFO ] ExploreSpawn **Battery69923
+[INFO ] ExploreSpawn **Battery69925
 [INFO ] Controller ***SwitchPhase:false
-[INFO ] Controller ***Drone: Location: (16,0) Direction: E
+[INFO ] Controller ***Drone: Location: (0,-16) Direction: S
 [INFO ] Controller Phase: SPAWN
 [INFO ] Island/Game [Engine] Asking for user's decision [explorer.takeDecision()]
 [INFO ] Explorer ** Decisions: {"action":"fly"}
@@ -355,16 +355,16 @@
 [INFO ] Island/Game [Engine] Acknowledging results [explorer.acknowledgeResults(...)]
 [INFO ] Explorer ** Response received:
 {
-  "cost": 3,
+  "cost": 5,
   "extras": {},
   "status": "OK"
 }
-[INFO ] Explorer The cost of the action was 3
+[INFO ] Explorer The cost of the action was 5
 [INFO ] Explorer The status of the drone is OK
 [INFO ] Explorer Additional information received: {}
 [INFO ] ExploreSpawn **Battery69920
 [INFO ] Controller ***SwitchPhase:false
-[INFO ] Controller ***Drone: Location: (17,0) Direction: E
+[INFO ] Controller ***Drone: Location: (0,-17) Direction: S
 [INFO ] Controller Phase: SPAWN
 [INFO ] Island/Game [Engine] Asking for user's decision [explorer.takeDecision()]
 [INFO ] Explorer ** Decisions: {"action":"fly"}
@@ -381,7 +381,7 @@
 [INFO ] Explorer Additional information received: {}
 [INFO ] ExploreSpawn **Battery69915
 [INFO ] Controller ***SwitchPhase:false
-[INFO ] Controller ***Drone: Location: (18,0) Direction: E
+[INFO ] Controller ***Drone: Location: (0,-18) Direction: S
 [INFO ] Controller Phase: SPAWN
 [INFO ] Island/Game [Engine] Asking for user's decision [explorer.takeDecision()]
 [INFO ] Explorer ** Decisions: {"action":"fly"}
@@ -398,24 +398,7 @@
 [INFO ] Explorer Additional information received: {}
 [INFO ] ExploreSpawn **Battery69909
 [INFO ] Controller ***SwitchPhase:false
-[INFO ] Controller ***Drone: Location: (19,0) Direction: E
-[INFO ] Controller Phase: SPAWN
-[INFO ] Island/Game [Engine] Asking for user's decision [explorer.takeDecision()]
-[INFO ] Explorer ** Decisions: {"action":"fly"}
-[INFO ] Island/Game [Engine] Applying user's decision to the board
-[INFO ] Island/Game [Engine] Acknowledging results [explorer.acknowledgeResults(...)]
-[INFO ] Explorer ** Response received:
-{
-  "cost": 3,
-  "extras": {},
-  "status": "OK"
-}
-[INFO ] Explorer The cost of the action was 3
-[INFO ] Explorer The status of the drone is OK
-[INFO ] Explorer Additional information received: {}
-[INFO ] ExploreSpawn **Battery69906
-[INFO ] Controller ***SwitchPhase:false
-[INFO ] Controller ***Drone: Location: (20,0) Direction: E
+[INFO ] Controller ***Drone: Location: (0,-19) Direction: S
 [INFO ] Controller Phase: SPAWN
 [INFO ] Island/Game [Engine] Asking for user's decision [explorer.takeDecision()]
 [INFO ] Explorer ** Decisions: {"action":"fly"}
@@ -430,9 +413,9 @@
 [INFO ] Explorer The cost of the action was 6
 [INFO ] Explorer The status of the drone is OK
 [INFO ] Explorer Additional information received: {}
-[INFO ] ExploreSpawn **Battery69900
+[INFO ] ExploreSpawn **Battery69903
 [INFO ] Controller ***SwitchPhase:false
-[INFO ] Controller ***Drone: Location: (21,0) Direction: E
+[INFO ] Controller ***Drone: Location: (0,-20) Direction: S
 [INFO ] Controller Phase: SPAWN
 [INFO ] Island/Game [Engine] Asking for user's decision [explorer.takeDecision()]
 [INFO ] Explorer ** Decisions: {"action":"fly"}
@@ -447,9 +430,26 @@
 [INFO ] Explorer The cost of the action was 5
 [INFO ] Explorer The status of the drone is OK
 [INFO ] Explorer Additional information received: {}
-[INFO ] ExploreSpawn **Battery69895
+[INFO ] ExploreSpawn **Battery69898
 [INFO ] Controller ***SwitchPhase:false
-[INFO ] Controller ***Drone: Location: (22,0) Direction: E
+[INFO ] Controller ***Drone: Location: (0,-21) Direction: S
+[INFO ] Controller Phase: SPAWN
+[INFO ] Island/Game [Engine] Asking for user's decision [explorer.takeDecision()]
+[INFO ] Explorer ** Decisions: {"action":"fly"}
+[INFO ] Island/Game [Engine] Applying user's decision to the board
+[INFO ] Island/Game [Engine] Acknowledging results [explorer.acknowledgeResults(...)]
+[INFO ] Explorer ** Response received:
+{
+  "cost": 5,
+  "extras": {},
+  "status": "OK"
+}
+[INFO ] Explorer The cost of the action was 5
+[INFO ] Explorer The status of the drone is OK
+[INFO ] Explorer Additional information received: {}
+[INFO ] ExploreSpawn **Battery69893
+[INFO ] Controller ***SwitchPhase:false
+[INFO ] Controller ***Drone: Location: (0,-22) Direction: S
 [INFO ] Controller Phase: SPAWN
 [INFO ] Island/Game [Engine] Asking for user's decision [explorer.takeDecision()]
 [INFO ] Explorer ** Decisions: {"action":"fly"}
@@ -464,162 +464,9 @@
 [INFO ] Explorer The cost of the action was 4
 [INFO ] Explorer The status of the drone is OK
 [INFO ] Explorer Additional information received: {}
-[INFO ] ExploreSpawn **Battery69891
+[INFO ] ExploreSpawn **Battery69889
 [INFO ] Controller ***SwitchPhase:false
-[INFO ] Controller ***Drone: Location: (23,0) Direction: E
-[INFO ] Controller Phase: SPAWN
-[INFO ] Island/Game [Engine] Asking for user's decision [explorer.takeDecision()]
-[INFO ] Explorer ** Decisions: {"action":"fly"}
-[INFO ] Island/Game [Engine] Applying user's decision to the board
-[INFO ] Island/Game [Engine] Acknowledging results [explorer.acknowledgeResults(...)]
-[INFO ] Explorer ** Response received:
-{
-  "cost": 6,
-  "extras": {},
-  "status": "OK"
-}
-[INFO ] Explorer The cost of the action was 6
-[INFO ] Explorer The status of the drone is OK
-[INFO ] Explorer Additional information received: {}
-[INFO ] ExploreSpawn **Battery69885
-[INFO ] Controller ***SwitchPhase:false
-[INFO ] Controller ***Drone: Location: (24,0) Direction: E
-[INFO ] Controller Phase: SPAWN
-[INFO ] Island/Game [Engine] Asking for user's decision [explorer.takeDecision()]
-[INFO ] Explorer ** Decisions: {"action":"fly"}
-[INFO ] Island/Game [Engine] Applying user's decision to the board
-[INFO ] Island/Game [Engine] Acknowledging results [explorer.acknowledgeResults(...)]
-[INFO ] Explorer ** Response received:
-{
-  "cost": 4,
-  "extras": {},
-  "status": "OK"
-}
-[INFO ] Explorer The cost of the action was 4
-[INFO ] Explorer The status of the drone is OK
-[INFO ] Explorer Additional information received: {}
-[INFO ] ExploreSpawn **Battery69881
-[INFO ] Controller ***SwitchPhase:false
-[INFO ] Controller ***Drone: Location: (25,0) Direction: E
-[INFO ] Controller Phase: SPAWN
-[INFO ] Island/Game [Engine] Asking for user's decision [explorer.takeDecision()]
-[INFO ] Explorer ** Decisions: {"action":"fly"}
-[INFO ] Island/Game [Engine] Applying user's decision to the board
-[INFO ] Island/Game [Engine] Acknowledging results [explorer.acknowledgeResults(...)]
-[INFO ] Explorer ** Response received:
-{
-  "cost": 4,
-  "extras": {},
-  "status": "OK"
-}
-[INFO ] Explorer The cost of the action was 4
-[INFO ] Explorer The status of the drone is OK
-[INFO ] Explorer Additional information received: {}
-[INFO ] ExploreSpawn **Battery69877
-[INFO ] Controller ***SwitchPhase:false
-[INFO ] Controller ***Drone: Location: (26,0) Direction: E
-[INFO ] Controller Phase: SPAWN
-[INFO ] Island/Game [Engine] Asking for user's decision [explorer.takeDecision()]
-[INFO ] Explorer ** Decisions: {"action":"fly"}
-[INFO ] Island/Game [Engine] Applying user's decision to the board
-[INFO ] Island/Game [Engine] Acknowledging results [explorer.acknowledgeResults(...)]
-[INFO ] Explorer ** Response received:
-{
-  "cost": 4,
-  "extras": {},
-  "status": "OK"
-}
-[INFO ] Explorer The cost of the action was 4
-[INFO ] Explorer The status of the drone is OK
-[INFO ] Explorer Additional information received: {}
-[INFO ] ExploreSpawn **Battery69873
-[INFO ] Controller ***SwitchPhase:false
-[INFO ] Controller ***Drone: Location: (27,0) Direction: E
-[INFO ] Controller Phase: SPAWN
-[INFO ] Island/Game [Engine] Asking for user's decision [explorer.takeDecision()]
-[INFO ] Explorer ** Decisions: {"action":"fly"}
-[INFO ] Island/Game [Engine] Applying user's decision to the board
-[INFO ] Island/Game [Engine] Acknowledging results [explorer.acknowledgeResults(...)]
-[INFO ] Explorer ** Response received:
-{
-  "cost": 3,
-  "extras": {},
-  "status": "OK"
-}
-[INFO ] Explorer The cost of the action was 3
-[INFO ] Explorer The status of the drone is OK
-[INFO ] Explorer Additional information received: {}
-[INFO ] ExploreSpawn **Battery69870
-[INFO ] Controller ***SwitchPhase:false
-[INFO ] Controller ***Drone: Location: (28,0) Direction: E
-[INFO ] Controller Phase: SPAWN
-[INFO ] Island/Game [Engine] Asking for user's decision [explorer.takeDecision()]
-[INFO ] Explorer ** Decisions: {"action":"fly"}
-[INFO ] Island/Game [Engine] Applying user's decision to the board
-[INFO ] Island/Game [Engine] Acknowledging results [explorer.acknowledgeResults(...)]
-[INFO ] Explorer ** Response received:
-{
-  "cost": 4,
-  "extras": {},
-  "status": "OK"
-}
-[INFO ] Explorer The cost of the action was 4
-[INFO ] Explorer The status of the drone is OK
-[INFO ] Explorer Additional information received: {}
-[INFO ] ExploreSpawn **Battery69866
-[INFO ] Controller ***SwitchPhase:false
-[INFO ] Controller ***Drone: Location: (29,0) Direction: E
-[INFO ] Controller Phase: SPAWN
-[INFO ] Island/Game [Engine] Asking for user's decision [explorer.takeDecision()]
-[INFO ] Explorer ** Decisions: {"action":"fly"}
-[INFO ] Island/Game [Engine] Applying user's decision to the board
-[INFO ] Island/Game [Engine] Acknowledging results [explorer.acknowledgeResults(...)]
-[INFO ] Explorer ** Response received:
-{
-  "cost": 4,
-  "extras": {},
-  "status": "OK"
-}
-[INFO ] Explorer The cost of the action was 4
-[INFO ] Explorer The status of the drone is OK
-[INFO ] Explorer Additional information received: {}
-[INFO ] ExploreSpawn **Battery69862
-[INFO ] Controller ***SwitchPhase:false
-[INFO ] Controller ***Drone: Location: (30,0) Direction: E
-[INFO ] Controller Phase: SPAWN
-[INFO ] Island/Game [Engine] Asking for user's decision [explorer.takeDecision()]
-[INFO ] Explorer ** Decisions: {"action":"fly"}
-[INFO ] Island/Game [Engine] Applying user's decision to the board
-[INFO ] Island/Game [Engine] Acknowledging results [explorer.acknowledgeResults(...)]
-[INFO ] Explorer ** Response received:
-{
-  "cost": 6,
-  "extras": {},
-  "status": "OK"
-}
-[INFO ] Explorer The cost of the action was 6
-[INFO ] Explorer The status of the drone is OK
-[INFO ] Explorer Additional information received: {}
-[INFO ] ExploreSpawn **Battery69856
-[INFO ] Controller ***SwitchPhase:false
-[INFO ] Controller ***Drone: Location: (31,0) Direction: E
-[INFO ] Controller Phase: SPAWN
-[INFO ] Island/Game [Engine] Asking for user's decision [explorer.takeDecision()]
-[INFO ] Explorer ** Decisions: {"action":"fly"}
-[INFO ] Island/Game [Engine] Applying user's decision to the board
-[INFO ] Island/Game [Engine] Acknowledging results [explorer.acknowledgeResults(...)]
-[INFO ] Explorer ** Response received:
-{
-  "cost": 6,
-  "extras": {},
-  "status": "OK"
-}
-[INFO ] Explorer The cost of the action was 6
-[INFO ] Explorer The status of the drone is OK
-[INFO ] Explorer Additional information received: {}
-[INFO ] ExploreSpawn **Battery69850
-[INFO ] Controller ***SwitchPhase:false
-[INFO ] Controller ***Drone: Location: (32,0) Direction: E
+[INFO ] Controller ***Drone: Location: (0,-23) Direction: S
 [INFO ] Controller Phase: SPAWN
 [INFO ] Island/Game [Engine] Asking for user's decision [explorer.takeDecision()]
 [INFO ] Explorer ** Decisions: {"action":"fly"}
@@ -634,9 +481,196 @@
 [INFO ] Explorer The cost of the action was 2
 [INFO ] Explorer The status of the drone is OK
 [INFO ] Explorer Additional information received: {}
+[INFO ] ExploreSpawn **Battery69887
+[INFO ] Controller ***SwitchPhase:false
+[INFO ] Controller ***Drone: Location: (0,-24) Direction: S
+[INFO ] Controller Phase: SPAWN
+[INFO ] Island/Game [Engine] Asking for user's decision [explorer.takeDecision()]
+[INFO ] Explorer ** Decisions: {"action":"fly"}
+[INFO ] Island/Game [Engine] Applying user's decision to the board
+[INFO ] Island/Game [Engine] Acknowledging results [explorer.acknowledgeResults(...)]
+[INFO ] Explorer ** Response received:
+{
+  "cost": 2,
+  "extras": {},
+  "status": "OK"
+}
+[INFO ] Explorer The cost of the action was 2
+[INFO ] Explorer The status of the drone is OK
+[INFO ] Explorer Additional information received: {}
+[INFO ] ExploreSpawn **Battery69885
+[INFO ] Controller ***SwitchPhase:false
+[INFO ] Controller ***Drone: Location: (0,-25) Direction: S
+[INFO ] Controller Phase: SPAWN
+[INFO ] Island/Game [Engine] Asking for user's decision [explorer.takeDecision()]
+[INFO ] Explorer ** Decisions: {"action":"fly"}
+[INFO ] Island/Game [Engine] Applying user's decision to the board
+[INFO ] Island/Game [Engine] Acknowledging results [explorer.acknowledgeResults(...)]
+[INFO ] Explorer ** Response received:
+{
+  "cost": 3,
+  "extras": {},
+  "status": "OK"
+}
+[INFO ] Explorer The cost of the action was 3
+[INFO ] Explorer The status of the drone is OK
+[INFO ] Explorer Additional information received: {}
+[INFO ] ExploreSpawn **Battery69882
+[INFO ] Controller ***SwitchPhase:false
+[INFO ] Controller ***Drone: Location: (0,-26) Direction: S
+[INFO ] Controller Phase: SPAWN
+[INFO ] Island/Game [Engine] Asking for user's decision [explorer.takeDecision()]
+[INFO ] Explorer ** Decisions: {"action":"fly"}
+[INFO ] Island/Game [Engine] Applying user's decision to the board
+[INFO ] Island/Game [Engine] Acknowledging results [explorer.acknowledgeResults(...)]
+[INFO ] Explorer ** Response received:
+{
+  "cost": 4,
+  "extras": {},
+  "status": "OK"
+}
+[INFO ] Explorer The cost of the action was 4
+[INFO ] Explorer The status of the drone is OK
+[INFO ] Explorer Additional information received: {}
+[INFO ] ExploreSpawn **Battery69878
+[INFO ] Controller ***SwitchPhase:false
+[INFO ] Controller ***Drone: Location: (0,-27) Direction: S
+[INFO ] Controller Phase: SPAWN
+[INFO ] Island/Game [Engine] Asking for user's decision [explorer.takeDecision()]
+[INFO ] Explorer ** Decisions: {"action":"fly"}
+[INFO ] Island/Game [Engine] Applying user's decision to the board
+[INFO ] Island/Game [Engine] Acknowledging results [explorer.acknowledgeResults(...)]
+[INFO ] Explorer ** Response received:
+{
+  "cost": 6,
+  "extras": {},
+  "status": "OK"
+}
+[INFO ] Explorer The cost of the action was 6
+[INFO ] Explorer The status of the drone is OK
+[INFO ] Explorer Additional information received: {}
+[INFO ] ExploreSpawn **Battery69872
+[INFO ] Controller ***SwitchPhase:false
+[INFO ] Controller ***Drone: Location: (0,-28) Direction: S
+[INFO ] Controller Phase: SPAWN
+[INFO ] Island/Game [Engine] Asking for user's decision [explorer.takeDecision()]
+[INFO ] Explorer ** Decisions: {"action":"fly"}
+[INFO ] Island/Game [Engine] Applying user's decision to the board
+[INFO ] Island/Game [Engine] Acknowledging results [explorer.acknowledgeResults(...)]
+[INFO ] Explorer ** Response received:
+{
+  "cost": 4,
+  "extras": {},
+  "status": "OK"
+}
+[INFO ] Explorer The cost of the action was 4
+[INFO ] Explorer The status of the drone is OK
+[INFO ] Explorer Additional information received: {}
+[INFO ] ExploreSpawn **Battery69868
+[INFO ] Controller ***SwitchPhase:false
+[INFO ] Controller ***Drone: Location: (0,-29) Direction: S
+[INFO ] Controller Phase: SPAWN
+[INFO ] Island/Game [Engine] Asking for user's decision [explorer.takeDecision()]
+[INFO ] Explorer ** Decisions: {"action":"fly"}
+[INFO ] Island/Game [Engine] Applying user's decision to the board
+[INFO ] Island/Game [Engine] Acknowledging results [explorer.acknowledgeResults(...)]
+[INFO ] Explorer ** Response received:
+{
+  "cost": 3,
+  "extras": {},
+  "status": "OK"
+}
+[INFO ] Explorer The cost of the action was 3
+[INFO ] Explorer The status of the drone is OK
+[INFO ] Explorer Additional information received: {}
+[INFO ] ExploreSpawn **Battery69865
+[INFO ] Controller ***SwitchPhase:false
+[INFO ] Controller ***Drone: Location: (0,-30) Direction: S
+[INFO ] Controller Phase: SPAWN
+[INFO ] Island/Game [Engine] Asking for user's decision [explorer.takeDecision()]
+[INFO ] Explorer ** Decisions: {"action":"fly"}
+[INFO ] Island/Game [Engine] Applying user's decision to the board
+[INFO ] Island/Game [Engine] Acknowledging results [explorer.acknowledgeResults(...)]
+[INFO ] Explorer ** Response received:
+{
+  "cost": 5,
+  "extras": {},
+  "status": "OK"
+}
+[INFO ] Explorer The cost of the action was 5
+[INFO ] Explorer The status of the drone is OK
+[INFO ] Explorer Additional information received: {}
+[INFO ] ExploreSpawn **Battery69860
+[INFO ] Controller ***SwitchPhase:false
+[INFO ] Controller ***Drone: Location: (0,-31) Direction: S
+[INFO ] Controller Phase: SPAWN
+[INFO ] Island/Game [Engine] Asking for user's decision [explorer.takeDecision()]
+[INFO ] Explorer ** Decisions: {"action":"fly"}
+[INFO ] Island/Game [Engine] Applying user's decision to the board
+[INFO ] Island/Game [Engine] Acknowledging results [explorer.acknowledgeResults(...)]
+[INFO ] Explorer ** Response received:
+{
+  "cost": 3,
+  "extras": {},
+  "status": "OK"
+}
+[INFO ] Explorer The cost of the action was 3
+[INFO ] Explorer The status of the drone is OK
+[INFO ] Explorer Additional information received: {}
+[INFO ] ExploreSpawn **Battery69857
+[INFO ] Controller ***SwitchPhase:false
+[INFO ] Controller ***Drone: Location: (0,-32) Direction: S
+[INFO ] Controller Phase: SPAWN
+[INFO ] Island/Game [Engine] Asking for user's decision [explorer.takeDecision()]
+[INFO ] Explorer ** Decisions: {"action":"fly"}
+[INFO ] Island/Game [Engine] Applying user's decision to the board
+[INFO ] Island/Game [Engine] Acknowledging results [explorer.acknowledgeResults(...)]
+[INFO ] Explorer ** Response received:
+{
+  "cost": 2,
+  "extras": {},
+  "status": "OK"
+}
+[INFO ] Explorer The cost of the action was 2
+[INFO ] Explorer The status of the drone is OK
+[INFO ] Explorer Additional information received: {}
+[INFO ] ExploreSpawn **Battery69855
+[INFO ] Controller ***SwitchPhase:false
+[INFO ] Controller ***Drone: Location: (0,-33) Direction: S
+[INFO ] Controller Phase: SPAWN
+[INFO ] Island/Game [Engine] Asking for user's decision [explorer.takeDecision()]
+[INFO ] Explorer ** Decisions: {"action":"fly"}
+[INFO ] Island/Game [Engine] Applying user's decision to the board
+[INFO ] Island/Game [Engine] Acknowledging results [explorer.acknowledgeResults(...)]
+[INFO ] Explorer ** Response received:
+{
+  "cost": 4,
+  "extras": {},
+  "status": "OK"
+}
+[INFO ] Explorer The cost of the action was 4
+[INFO ] Explorer The status of the drone is OK
+[INFO ] Explorer Additional information received: {}
+[INFO ] ExploreSpawn **Battery69851
+[INFO ] Controller ***SwitchPhase:false
+[INFO ] Controller ***Drone: Location: (0,-34) Direction: S
+[INFO ] Controller Phase: SPAWN
+[INFO ] Island/Game [Engine] Asking for user's decision [explorer.takeDecision()]
+[INFO ] Explorer ** Decisions: {"action":"fly"}
+[INFO ] Island/Game [Engine] Applying user's decision to the board
+[INFO ] Island/Game [Engine] Acknowledging results [explorer.acknowledgeResults(...)]
+[INFO ] Explorer ** Response received:
+{
+  "cost": 3,
+  "extras": {},
+  "status": "OK"
+}
+[INFO ] Explorer The cost of the action was 3
+[INFO ] Explorer The status of the drone is OK
+[INFO ] Explorer Additional information received: {}
 [INFO ] ExploreSpawn **Battery69848
 [INFO ] Controller ***SwitchPhase:false
-[INFO ] Controller ***Drone: Location: (33,0) Direction: E
+[INFO ] Controller ***Drone: Location: (0,-35) Direction: S
 [INFO ] Controller Phase: SPAWN
 [INFO ] Island/Game [Engine] Asking for user's decision [explorer.takeDecision()]
 [INFO ] Explorer ** Decisions: {"action":"fly"}
@@ -653,7 +687,7 @@
 [INFO ] Explorer Additional information received: {}
 [INFO ] ExploreSpawn **Battery69846
 [INFO ] Controller ***SwitchPhase:false
-[INFO ] Controller ***Drone: Location: (34,0) Direction: E
+[INFO ] Controller ***Drone: Location: (0,-36) Direction: S
 [INFO ] Controller Phase: SPAWN
 [INFO ] Island/Game [Engine] Asking for user's decision [explorer.takeDecision()]
 [INFO ] Explorer ** Decisions: {"action":"fly"}
@@ -661,16 +695,16 @@
 [INFO ] Island/Game [Engine] Acknowledging results [explorer.acknowledgeResults(...)]
 [INFO ] Explorer ** Response received:
 {
-  "cost": 5,
+  "cost": 3,
   "extras": {},
   "status": "OK"
 }
-[INFO ] Explorer The cost of the action was 5
+[INFO ] Explorer The cost of the action was 3
 [INFO ] Explorer The status of the drone is OK
 [INFO ] Explorer Additional information received: {}
-[INFO ] ExploreSpawn **Battery69841
+[INFO ] ExploreSpawn **Battery69843
 [INFO ] Controller ***SwitchPhase:false
-[INFO ] Controller ***Drone: Location: (35,0) Direction: E
+[INFO ] Controller ***Drone: Location: (0,-37) Direction: S
 [INFO ] Controller Phase: SPAWN
 [INFO ] Island/Game [Engine] Asking for user's decision [explorer.takeDecision()]
 [INFO ] Explorer ** Decisions: {"action":"fly"}
@@ -685,9 +719,9 @@
 [INFO ] Explorer The cost of the action was 4
 [INFO ] Explorer The status of the drone is OK
 [INFO ] Explorer Additional information received: {}
-[INFO ] ExploreSpawn **Battery69837
+[INFO ] ExploreSpawn **Battery69839
 [INFO ] Controller ***SwitchPhase:false
-[INFO ] Controller ***Drone: Location: (36,0) Direction: E
+[INFO ] Controller ***Drone: Location: (0,-38) Direction: S
 [INFO ] Controller Phase: SPAWN
 [INFO ] Island/Game [Engine] Asking for user's decision [explorer.takeDecision()]
 [INFO ] Explorer ** Decisions: {"action":"fly"}
@@ -702,26 +736,9 @@
 [INFO ] Explorer The cost of the action was 6
 [INFO ] Explorer The status of the drone is OK
 [INFO ] Explorer Additional information received: {}
-[INFO ] ExploreSpawn **Battery69831
+[INFO ] ExploreSpawn **Battery69833
 [INFO ] Controller ***SwitchPhase:false
-[INFO ] Controller ***Drone: Location: (37,0) Direction: E
-[INFO ] Controller Phase: SPAWN
-[INFO ] Island/Game [Engine] Asking for user's decision [explorer.takeDecision()]
-[INFO ] Explorer ** Decisions: {"action":"fly"}
-[INFO ] Island/Game [Engine] Applying user's decision to the board
-[INFO ] Island/Game [Engine] Acknowledging results [explorer.acknowledgeResults(...)]
-[INFO ] Explorer ** Response received:
-{
-  "cost": 4,
-  "extras": {},
-  "status": "OK"
-}
-[INFO ] Explorer The cost of the action was 4
-[INFO ] Explorer The status of the drone is OK
-[INFO ] Explorer Additional information received: {}
-[INFO ] ExploreSpawn **Battery69827
-[INFO ] Controller ***SwitchPhase:false
-[INFO ] Controller ***Drone: Location: (38,0) Direction: E
+[INFO ] Controller ***Drone: Location: (0,-39) Direction: S
 [INFO ] Controller Phase: SPAWN
 [INFO ] Island/Game [Engine] Asking for user's decision [explorer.takeDecision()]
 [INFO ] Explorer ** Decisions: {"action":"fly"}
@@ -736,9 +753,43 @@
 [INFO ] Explorer The cost of the action was 5
 [INFO ] Explorer The status of the drone is OK
 [INFO ] Explorer Additional information received: {}
-[INFO ] ExploreSpawn **Battery69822
+[INFO ] ExploreSpawn **Battery69828
 [INFO ] Controller ***SwitchPhase:false
-[INFO ] Controller ***Drone: Location: (39,0) Direction: E
+[INFO ] Controller ***Drone: Location: (0,-40) Direction: S
+[INFO ] Controller Phase: SPAWN
+[INFO ] Island/Game [Engine] Asking for user's decision [explorer.takeDecision()]
+[INFO ] Explorer ** Decisions: {"action":"fly"}
+[INFO ] Island/Game [Engine] Applying user's decision to the board
+[INFO ] Island/Game [Engine] Acknowledging results [explorer.acknowledgeResults(...)]
+[INFO ] Explorer ** Response received:
+{
+  "cost": 4,
+  "extras": {},
+  "status": "OK"
+}
+[INFO ] Explorer The cost of the action was 4
+[INFO ] Explorer The status of the drone is OK
+[INFO ] Explorer Additional information received: {}
+[INFO ] ExploreSpawn **Battery69824
+[INFO ] Controller ***SwitchPhase:false
+[INFO ] Controller ***Drone: Location: (0,-41) Direction: S
+[INFO ] Controller Phase: SPAWN
+[INFO ] Island/Game [Engine] Asking for user's decision [explorer.takeDecision()]
+[INFO ] Explorer ** Decisions: {"action":"fly"}
+[INFO ] Island/Game [Engine] Applying user's decision to the board
+[INFO ] Island/Game [Engine] Acknowledging results [explorer.acknowledgeResults(...)]
+[INFO ] Explorer ** Response received:
+{
+  "cost": 4,
+  "extras": {},
+  "status": "OK"
+}
+[INFO ] Explorer The cost of the action was 4
+[INFO ] Explorer The status of the drone is OK
+[INFO ] Explorer Additional information received: {}
+[INFO ] ExploreSpawn **Battery69820
+[INFO ] Controller ***SwitchPhase:false
+[INFO ] Controller ***Drone: Location: (0,-42) Direction: S
 [INFO ] Controller Phase: SPAWN
 [INFO ] Island/Game [Engine] Asking for user's decision [explorer.takeDecision()]
 [INFO ] Explorer ** Decisions: {"action":"fly"}
@@ -753,9 +804,26 @@
 [INFO ] Explorer The cost of the action was 2
 [INFO ] Explorer The status of the drone is OK
 [INFO ] Explorer Additional information received: {}
-[INFO ] ExploreSpawn **Battery69820
+[INFO ] ExploreSpawn **Battery69818
 [INFO ] Controller ***SwitchPhase:false
-[INFO ] Controller ***Drone: Location: (40,0) Direction: E
+[INFO ] Controller ***Drone: Location: (0,-43) Direction: S
+[INFO ] Controller Phase: SPAWN
+[INFO ] Island/Game [Engine] Asking for user's decision [explorer.takeDecision()]
+[INFO ] Explorer ** Decisions: {"action":"fly"}
+[INFO ] Island/Game [Engine] Applying user's decision to the board
+[INFO ] Island/Game [Engine] Acknowledging results [explorer.acknowledgeResults(...)]
+[INFO ] Explorer ** Response received:
+{
+  "cost": 2,
+  "extras": {},
+  "status": "OK"
+}
+[INFO ] Explorer The cost of the action was 2
+[INFO ] Explorer The status of the drone is OK
+[INFO ] Explorer Additional information received: {}
+[INFO ] ExploreSpawn **Battery69816
+[INFO ] Controller ***SwitchPhase:false
+[INFO ] Controller ***Drone: Location: (0,-44) Direction: S
 [INFO ] Controller Phase: SPAWN
 [INFO ] Island/Game [Engine] Asking for user's decision [explorer.takeDecision()]
 [INFO ] Explorer ** Decisions: {"action":"fly"}
@@ -770,9 +838,9 @@
 [INFO ] Explorer The cost of the action was 6
 [INFO ] Explorer The status of the drone is OK
 [INFO ] Explorer Additional information received: {}
-[INFO ] ExploreSpawn **Battery69814
+[INFO ] ExploreSpawn **Battery69810
 [INFO ] Controller ***SwitchPhase:false
-[INFO ] Controller ***Drone: Location: (41,0) Direction: E
+[INFO ] Controller ***Drone: Location: (0,-45) Direction: S
 [INFO ] Controller Phase: SPAWN
 [INFO ] Island/Game [Engine] Asking for user's decision [explorer.takeDecision()]
 [INFO ] Explorer ** Decisions: {"action":"fly"}
@@ -780,50 +848,16 @@
 [INFO ] Island/Game [Engine] Acknowledging results [explorer.acknowledgeResults(...)]
 [INFO ] Explorer ** Response received:
 {
-  "cost": 3,
+  "cost": 5,
   "extras": {},
   "status": "OK"
 }
-[INFO ] Explorer The cost of the action was 3
-[INFO ] Explorer The status of the drone is OK
-[INFO ] Explorer Additional information received: {}
-[INFO ] ExploreSpawn **Battery69811
-[INFO ] Controller ***SwitchPhase:false
-[INFO ] Controller ***Drone: Location: (42,0) Direction: E
-[INFO ] Controller Phase: SPAWN
-[INFO ] Island/Game [Engine] Asking for user's decision [explorer.takeDecision()]
-[INFO ] Explorer ** Decisions: {"action":"fly"}
-[INFO ] Island/Game [Engine] Applying user's decision to the board
-[INFO ] Island/Game [Engine] Acknowledging results [explorer.acknowledgeResults(...)]
-[INFO ] Explorer ** Response received:
-{
-  "cost": 3,
-  "extras": {},
-  "status": "OK"
-}
-[INFO ] Explorer The cost of the action was 3
-[INFO ] Explorer The status of the drone is OK
-[INFO ] Explorer Additional information received: {}
-[INFO ] ExploreSpawn **Battery69808
-[INFO ] Controller ***SwitchPhase:false
-[INFO ] Controller ***Drone: Location: (43,0) Direction: E
-[INFO ] Controller Phase: SPAWN
-[INFO ] Island/Game [Engine] Asking for user's decision [explorer.takeDecision()]
-[INFO ] Explorer ** Decisions: {"action":"fly"}
-[INFO ] Island/Game [Engine] Applying user's decision to the board
-[INFO ] Island/Game [Engine] Acknowledging results [explorer.acknowledgeResults(...)]
-[INFO ] Explorer ** Response received:
-{
-  "cost": 3,
-  "extras": {},
-  "status": "OK"
-}
-[INFO ] Explorer The cost of the action was 3
+[INFO ] Explorer The cost of the action was 5
 [INFO ] Explorer The status of the drone is OK
 [INFO ] Explorer Additional information received: {}
 [INFO ] ExploreSpawn **Battery69805
 [INFO ] Controller ***SwitchPhase:false
-[INFO ] Controller ***Drone: Location: (44,0) Direction: E
+[INFO ] Controller ***Drone: Location: (0,-46) Direction: S
 [INFO ] Controller Phase: SPAWN
 [INFO ] Island/Game [Engine] Asking for user's decision [explorer.takeDecision()]
 [INFO ] Explorer ** Decisions: {"action":"fly"}
@@ -831,33 +865,16 @@
 [INFO ] Island/Game [Engine] Acknowledging results [explorer.acknowledgeResults(...)]
 [INFO ] Explorer ** Response received:
 {
-  "cost": 5,
+  "cost": 3,
   "extras": {},
   "status": "OK"
 }
-[INFO ] Explorer The cost of the action was 5
+[INFO ] Explorer The cost of the action was 3
 [INFO ] Explorer The status of the drone is OK
 [INFO ] Explorer Additional information received: {}
-[INFO ] ExploreSpawn **Battery69800
+[INFO ] ExploreSpawn **Battery69802
 [INFO ] Controller ***SwitchPhase:false
-[INFO ] Controller ***Drone: Location: (45,0) Direction: E
-[INFO ] Controller Phase: SPAWN
-[INFO ] Island/Game [Engine] Asking for user's decision [explorer.takeDecision()]
-[INFO ] Explorer ** Decisions: {"action":"fly"}
-[INFO ] Island/Game [Engine] Applying user's decision to the board
-[INFO ] Island/Game [Engine] Acknowledging results [explorer.acknowledgeResults(...)]
-[INFO ] Explorer ** Response received:
-{
-  "cost": 5,
-  "extras": {},
-  "status": "OK"
-}
-[INFO ] Explorer The cost of the action was 5
-[INFO ] Explorer The status of the drone is OK
-[INFO ] Explorer Additional information received: {}
-[INFO ] ExploreSpawn **Battery69795
-[INFO ] Controller ***SwitchPhase:false
-[INFO ] Controller ***Drone: Location: (46,0) Direction: E
+[INFO ] Controller ***Drone: Location: (0,-47) Direction: S
 [INFO ] Controller Phase: SPAWN
 [INFO ] Island/Game [Engine] Asking for user's decision [explorer.takeDecision()]
 [INFO ] Explorer ** Decisions: {"action":"fly"}
@@ -872,31 +889,188 @@
 [INFO ] Explorer The cost of the action was 4
 [INFO ] Explorer The status of the drone is OK
 [INFO ] Explorer Additional information received: {}
-[INFO ] ExploreSpawn **Battery69791
+[INFO ] ExploreSpawn **Battery69798
 [INFO ] Controller ***SwitchPhase:false
-[INFO ] Controller ***Drone: Location: (47,0) Direction: E
+[INFO ] Controller ***Drone: Location: (0,-48) Direction: S
 [INFO ] Controller Phase: SPAWN
 [INFO ] Island/Game [Engine] Asking for user's decision [explorer.takeDecision()]
-[INFO ] Explorer ** Decisions: {"action":"echo","parameters":{"direction":"S"}}
+[INFO ] Explorer ** Decisions: {"action":"fly"}
+[INFO ] Island/Game [Engine] Applying user's decision to the board
+[INFO ] Island/Game [Engine] Acknowledging results [explorer.acknowledgeResults(...)]
+[INFO ] Explorer ** Response received:
+{
+  "cost": 4,
+  "extras": {},
+  "status": "OK"
+}
+[INFO ] Explorer The cost of the action was 4
+[INFO ] Explorer The status of the drone is OK
+[INFO ] Explorer Additional information received: {}
+[INFO ] ExploreSpawn **Battery69794
+[INFO ] Controller ***SwitchPhase:false
+[INFO ] Controller ***Drone: Location: (0,-49) Direction: S
+[INFO ] Controller Phase: SPAWN
+[INFO ] Island/Game [Engine] Asking for user's decision [explorer.takeDecision()]
+[INFO ] Explorer ** Decisions: {"action":"fly"}
+[INFO ] Island/Game [Engine] Applying user's decision to the board
+[INFO ] Island/Game [Engine] Acknowledging results [explorer.acknowledgeResults(...)]
+[INFO ] Explorer ** Response received:
+{
+  "cost": 5,
+  "extras": {},
+  "status": "OK"
+}
+[INFO ] Explorer The cost of the action was 5
+[INFO ] Explorer The status of the drone is OK
+[INFO ] Explorer Additional information received: {}
+[INFO ] ExploreSpawn **Battery69789
+[INFO ] Controller ***SwitchPhase:false
+[INFO ] Controller ***Drone: Location: (0,-50) Direction: S
+[INFO ] Controller Phase: SPAWN
+[INFO ] Island/Game [Engine] Asking for user's decision [explorer.takeDecision()]
+[INFO ] Explorer ** Decisions: {"action":"echo","parameters":{"direction":"W"}}
 [INFO ] Island/Game [Engine] Applying user's decision to the board
 [INFO ] Island/Game [Engine] Acknowledging results [explorer.acknowledgeResults(...)]
 [INFO ] Explorer ** Response received:
 {
   "cost": 6,
   "extras": {
-    "found": "GROUND",
-    "range": 24
+    "found": "OUT_OF_RANGE",
+    "range": 0
   },
   "status": "OK"
 }
 [INFO ] Explorer The cost of the action was 6
 [INFO ] Explorer The status of the drone is OK
-[INFO ] Explorer Additional information received: {"found":"GROUND","range":24}
-[INFO ] ExploreSpawn **Battery69785
+[INFO ] Explorer Additional information received: {"found":"OUT_OF_RANGE","range":0}
+[INFO ] ExploreSpawn **Battery69783
 [INFO ] Controller ***SwitchPhase:false
-[INFO ] Controller ***Drone: Location: (47,0) Direction: E
+[INFO ] Controller ***Drone: Location: (0,-50) Direction: S
 [INFO ] Controller Phase: SPAWN
 [INFO ] Island/Game [Engine] Asking for user's decision [explorer.takeDecision()]
+[INFO ] Explorer ** Decisions: {"action":"echo","parameters":{"direction":"E"}}
+[INFO ] Island/Game [Engine] Applying user's decision to the board
+[INFO ] Island/Game [Engine] Acknowledging results [explorer.acknowledgeResults(...)]
+[INFO ] Explorer ** Response received:
+{
+  "cost": 3,
+  "extras": {
+    "found": "OUT_OF_RANGE",
+    "range": 52
+  },
+  "status": "OK"
+}
+[INFO ] Explorer The cost of the action was 3
+[INFO ] Explorer The status of the drone is OK
+[INFO ] Explorer Additional information received: {"found":"OUT_OF_RANGE","range":52}
+[INFO ] ExploreSpawn **Battery69780
+[INFO ] Controller ***SwitchPhase:true
+[INFO ] Controller ***Drone: Location: (0,-50) Direction: S
+[INFO ] Controller ***Switching: GROUND
+[INFO ] Controller Phase: GROUND
+[INFO ] Island/Game [Engine] Asking for user's decision [explorer.takeDecision()]
+[INFO ] ExploreGround ***ExploreGround State: R_ECHO
+[INFO ] Explorer ** Decisions: {"action":"echo","parameters":{"direction":"W"}}
+[INFO ] Island/Game [Engine] Applying user's decision to the board
+[INFO ] Island/Game [Engine] Acknowledging results [explorer.acknowledgeResults(...)]
+[INFO ] Explorer ** Response received:
+{
+  "cost": 7,
+  "extras": {
+    "found": "OUT_OF_RANGE",
+    "range": 0
+  },
+  "status": "OK"
+}
+[INFO ] Explorer The cost of the action was 7
+[INFO ] Explorer The status of the drone is OK
+[INFO ] Explorer Additional information received: {"found":"OUT_OF_RANGE","range":0}
+[INFO ] ExploreGround **Battery69773
+[INFO ] Controller ***SwitchPhase:false
+[INFO ] Controller ***Drone: Location: (0,-50) Direction: S
+[INFO ] Controller Phase: GROUND
+[INFO ] Island/Game [Engine] Asking for user's decision [explorer.takeDecision()]
+[INFO ] ExploreGround ***ExploreGround State: L_ECHO
+[INFO ] Explorer ** Decisions: {"action":"echo","parameters":{"direction":"E"}}
+[INFO ] Island/Game [Engine] Applying user's decision to the board
+[INFO ] Island/Game [Engine] Acknowledging results [explorer.acknowledgeResults(...)]
+[INFO ] Explorer ** Response received:
+{
+  "cost": 4,
+  "extras": {
+    "found": "OUT_OF_RANGE",
+    "range": 52
+  },
+  "status": "OK"
+}
+[INFO ] Explorer The cost of the action was 4
+[INFO ] Explorer The status of the drone is OK
+[INFO ] Explorer Additional information received: {"found":"OUT_OF_RANGE","range":52}
+[INFO ] ExploreGround **Battery69769
+[INFO ] Controller ***SwitchPhase:false
+[INFO ] Controller ***Drone: Location: (0,-50) Direction: S
+[INFO ] Controller Phase: GROUND
+[INFO ] Island/Game [Engine] Asking for user's decision [explorer.takeDecision()]
+[INFO ] ExploreGround ***ExploreGround State: F_ECHO
+[INFO ] Explorer ** Decisions: {"action":"echo","parameters":{"direction":"S"}}
+[INFO ] Island/Game [Engine] Applying user's decision to the board
+[INFO ] Island/Game [Engine] Acknowledging results [explorer.acknowledgeResults(...)]
+[INFO ] Explorer ** Response received:
+{
+  "cost": 3,
+  "extras": {
+    "found": "OUT_OF_RANGE",
+    "range": 2
+  },
+  "status": "OK"
+}
+[INFO ] Explorer The cost of the action was 3
+[INFO ] Explorer The status of the drone is OK
+[INFO ] Explorer Additional information received: {"found":"OUT_OF_RANGE","range":2}
+[INFO ] ExploreGround **Battery69766
+[INFO ] Controller ***SwitchPhase:false
+[INFO ] Controller ***Drone: Location: (0,-50) Direction: S
+[INFO ] Controller Phase: GROUND
+[INFO ] Island/Game [Engine] Asking for user's decision [explorer.takeDecision()]
+[INFO ] ExploreGround ***ExploreGround State: TURN_L_1
+[INFO ] Drone Compare this btw S
+[INFO ] Explorer ** Decisions: {"action":"heading","parameters":{"direction":"E"}}
+[INFO ] Island/Game [Engine] Applying user's decision to the board
+[INFO ] Island/Game [Engine] Acknowledging results [explorer.acknowledgeResults(...)]
+[INFO ] Explorer ** Response received:
+{
+  "cost": 5,
+  "extras": {},
+  "status": "OK"
+}
+[INFO ] Explorer The cost of the action was 5
+[INFO ] Explorer The status of the drone is OK
+[INFO ] Explorer Additional information received: {}
+[INFO ] ExploreGround **Battery69761
+[INFO ] Controller ***SwitchPhase:false
+[INFO ] Controller ***Drone: Location: (1,-51) Direction: E
+[INFO ] Controller Phase: GROUND
+[INFO ] Island/Game [Engine] Asking for user's decision [explorer.takeDecision()]
+[INFO ] ExploreGround ***ExploreGround State: TURN_L_2
+[INFO ] Drone Compare this btw E
+[INFO ] Explorer ** Decisions: {"action":"heading","parameters":{"direction":"N"}}
+[INFO ] Island/Game [Engine] Applying user's decision to the board
+[INFO ] Island/Game [Engine] Acknowledging results [explorer.acknowledgeResults(...)]
+[INFO ] Explorer ** Response received:
+{
+  "cost": 3,
+  "extras": {},
+  "status": "OK"
+}
+[INFO ] Explorer The cost of the action was 3
+[INFO ] Explorer The status of the drone is OK
+[INFO ] Explorer Additional information received: {}
+[INFO ] ExploreGround **Battery69758
+[INFO ] Controller ***SwitchPhase:false
+[INFO ] Controller ***Drone: Location: (2,-50) Direction: N
+[INFO ] Controller Phase: GROUND
+[INFO ] Island/Game [Engine] Asking for user's decision [explorer.takeDecision()]
+[INFO ] ExploreGround ***ExploreGround State: F_ECHO
 [INFO ] Explorer ** Decisions: {"action":"echo","parameters":{"direction":"N"}}
 [INFO ] Island/Game [Engine] Applying user's decision to the board
 [INFO ] Island/Game [Engine] Acknowledging results [explorer.acknowledgeResults(...)]
@@ -905,38 +1079,55 @@
   "cost": 6,
   "extras": {
     "found": "OUT_OF_RANGE",
-    "range": 3
+    "range": 50
   },
   "status": "OK"
 }
 [INFO ] Explorer The cost of the action was 6
 [INFO ] Explorer The status of the drone is OK
-[INFO ] Explorer Additional information received: {"found":"OUT_OF_RANGE","range":3}
-[INFO ] ExploreSpawn **Battery69779
-[INFO ] Controller ***SwitchPhase:true
-[INFO ] Controller ***Drone: Location: (47,0) Direction: E
-[INFO ] Controller ***Switching: GROUND
+[INFO ] Explorer Additional information received: {"found":"OUT_OF_RANGE","range":50}
+[INFO ] ExploreGround **Battery69752
+[INFO ] Controller ***SwitchPhase:false
+[INFO ] Controller ***Drone: Location: (2,-50) Direction: N
 [INFO ] Controller Phase: GROUND
 [INFO ] Island/Game [Engine] Asking for user's decision [explorer.takeDecision()]
-[INFO ] ExploreGround ***ExploreGround State: R_ECHO
-[INFO ] Explorer ** Decisions: {"action":"echo","parameters":{"direction":"S"}}
+[INFO ] ExploreGround ***ExploreGround State: FLY
+[INFO ] Explorer ** Decisions: {"action":"fly"}
 [INFO ] Island/Game [Engine] Applying user's decision to the board
 [INFO ] Island/Game [Engine] Acknowledging results [explorer.acknowledgeResults(...)]
 [INFO ] Explorer ** Response received:
 {
-  "cost": 6,
+  "cost": 3,
+  "extras": {},
+  "status": "OK"
+}
+[INFO ] Explorer The cost of the action was 3
+[INFO ] Explorer The status of the drone is OK
+[INFO ] Explorer Additional information received: {}
+[INFO ] ExploreGround **Battery69749
+[INFO ] Controller ***SwitchPhase:false
+[INFO ] Controller ***Drone: Location: (2,-49) Direction: N
+[INFO ] Controller Phase: GROUND
+[INFO ] Island/Game [Engine] Asking for user's decision [explorer.takeDecision()]
+[INFO ] ExploreGround ***ExploreGround State: R_ECHO
+[INFO ] Explorer ** Decisions: {"action":"echo","parameters":{"direction":"E"}}
+[INFO ] Island/Game [Engine] Applying user's decision to the board
+[INFO ] Island/Game [Engine] Acknowledging results [explorer.acknowledgeResults(...)]
+[INFO ] Explorer ** Response received:
+{
+  "cost": 3,
   "extras": {
     "found": "GROUND",
-    "range": 24
+    "range": 19
   },
   "status": "OK"
 }
-[INFO ] Explorer The cost of the action was 6
+[INFO ] Explorer The cost of the action was 3
 [INFO ] Explorer The status of the drone is OK
-[INFO ] Explorer Additional information received: {"found":"GROUND","range":24}
-[INFO ] ExploreGround **Battery69773
+[INFO ] Explorer Additional information received: {"found":"GROUND","range":19}
+[INFO ] ExploreGround **Battery69746
 [INFO ] Controller ***SwitchPhase:false
-[INFO ] Controller ***Drone: Location: (47,0) Direction: E
+[INFO ] Controller ***Drone: Location: (2,-49) Direction: N
 [INFO ] Controller Phase: GROUND
 [INFO ] Island/Game [Engine] Asking for user's decision [explorer.takeDecision()]
 [INFO ] ExploreGround ***ExploreGround State: UTURN1
@@ -952,13 +1143,13 @@
 [INFO ] Explorer The cost of the action was 3
 [INFO ] Explorer The status of the drone is OK
 [INFO ] Explorer Additional information received: {}
-[INFO ] ExploreGround **Battery69770
+[INFO ] ExploreGround **Battery69743
 [INFO ] Controller ***SwitchPhase:false
-[INFO ] Controller ***Drone: Location: (48,0) Direction: E
+[INFO ] Controller ***Drone: Location: (2,-48) Direction: N
 [INFO ] Controller Phase: GROUND
 [INFO ] Island/Game [Engine] Asking for user's decision [explorer.takeDecision()]
 [INFO ] ExploreGround ***ExploreGround State: UTURN2
-[INFO ] Explorer ** Decisions: {"action":"heading","parameters":{"direction":"S"}}
+[INFO ] Explorer ** Decisions: {"action":"heading","parameters":{"direction":"E"}}
 [INFO ] Island/Game [Engine] Applying user's decision to the board
 [INFO ] Island/Game [Engine] Acknowledging results [explorer.acknowledgeResults(...)]
 [INFO ] Explorer ** Response received:
@@ -970,154 +1161,46 @@
 [INFO ] Explorer The cost of the action was 6
 [INFO ] Explorer The status of the drone is OK
 [INFO ] Explorer Additional information received: {}
-[INFO ] ExploreGround **Battery69764
+[INFO ] ExploreGround **Battery69737
 [INFO ] Controller ***SwitchPhase:false
-[INFO ] Controller ***Drone: Location: (49,-1) Direction: S
+[INFO ] Controller ***Drone: Location: (3,-47) Direction: E
 [INFO ] Controller Phase: GROUND
 [INFO ] Island/Game [Engine] Asking for user's decision [explorer.takeDecision()]
 [INFO ] ExploreGround ***ExploreGround State: UTURN3
-[INFO ] Explorer ** Decisions: {"action":"heading","parameters":{"direction":"W"}}
-[INFO ] Island/Game [Engine] Applying user's decision to the board
-[INFO ] Island/Game [Engine] Acknowledging results [explorer.acknowledgeResults(...)]
-[INFO ] Explorer ** Response received:
-{
-  "cost": 4,
-  "extras": {},
-  "status": "OK"
-}
-[INFO ] Explorer The cost of the action was 4
-[INFO ] Explorer The status of the drone is OK
-[INFO ] Explorer Additional information received: {}
-[INFO ] ExploreGround **Battery69760
-[INFO ] Controller ***SwitchPhase:false
-[INFO ] Controller ***Drone: Location: (48,-2) Direction: W
-[INFO ] Controller Phase: GROUND
-[INFO ] Island/Game [Engine] Asking for user's decision [explorer.takeDecision()]
-[INFO ] ExploreGround ***ExploreGround State: UTURN4
-[INFO ] Drone Compare this btw W
 [INFO ] Explorer ** Decisions: {"action":"heading","parameters":{"direction":"S"}}
 [INFO ] Island/Game [Engine] Applying user's decision to the board
 [INFO ] Island/Game [Engine] Acknowledging results [explorer.acknowledgeResults(...)]
 [INFO ] Explorer ** Response received:
 {
-  "cost": 4,
+  "cost": 7,
   "extras": {},
   "status": "OK"
 }
-[INFO ] Explorer The cost of the action was 4
-[INFO ] Explorer The status of the drone is OK
-[INFO ] Explorer Additional information received: {}
-[INFO ] ExploreGround **Battery69756
-[INFO ] Controller ***SwitchPhase:false
-[INFO ] Controller ***Drone: Location: (47,-3) Direction: S
-[INFO ] Controller Phase: GROUND
-[INFO ] Island/Game [Engine] Asking for user's decision [explorer.takeDecision()]
-[INFO ] ExploreGround ***ExploreGround State: FINDGROUND
-[INFO ] Explorer ** Decisions: {"action":"fly"}
-[INFO ] Island/Game [Engine] Applying user's decision to the board
-[INFO ] Island/Game [Engine] Acknowledging results [explorer.acknowledgeResults(...)]
-[INFO ] Explorer ** Response received:
-{
-  "cost": 3,
-  "extras": {},
-  "status": "OK"
-}
-[INFO ] Explorer The cost of the action was 3
-[INFO ] Explorer The status of the drone is OK
-[INFO ] Explorer Additional information received: {}
-[INFO ] ExploreGround **Battery69753
-[INFO ] Controller ***SwitchPhase:false
-[INFO ] Controller ***Drone: Location: (47,-4) Direction: S
-[INFO ] Controller Phase: GROUND
-[INFO ] Island/Game [Engine] Asking for user's decision [explorer.takeDecision()]
-[INFO ] ExploreGround ***ExploreGround State: FINDGROUND
-[INFO ] Explorer ** Decisions: {"action":"fly"}
-[INFO ] Island/Game [Engine] Applying user's decision to the board
-[INFO ] Island/Game [Engine] Acknowledging results [explorer.acknowledgeResults(...)]
-[INFO ] Explorer ** Response received:
-{
-  "cost": 5,
-  "extras": {},
-  "status": "OK"
-}
-[INFO ] Explorer The cost of the action was 5
-[INFO ] Explorer The status of the drone is OK
-[INFO ] Explorer Additional information received: {}
-[INFO ] ExploreGround **Battery69748
-[INFO ] Controller ***SwitchPhase:false
-[INFO ] Controller ***Drone: Location: (47,-5) Direction: S
-[INFO ] Controller Phase: GROUND
-[INFO ] Island/Game [Engine] Asking for user's decision [explorer.takeDecision()]
-[INFO ] ExploreGround ***ExploreGround State: FINDGROUND
-[INFO ] Explorer ** Decisions: {"action":"fly"}
-[INFO ] Island/Game [Engine] Applying user's decision to the board
-[INFO ] Island/Game [Engine] Acknowledging results [explorer.acknowledgeResults(...)]
-[INFO ] Explorer ** Response received:
-{
-  "cost": 3,
-  "extras": {},
-  "status": "OK"
-}
-[INFO ] Explorer The cost of the action was 3
-[INFO ] Explorer The status of the drone is OK
-[INFO ] Explorer Additional information received: {}
-[INFO ] ExploreGround **Battery69745
-[INFO ] Controller ***SwitchPhase:false
-[INFO ] Controller ***Drone: Location: (47,-6) Direction: S
-[INFO ] Controller Phase: GROUND
-[INFO ] Island/Game [Engine] Asking for user's decision [explorer.takeDecision()]
-[INFO ] ExploreGround ***ExploreGround State: FINDGROUND
-[INFO ] Explorer ** Decisions: {"action":"fly"}
-[INFO ] Island/Game [Engine] Applying user's decision to the board
-[INFO ] Island/Game [Engine] Acknowledging results [explorer.acknowledgeResults(...)]
-[INFO ] Explorer ** Response received:
-{
-  "cost": 5,
-  "extras": {},
-  "status": "OK"
-}
-[INFO ] Explorer The cost of the action was 5
-[INFO ] Explorer The status of the drone is OK
-[INFO ] Explorer Additional information received: {}
-[INFO ] ExploreGround **Battery69740
-[INFO ] Controller ***SwitchPhase:false
-[INFO ] Controller ***Drone: Location: (47,-7) Direction: S
-[INFO ] Controller Phase: GROUND
-[INFO ] Island/Game [Engine] Asking for user's decision [explorer.takeDecision()]
-[INFO ] ExploreGround ***ExploreGround State: FINDGROUND
-[INFO ] Explorer ** Decisions: {"action":"fly"}
-[INFO ] Island/Game [Engine] Applying user's decision to the board
-[INFO ] Island/Game [Engine] Acknowledging results [explorer.acknowledgeResults(...)]
-[INFO ] Explorer ** Response received:
-{
-  "cost": 6,
-  "extras": {},
-  "status": "OK"
-}
-[INFO ] Explorer The cost of the action was 6
-[INFO ] Explorer The status of the drone is OK
-[INFO ] Explorer Additional information received: {}
-[INFO ] ExploreGround **Battery69734
-[INFO ] Controller ***SwitchPhase:false
-[INFO ] Controller ***Drone: Location: (47,-8) Direction: S
-[INFO ] Controller Phase: GROUND
-[INFO ] Island/Game [Engine] Asking for user's decision [explorer.takeDecision()]
-[INFO ] ExploreGround ***ExploreGround State: FINDGROUND
-[INFO ] Explorer ** Decisions: {"action":"fly"}
-[INFO ] Island/Game [Engine] Applying user's decision to the board
-[INFO ] Island/Game [Engine] Acknowledging results [explorer.acknowledgeResults(...)]
-[INFO ] Explorer ** Response received:
-{
-  "cost": 4,
-  "extras": {},
-  "status": "OK"
-}
-[INFO ] Explorer The cost of the action was 4
+[INFO ] Explorer The cost of the action was 7
 [INFO ] Explorer The status of the drone is OK
 [INFO ] Explorer Additional information received: {}
 [INFO ] ExploreGround **Battery69730
 [INFO ] Controller ***SwitchPhase:false
-[INFO ] Controller ***Drone: Location: (47,-9) Direction: S
+[INFO ] Controller ***Drone: Location: (4,-48) Direction: S
+[INFO ] Controller Phase: GROUND
+[INFO ] Island/Game [Engine] Asking for user's decision [explorer.takeDecision()]
+[INFO ] ExploreGround ***ExploreGround State: UTURN4
+[INFO ] Drone Compare this btw S
+[INFO ] Explorer ** Decisions: {"action":"heading","parameters":{"direction":"E"}}
+[INFO ] Island/Game [Engine] Applying user's decision to the board
+[INFO ] Island/Game [Engine] Acknowledging results [explorer.acknowledgeResults(...)]
+[INFO ] Explorer ** Response received:
+{
+  "cost": 4,
+  "extras": {},
+  "status": "OK"
+}
+[INFO ] Explorer The cost of the action was 4
+[INFO ] Explorer The status of the drone is OK
+[INFO ] Explorer Additional information received: {}
+[INFO ] ExploreGround **Battery69726
+[INFO ] Controller ***SwitchPhase:false
+[INFO ] Controller ***Drone: Location: (5,-49) Direction: E
 [INFO ] Controller Phase: GROUND
 [INFO ] Island/Game [Engine] Asking for user's decision [explorer.takeDecision()]
 [INFO ] ExploreGround ***ExploreGround State: FINDGROUND
@@ -1131,83 +1214,11 @@
   "status": "OK"
 }
 [INFO ] Explorer The cost of the action was 3
-[INFO ] Explorer The status of the drone is OK
-[INFO ] Explorer Additional information received: {}
-[INFO ] ExploreGround **Battery69727
-[INFO ] Controller ***SwitchPhase:false
-[INFO ] Controller ***Drone: Location: (47,-10) Direction: S
-[INFO ] Controller Phase: GROUND
-[INFO ] Island/Game [Engine] Asking for user's decision [explorer.takeDecision()]
-[INFO ] ExploreGround ***ExploreGround State: FINDGROUND
-[INFO ] Explorer ** Decisions: {"action":"fly"}
-[INFO ] Island/Game [Engine] Applying user's decision to the board
-[INFO ] Island/Game [Engine] Acknowledging results [explorer.acknowledgeResults(...)]
-[INFO ] Explorer ** Response received:
-{
-  "cost": 4,
-  "extras": {},
-  "status": "OK"
-}
-[INFO ] Explorer The cost of the action was 4
 [INFO ] Explorer The status of the drone is OK
 [INFO ] Explorer Additional information received: {}
 [INFO ] ExploreGround **Battery69723
 [INFO ] Controller ***SwitchPhase:false
-[INFO ] Controller ***Drone: Location: (47,-11) Direction: S
-[INFO ] Controller Phase: GROUND
-[INFO ] Island/Game [Engine] Asking for user's decision [explorer.takeDecision()]
-[INFO ] ExploreGround ***ExploreGround State: FINDGROUND
-[INFO ] Explorer ** Decisions: {"action":"fly"}
-[INFO ] Island/Game [Engine] Applying user's decision to the board
-[INFO ] Island/Game [Engine] Acknowledging results [explorer.acknowledgeResults(...)]
-[INFO ] Explorer ** Response received:
-{
-  "cost": 2,
-  "extras": {},
-  "status": "OK"
-}
-[INFO ] Explorer The cost of the action was 2
-[INFO ] Explorer The status of the drone is OK
-[INFO ] Explorer Additional information received: {}
-[INFO ] ExploreGround **Battery69721
-[INFO ] Controller ***SwitchPhase:false
-[INFO ] Controller ***Drone: Location: (47,-12) Direction: S
-[INFO ] Controller Phase: GROUND
-[INFO ] Island/Game [Engine] Asking for user's decision [explorer.takeDecision()]
-[INFO ] ExploreGround ***ExploreGround State: FINDGROUND
-[INFO ] Explorer ** Decisions: {"action":"fly"}
-[INFO ] Island/Game [Engine] Applying user's decision to the board
-[INFO ] Island/Game [Engine] Acknowledging results [explorer.acknowledgeResults(...)]
-[INFO ] Explorer ** Response received:
-{
-  "cost": 5,
-  "extras": {},
-  "status": "OK"
-}
-[INFO ] Explorer The cost of the action was 5
-[INFO ] Explorer The status of the drone is OK
-[INFO ] Explorer Additional information received: {}
-[INFO ] ExploreGround **Battery69716
-[INFO ] Controller ***SwitchPhase:false
-[INFO ] Controller ***Drone: Location: (47,-13) Direction: S
-[INFO ] Controller Phase: GROUND
-[INFO ] Island/Game [Engine] Asking for user's decision [explorer.takeDecision()]
-[INFO ] ExploreGround ***ExploreGround State: FINDGROUND
-[INFO ] Explorer ** Decisions: {"action":"fly"}
-[INFO ] Island/Game [Engine] Applying user's decision to the board
-[INFO ] Island/Game [Engine] Acknowledging results [explorer.acknowledgeResults(...)]
-[INFO ] Explorer ** Response received:
-{
-  "cost": 5,
-  "extras": {},
-  "status": "OK"
-}
-[INFO ] Explorer The cost of the action was 5
-[INFO ] Explorer The status of the drone is OK
-[INFO ] Explorer Additional information received: {}
-[INFO ] ExploreGround **Battery69711
-[INFO ] Controller ***SwitchPhase:false
-[INFO ] Controller ***Drone: Location: (47,-14) Direction: S
+[INFO ] Controller ***Drone: Location: (6,-49) Direction: E
 [INFO ] Controller Phase: GROUND
 [INFO ] Island/Game [Engine] Asking for user's decision [explorer.takeDecision()]
 [INFO ] ExploreGround ***ExploreGround State: FINDGROUND
@@ -1223,45 +1234,9 @@
 [INFO ] Explorer The cost of the action was 4
 [INFO ] Explorer The status of the drone is OK
 [INFO ] Explorer Additional information received: {}
-[INFO ] ExploreGround **Battery69707
+[INFO ] ExploreGround **Battery69719
 [INFO ] Controller ***SwitchPhase:false
-[INFO ] Controller ***Drone: Location: (47,-15) Direction: S
-[INFO ] Controller Phase: GROUND
-[INFO ] Island/Game [Engine] Asking for user's decision [explorer.takeDecision()]
-[INFO ] ExploreGround ***ExploreGround State: FINDGROUND
-[INFO ] Explorer ** Decisions: {"action":"fly"}
-[INFO ] Island/Game [Engine] Applying user's decision to the board
-[INFO ] Island/Game [Engine] Acknowledging results [explorer.acknowledgeResults(...)]
-[INFO ] Explorer ** Response received:
-{
-  "cost": 6,
-  "extras": {},
-  "status": "OK"
-}
-[INFO ] Explorer The cost of the action was 6
-[INFO ] Explorer The status of the drone is OK
-[INFO ] Explorer Additional information received: {}
-[INFO ] ExploreGround **Battery69701
-[INFO ] Controller ***SwitchPhase:false
-[INFO ] Controller ***Drone: Location: (47,-16) Direction: S
-[INFO ] Controller Phase: GROUND
-[INFO ] Island/Game [Engine] Asking for user's decision [explorer.takeDecision()]
-[INFO ] ExploreGround ***ExploreGround State: FINDGROUND
-[INFO ] Explorer ** Decisions: {"action":"fly"}
-[INFO ] Island/Game [Engine] Applying user's decision to the board
-[INFO ] Island/Game [Engine] Acknowledging results [explorer.acknowledgeResults(...)]
-[INFO ] Explorer ** Response received:
-{
-  "cost": 2,
-  "extras": {},
-  "status": "OK"
-}
-[INFO ] Explorer The cost of the action was 2
-[INFO ] Explorer The status of the drone is OK
-[INFO ] Explorer Additional information received: {}
-[INFO ] ExploreGround **Battery69699
-[INFO ] Controller ***SwitchPhase:false
-[INFO ] Controller ***Drone: Location: (47,-17) Direction: S
+[INFO ] Controller ***Drone: Location: (7,-49) Direction: E
 [INFO ] Controller Phase: GROUND
 [INFO ] Island/Game [Engine] Asking for user's decision [explorer.takeDecision()]
 [INFO ] ExploreGround ***ExploreGround State: FINDGROUND
@@ -1277,9 +1252,9 @@
 [INFO ] Explorer The cost of the action was 3
 [INFO ] Explorer The status of the drone is OK
 [INFO ] Explorer Additional information received: {}
-[INFO ] ExploreGround **Battery69696
+[INFO ] ExploreGround **Battery69716
 [INFO ] Controller ***SwitchPhase:false
-[INFO ] Controller ***Drone: Location: (47,-18) Direction: S
+[INFO ] Controller ***Drone: Location: (8,-49) Direction: E
 [INFO ] Controller Phase: GROUND
 [INFO ] Island/Game [Engine] Asking for user's decision [explorer.takeDecision()]
 [INFO ] ExploreGround ***ExploreGround State: FINDGROUND
@@ -1288,88 +1263,16 @@
 [INFO ] Island/Game [Engine] Acknowledging results [explorer.acknowledgeResults(...)]
 [INFO ] Explorer ** Response received:
 {
-  "cost": 2,
+  "cost": 3,
   "extras": {},
   "status": "OK"
 }
-[INFO ] Explorer The cost of the action was 2
+[INFO ] Explorer The cost of the action was 3
 [INFO ] Explorer The status of the drone is OK
 [INFO ] Explorer Additional information received: {}
-[INFO ] ExploreGround **Battery69694
+[INFO ] ExploreGround **Battery69713
 [INFO ] Controller ***SwitchPhase:false
-[INFO ] Controller ***Drone: Location: (47,-19) Direction: S
-[INFO ] Controller Phase: GROUND
-[INFO ] Island/Game [Engine] Asking for user's decision [explorer.takeDecision()]
-[INFO ] ExploreGround ***ExploreGround State: FINDGROUND
-[INFO ] Explorer ** Decisions: {"action":"fly"}
-[INFO ] Island/Game [Engine] Applying user's decision to the board
-[INFO ] Island/Game [Engine] Acknowledging results [explorer.acknowledgeResults(...)]
-[INFO ] Explorer ** Response received:
-{
-  "cost": 4,
-  "extras": {},
-  "status": "OK"
-}
-[INFO ] Explorer The cost of the action was 4
-[INFO ] Explorer The status of the drone is OK
-[INFO ] Explorer Additional information received: {}
-[INFO ] ExploreGround **Battery69690
-[INFO ] Controller ***SwitchPhase:false
-[INFO ] Controller ***Drone: Location: (47,-20) Direction: S
-[INFO ] Controller Phase: GROUND
-[INFO ] Island/Game [Engine] Asking for user's decision [explorer.takeDecision()]
-[INFO ] ExploreGround ***ExploreGround State: FINDGROUND
-[INFO ] Explorer ** Decisions: {"action":"fly"}
-[INFO ] Island/Game [Engine] Applying user's decision to the board
-[INFO ] Island/Game [Engine] Acknowledging results [explorer.acknowledgeResults(...)]
-[INFO ] Explorer ** Response received:
-{
-  "cost": 6,
-  "extras": {},
-  "status": "OK"
-}
-[INFO ] Explorer The cost of the action was 6
-[INFO ] Explorer The status of the drone is OK
-[INFO ] Explorer Additional information received: {}
-[INFO ] ExploreGround **Battery69684
-[INFO ] Controller ***SwitchPhase:false
-[INFO ] Controller ***Drone: Location: (47,-21) Direction: S
-[INFO ] Controller Phase: GROUND
-[INFO ] Island/Game [Engine] Asking for user's decision [explorer.takeDecision()]
-[INFO ] ExploreGround ***ExploreGround State: FINDGROUND
-[INFO ] Explorer ** Decisions: {"action":"fly"}
-[INFO ] Island/Game [Engine] Applying user's decision to the board
-[INFO ] Island/Game [Engine] Acknowledging results [explorer.acknowledgeResults(...)]
-[INFO ] Explorer ** Response received:
-{
-  "cost": 6,
-  "extras": {},
-  "status": "OK"
-}
-[INFO ] Explorer The cost of the action was 6
-[INFO ] Explorer The status of the drone is OK
-[INFO ] Explorer Additional information received: {}
-[INFO ] ExploreGround **Battery69678
-[INFO ] Controller ***SwitchPhase:false
-[INFO ] Controller ***Drone: Location: (47,-22) Direction: S
-[INFO ] Controller Phase: GROUND
-[INFO ] Island/Game [Engine] Asking for user's decision [explorer.takeDecision()]
-[INFO ] ExploreGround ***ExploreGround State: FINDGROUND
-[INFO ] Explorer ** Decisions: {"action":"fly"}
-[INFO ] Island/Game [Engine] Applying user's decision to the board
-[INFO ] Island/Game [Engine] Acknowledging results [explorer.acknowledgeResults(...)]
-[INFO ] Explorer ** Response received:
-{
-  "cost": 4,
-  "extras": {},
-  "status": "OK"
-}
-[INFO ] Explorer The cost of the action was 4
-[INFO ] Explorer The status of the drone is OK
-[INFO ] Explorer Additional information received: {}
-[INFO ] ExploreGround **Battery69674
-[INFO ] Controller ***SwitchPhase:false
-[INFO ] Controller ***Drone: Location: (47,-23) Direction: S
+[INFO ] Controller ***Drone: Location: (9,-49) Direction: E
 [INFO ] Controller Phase: GROUND
 [INFO ] Island/Game [Engine] Asking for user's decision [explorer.takeDecision()]
 [INFO ] ExploreGround ***ExploreGround State: FINDGROUND
@@ -1385,9 +1288,207 @@
 [INFO ] Explorer The cost of the action was 5
 [INFO ] Explorer The status of the drone is OK
 [INFO ] Explorer Additional information received: {}
-[INFO ] ExploreGround **Battery69669
+[INFO ] ExploreGround **Battery69708
+[INFO ] Controller ***SwitchPhase:false
+[INFO ] Controller ***Drone: Location: (10,-49) Direction: E
+[INFO ] Controller Phase: GROUND
+[INFO ] Island/Game [Engine] Asking for user's decision [explorer.takeDecision()]
+[INFO ] ExploreGround ***ExploreGround State: FINDGROUND
+[INFO ] Explorer ** Decisions: {"action":"fly"}
+[INFO ] Island/Game [Engine] Applying user's decision to the board
+[INFO ] Island/Game [Engine] Acknowledging results [explorer.acknowledgeResults(...)]
+[INFO ] Explorer ** Response received:
+{
+  "cost": 3,
+  "extras": {},
+  "status": "OK"
+}
+[INFO ] Explorer The cost of the action was 3
+[INFO ] Explorer The status of the drone is OK
+[INFO ] Explorer Additional information received: {}
+[INFO ] ExploreGround **Battery69705
+[INFO ] Controller ***SwitchPhase:false
+[INFO ] Controller ***Drone: Location: (11,-49) Direction: E
+[INFO ] Controller Phase: GROUND
+[INFO ] Island/Game [Engine] Asking for user's decision [explorer.takeDecision()]
+[INFO ] ExploreGround ***ExploreGround State: FINDGROUND
+[INFO ] Explorer ** Decisions: {"action":"fly"}
+[INFO ] Island/Game [Engine] Applying user's decision to the board
+[INFO ] Island/Game [Engine] Acknowledging results [explorer.acknowledgeResults(...)]
+[INFO ] Explorer ** Response received:
+{
+  "cost": 3,
+  "extras": {},
+  "status": "OK"
+}
+[INFO ] Explorer The cost of the action was 3
+[INFO ] Explorer The status of the drone is OK
+[INFO ] Explorer Additional information received: {}
+[INFO ] ExploreGround **Battery69702
+[INFO ] Controller ***SwitchPhase:false
+[INFO ] Controller ***Drone: Location: (12,-49) Direction: E
+[INFO ] Controller Phase: GROUND
+[INFO ] Island/Game [Engine] Asking for user's decision [explorer.takeDecision()]
+[INFO ] ExploreGround ***ExploreGround State: FINDGROUND
+[INFO ] Explorer ** Decisions: {"action":"fly"}
+[INFO ] Island/Game [Engine] Applying user's decision to the board
+[INFO ] Island/Game [Engine] Acknowledging results [explorer.acknowledgeResults(...)]
+[INFO ] Explorer ** Response received:
+{
+  "cost": 3,
+  "extras": {},
+  "status": "OK"
+}
+[INFO ] Explorer The cost of the action was 3
+[INFO ] Explorer The status of the drone is OK
+[INFO ] Explorer Additional information received: {}
+[INFO ] ExploreGround **Battery69699
+[INFO ] Controller ***SwitchPhase:false
+[INFO ] Controller ***Drone: Location: (13,-49) Direction: E
+[INFO ] Controller Phase: GROUND
+[INFO ] Island/Game [Engine] Asking for user's decision [explorer.takeDecision()]
+[INFO ] ExploreGround ***ExploreGround State: FINDGROUND
+[INFO ] Explorer ** Decisions: {"action":"fly"}
+[INFO ] Island/Game [Engine] Applying user's decision to the board
+[INFO ] Island/Game [Engine] Acknowledging results [explorer.acknowledgeResults(...)]
+[INFO ] Explorer ** Response received:
+{
+  "cost": 4,
+  "extras": {},
+  "status": "OK"
+}
+[INFO ] Explorer The cost of the action was 4
+[INFO ] Explorer The status of the drone is OK
+[INFO ] Explorer Additional information received: {}
+[INFO ] ExploreGround **Battery69695
+[INFO ] Controller ***SwitchPhase:false
+[INFO ] Controller ***Drone: Location: (14,-49) Direction: E
+[INFO ] Controller Phase: GROUND
+[INFO ] Island/Game [Engine] Asking for user's decision [explorer.takeDecision()]
+[INFO ] ExploreGround ***ExploreGround State: FINDGROUND
+[INFO ] Explorer ** Decisions: {"action":"fly"}
+[INFO ] Island/Game [Engine] Applying user's decision to the board
+[INFO ] Island/Game [Engine] Acknowledging results [explorer.acknowledgeResults(...)]
+[INFO ] Explorer ** Response received:
+{
+  "cost": 6,
+  "extras": {},
+  "status": "OK"
+}
+[INFO ] Explorer The cost of the action was 6
+[INFO ] Explorer The status of the drone is OK
+[INFO ] Explorer Additional information received: {}
+[INFO ] ExploreGround **Battery69689
+[INFO ] Controller ***SwitchPhase:false
+[INFO ] Controller ***Drone: Location: (15,-49) Direction: E
+[INFO ] Controller Phase: GROUND
+[INFO ] Island/Game [Engine] Asking for user's decision [explorer.takeDecision()]
+[INFO ] ExploreGround ***ExploreGround State: FINDGROUND
+[INFO ] Explorer ** Decisions: {"action":"fly"}
+[INFO ] Island/Game [Engine] Applying user's decision to the board
+[INFO ] Island/Game [Engine] Acknowledging results [explorer.acknowledgeResults(...)]
+[INFO ] Explorer ** Response received:
+{
+  "cost": 4,
+  "extras": {},
+  "status": "OK"
+}
+[INFO ] Explorer The cost of the action was 4
+[INFO ] Explorer The status of the drone is OK
+[INFO ] Explorer Additional information received: {}
+[INFO ] ExploreGround **Battery69685
+[INFO ] Controller ***SwitchPhase:false
+[INFO ] Controller ***Drone: Location: (16,-49) Direction: E
+[INFO ] Controller Phase: GROUND
+[INFO ] Island/Game [Engine] Asking for user's decision [explorer.takeDecision()]
+[INFO ] ExploreGround ***ExploreGround State: FINDGROUND
+[INFO ] Explorer ** Decisions: {"action":"fly"}
+[INFO ] Island/Game [Engine] Applying user's decision to the board
+[INFO ] Island/Game [Engine] Acknowledging results [explorer.acknowledgeResults(...)]
+[INFO ] Explorer ** Response received:
+{
+  "cost": 5,
+  "extras": {},
+  "status": "OK"
+}
+[INFO ] Explorer The cost of the action was 5
+[INFO ] Explorer The status of the drone is OK
+[INFO ] Explorer Additional information received: {}
+[INFO ] ExploreGround **Battery69680
+[INFO ] Controller ***SwitchPhase:false
+[INFO ] Controller ***Drone: Location: (17,-49) Direction: E
+[INFO ] Controller Phase: GROUND
+[INFO ] Island/Game [Engine] Asking for user's decision [explorer.takeDecision()]
+[INFO ] ExploreGround ***ExploreGround State: FINDGROUND
+[INFO ] Explorer ** Decisions: {"action":"fly"}
+[INFO ] Island/Game [Engine] Applying user's decision to the board
+[INFO ] Island/Game [Engine] Acknowledging results [explorer.acknowledgeResults(...)]
+[INFO ] Explorer ** Response received:
+{
+  "cost": 2,
+  "extras": {},
+  "status": "OK"
+}
+[INFO ] Explorer The cost of the action was 2
+[INFO ] Explorer The status of the drone is OK
+[INFO ] Explorer Additional information received: {}
+[INFO ] ExploreGround **Battery69678
+[INFO ] Controller ***SwitchPhase:false
+[INFO ] Controller ***Drone: Location: (18,-49) Direction: E
+[INFO ] Controller Phase: GROUND
+[INFO ] Island/Game [Engine] Asking for user's decision [explorer.takeDecision()]
+[INFO ] ExploreGround ***ExploreGround State: FINDGROUND
+[INFO ] Explorer ** Decisions: {"action":"fly"}
+[INFO ] Island/Game [Engine] Applying user's decision to the board
+[INFO ] Island/Game [Engine] Acknowledging results [explorer.acknowledgeResults(...)]
+[INFO ] Explorer ** Response received:
+{
+  "cost": 3,
+  "extras": {},
+  "status": "OK"
+}
+[INFO ] Explorer The cost of the action was 3
+[INFO ] Explorer The status of the drone is OK
+[INFO ] Explorer Additional information received: {}
+[INFO ] ExploreGround **Battery69675
+[INFO ] Controller ***SwitchPhase:false
+[INFO ] Controller ***Drone: Location: (19,-49) Direction: E
+[INFO ] Controller Phase: GROUND
+[INFO ] Island/Game [Engine] Asking for user's decision [explorer.takeDecision()]
+[INFO ] ExploreGround ***ExploreGround State: FINDGROUND
+[INFO ] Explorer ** Decisions: {"action":"fly"}
+[INFO ] Island/Game [Engine] Applying user's decision to the board
+[INFO ] Island/Game [Engine] Acknowledging results [explorer.acknowledgeResults(...)]
+[INFO ] Explorer ** Response received:
+{
+  "cost": 4,
+  "extras": {},
+  "status": "OK"
+}
+[INFO ] Explorer The cost of the action was 4
+[INFO ] Explorer The status of the drone is OK
+[INFO ] Explorer Additional information received: {}
+[INFO ] ExploreGround **Battery69671
+[INFO ] Controller ***SwitchPhase:false
+[INFO ] Controller ***Drone: Location: (20,-49) Direction: E
+[INFO ] Controller Phase: GROUND
+[INFO ] Island/Game [Engine] Asking for user's decision [explorer.takeDecision()]
+[INFO ] ExploreGround ***ExploreGround State: FINDGROUND
+[INFO ] Explorer ** Decisions: {"action":"fly"}
+[INFO ] Island/Game [Engine] Applying user's decision to the board
+[INFO ] Island/Game [Engine] Acknowledging results [explorer.acknowledgeResults(...)]
+[INFO ] Explorer ** Response received:
+{
+  "cost": 5,
+  "extras": {},
+  "status": "OK"
+}
+[INFO ] Explorer The cost of the action was 5
+[INFO ] Explorer The status of the drone is OK
+[INFO ] Explorer Additional information received: {}
+[INFO ] ExploreGround **Battery69666
 [INFO ] Controller ***SwitchPhase:true
-[INFO ] Controller ***Drone: Location: (47,-24) Direction: S
+[INFO ] Controller ***Drone: Location: (21,-49) Direction: E
 [INFO ] Controller ***Switching: GRIDSEARCH
 [INFO ] Controller Phase: GRIDSEARCH
 [INFO ] Island/Game [Engine] Asking for user's decision [explorer.takeDecision()]
@@ -1396,93 +1497,7 @@
 [INFO ] Island/Game [Engine] Acknowledging results [explorer.acknowledgeResults(...)]
 [INFO ] Explorer ** Response received:
 {
-  "cost": 6,
-  "extras": {
-    "creeks": [],
-    "biomes": [
-      "OCEAN",
-      "SHRUBLAND"
-    ],
-    "sites": []
-  },
-  "status": "OK"
-}
-[INFO ] Explorer The cost of the action was 6
-[INFO ] Explorer The status of the drone is OK
-[INFO ] Explorer Additional information received: {"creeks":[],"biomes":["OCEAN","SHRUBLAND"],"sites":[]}
-[INFO ] ExploreForward **Battery69663
-[INFO ] Translator bro ur in
-[INFO ] Translator biomes length 2 OCEAN
-[INFO ] Controller ***SwitchPhase:false
-[INFO ] Controller ***Drone: Location: (47,-24) Direction: S
-[INFO ] Controller Phase: GRIDSEARCH
-[INFO ] Island/Game [Engine] Asking for user's decision [explorer.takeDecision()]
-[INFO ] Explorer ** Decisions: {"action":"fly"}
-[INFO ] Island/Game [Engine] Applying user's decision to the board
-[INFO ] Island/Game [Engine] Acknowledging results [explorer.acknowledgeResults(...)]
-[INFO ] Explorer ** Response received:
-{
   "cost": 5,
-  "extras": {},
-  "status": "OK"
-}
-[INFO ] Explorer The cost of the action was 5
-[INFO ] Explorer The status of the drone is OK
-[INFO ] Explorer Additional information received: {}
-[INFO ] ExploreForward **Battery69658
-[INFO ] Controller ***SwitchPhase:false
-[INFO ] Controller ***Drone: Location: (47,-25) Direction: S
-[INFO ] Controller Phase: GRIDSEARCH
-[INFO ] Island/Game [Engine] Asking for user's decision [explorer.takeDecision()]
-[INFO ] Explorer ** Decisions: {"action":"scan"}
-[INFO ] Island/Game [Engine] Applying user's decision to the board
-[INFO ] Island/Game [Engine] Acknowledging results [explorer.acknowledgeResults(...)]
-[INFO ] Explorer ** Response received:
-{
-  "cost": 6,
-  "extras": {
-    "creeks": [],
-    "biomes": [
-      "OCEAN",
-      "SHRUBLAND"
-    ],
-    "sites": []
-  },
-  "status": "OK"
-}
-[INFO ] Explorer The cost of the action was 6
-[INFO ] Explorer The status of the drone is OK
-[INFO ] Explorer Additional information received: {"creeks":[],"biomes":["OCEAN","SHRUBLAND"],"sites":[]}
-[INFO ] ExploreForward **Battery69652
-[INFO ] Translator bro ur in
-[INFO ] Translator biomes length 2 OCEAN
-[INFO ] Controller ***SwitchPhase:false
-[INFO ] Controller ***Drone: Location: (47,-25) Direction: S
-[INFO ] Controller Phase: GRIDSEARCH
-[INFO ] Island/Game [Engine] Asking for user's decision [explorer.takeDecision()]
-[INFO ] Explorer ** Decisions: {"action":"fly"}
-[INFO ] Island/Game [Engine] Applying user's decision to the board
-[INFO ] Island/Game [Engine] Acknowledging results [explorer.acknowledgeResults(...)]
-[INFO ] Explorer ** Response received:
-{
-  "cost": 2,
-  "extras": {},
-  "status": "OK"
-}
-[INFO ] Explorer The cost of the action was 2
-[INFO ] Explorer The status of the drone is OK
-[INFO ] Explorer Additional information received: {}
-[INFO ] ExploreForward **Battery69650
-[INFO ] Controller ***SwitchPhase:false
-[INFO ] Controller ***Drone: Location: (47,-26) Direction: S
-[INFO ] Controller Phase: GRIDSEARCH
-[INFO ] Island/Game [Engine] Asking for user's decision [explorer.takeDecision()]
-[INFO ] Explorer ** Decisions: {"action":"scan"}
-[INFO ] Island/Game [Engine] Applying user's decision to the board
-[INFO ] Island/Game [Engine] Acknowledging results [explorer.acknowledgeResults(...)]
-[INFO ] Explorer ** Response received:
-{
-  "cost": 4,
   "extras": {
     "creeks": [],
     "biomes": ["OCEAN"],
@@ -1490,36 +1505,36 @@
   },
   "status": "OK"
 }
-[INFO ] Explorer The cost of the action was 4
+[INFO ] Explorer The cost of the action was 5
 [INFO ] Explorer The status of the drone is OK
 [INFO ] Explorer Additional information received: {"creeks":[],"biomes":["OCEAN"],"sites":[]}
-[INFO ] ExploreForward **Battery69646
+[INFO ] ExploreForward **Battery69661
 [INFO ] Translator bro ur in
 [INFO ] Translator biomes length 1 OCEAN
 [INFO ] Controller ***SwitchPhase:true
-[INFO ] Controller ***Drone: Location: (47,-26) Direction: S
-[INFO ] ExploreTurn Starting phase atS
+[INFO ] Controller ***Drone: Location: (21,-49) Direction: E
+[INFO ] ExploreTurn Starting phase atE
 [INFO ] Controller ***Switching: UTURN
 [INFO ] Controller Phase: UTURN
 [INFO ] Island/Game [Engine] Asking for user's decision [explorer.takeDecision()]
-[INFO ] Explorer ** Decisions: {"action":"echo","parameters":{"direction":"S"}}
+[INFO ] Explorer ** Decisions: {"action":"echo","parameters":{"direction":"E"}}
 [INFO ] Island/Game [Engine] Applying user's decision to the board
 [INFO ] Island/Game [Engine] Acknowledging results [explorer.acknowledgeResults(...)]
 [INFO ] Explorer ** Response received:
 {
-  "cost": 5,
+  "cost": 4,
   "extras": {
-    "found": "OUT_OF_RANGE",
-    "range": 23
+    "found": "GROUND",
+    "range": 0
   },
   "status": "OK"
 }
-[INFO ] Explorer The cost of the action was 5
+[INFO ] Explorer The cost of the action was 4
 [INFO ] Explorer The status of the drone is OK
-[INFO ] Explorer Additional information received: {"found":"OUT_OF_RANGE","range":23}
-[INFO ] ExploreTurn **Battery69641
+[INFO ] Explorer Additional information received: {"found":"GROUND","range":0}
+[INFO ] ExploreTurn **Battery69657
 [INFO ] Controller ***SwitchPhase:false
-[INFO ] Controller ***Drone: Location: (47,-26) Direction: S
+[INFO ] Controller ***Drone: Location: (21,-49) Direction: E
 [INFO ] Controller Phase: UTURN
 [INFO ] Island/Game [Engine] Asking for user's decision [explorer.takeDecision()]
 [INFO ] Explorer ** Decisions: {"action":"fly"}
@@ -1534,9 +1549,78 @@
 [INFO ] Explorer The cost of the action was 5
 [INFO ] Explorer The status of the drone is OK
 [INFO ] Explorer Additional information received: {}
-[INFO ] ExploreTurn **Battery69636
+[INFO ] ExploreTurn **Battery69652
+[INFO ] Controller ***SwitchPhase:true
+[INFO ] Controller ***Drone: Location: (22,-49) Direction: E
+[INFO ] Controller ***Switching: GRIDSEARCH
+[INFO ] Controller Phase: GRIDSEARCH
+[INFO ] Island/Game [Engine] Asking for user's decision [explorer.takeDecision()]
+[INFO ] Explorer ** Decisions: {"action":"scan"}
+[INFO ] Island/Game [Engine] Applying user's decision to the board
+[INFO ] Island/Game [Engine] Acknowledging results [explorer.acknowledgeResults(...)]
+[INFO ] Explorer ** Response received:
+{
+  "cost": 3,
+  "extras": {
+    "creeks": [],
+    "biomes": [
+      "OCEAN",
+      "SHRUBLAND"
+    ],
+    "sites": []
+  },
+  "status": "OK"
+}
+[INFO ] Explorer The cost of the action was 3
+[INFO ] Explorer The status of the drone is OK
+[INFO ] Explorer Additional information received: {"creeks":[],"biomes":["OCEAN","SHRUBLAND"],"sites":[]}
+[INFO ] ExploreForward **Battery69649
+[INFO ] Translator bro ur in
+[INFO ] Translator biomes length 2 OCEAN
 [INFO ] Controller ***SwitchPhase:false
-[INFO ] Controller ***Drone: Location: (47,-27) Direction: S
+[INFO ] Controller ***Drone: Location: (22,-49) Direction: E
+[INFO ] Controller Phase: GRIDSEARCH
+[INFO ] Island/Game [Engine] Asking for user's decision [explorer.takeDecision()]
+[INFO ] Explorer ** Decisions: {"action":"fly"}
+[INFO ] Island/Game [Engine] Applying user's decision to the board
+[INFO ] Island/Game [Engine] Acknowledging results [explorer.acknowledgeResults(...)]
+[INFO ] Explorer ** Response received:
+{
+  "cost": 4,
+  "extras": {},
+  "status": "OK"
+}
+[INFO ] Explorer The cost of the action was 4
+[INFO ] Explorer The status of the drone is OK
+[INFO ] Explorer Additional information received: {}
+[INFO ] ExploreForward **Battery69645
+[INFO ] Controller ***SwitchPhase:false
+[INFO ] Controller ***Drone: Location: (23,-49) Direction: E
+[INFO ] Controller Phase: GRIDSEARCH
+[INFO ] Island/Game [Engine] Asking for user's decision [explorer.takeDecision()]
+[INFO ] Explorer ** Decisions: {"action":"scan"}
+[INFO ] Island/Game [Engine] Applying user's decision to the board
+[INFO ] Island/Game [Engine] Acknowledging results [explorer.acknowledgeResults(...)]
+[INFO ] Explorer ** Response received:
+{
+  "cost": 3,
+  "extras": {
+    "creeks": [],
+    "biomes": ["OCEAN"],
+    "sites": []
+  },
+  "status": "OK"
+}
+[INFO ] Explorer The cost of the action was 3
+[INFO ] Explorer The status of the drone is OK
+[INFO ] Explorer Additional information received: {"creeks":[],"biomes":["OCEAN"],"sites":[]}
+[INFO ] ExploreForward **Battery69642
+[INFO ] Translator bro ur in
+[INFO ] Translator biomes length 1 OCEAN
+[INFO ] Controller ***SwitchPhase:true
+[INFO ] Controller ***Drone: Location: (23,-49) Direction: E
+[INFO ] ExploreTurn Starting phase atE
+[INFO ] Controller ***Switching: UTURN
 [INFO ] Controller Phase: UTURN
 [INFO ] Island/Game [Engine] Asking for user's decision [explorer.takeDecision()]
 [INFO ] Explorer ** Decisions: {"action":"echo","parameters":{"direction":"E"}}
@@ -1547,34 +1631,16 @@
   "cost": 4,
   "extras": {
     "found": "OUT_OF_RANGE",
-    "range": 2
+    "range": 29
   },
   "status": "OK"
 }
 [INFO ] Explorer The cost of the action was 4
 [INFO ] Explorer The status of the drone is OK
-[INFO ] Explorer Additional information received: {"found":"OUT_OF_RANGE","range":2}
-[INFO ] ExploreTurn **Battery69632
-[INFO ] ExploreTurn DO U EXIST
+[INFO ] Explorer Additional information received: {"found":"OUT_OF_RANGE","range":29}
+[INFO ] ExploreTurn **Battery69638
 [INFO ] Controller ***SwitchPhase:false
-[INFO ] Controller ***Drone: Location: (47,-27) Direction: S
-[INFO ] Controller Phase: UTURN
-[INFO ] Island/Game [Engine] Asking for user's decision [explorer.takeDecision()]
-[INFO ] Explorer ** Decisions: {"action":"heading","parameters":{"direction":"W"}}
-[INFO ] Island/Game [Engine] Applying user's decision to the board
-[INFO ] Island/Game [Engine] Acknowledging results [explorer.acknowledgeResults(...)]
-[INFO ] Explorer ** Response received:
-{
-  "cost": 4,
-  "extras": {},
-  "status": "OK"
-}
-[INFO ] Explorer The cost of the action was 4
-[INFO ] Explorer The status of the drone is OK
-[INFO ] Explorer Additional information received: {}
-[INFO ] ExploreTurn **Battery69628
-[INFO ] Controller ***SwitchPhase:false
-[INFO ] Controller ***Drone: Location: (46,-28) Direction: W
+[INFO ] Controller ***Drone: Location: (23,-49) Direction: E
 [INFO ] Controller Phase: UTURN
 [INFO ] Island/Game [Engine] Asking for user's decision [explorer.takeDecision()]
 [INFO ] Explorer ** Decisions: {"action":"fly"}
@@ -1582,18 +1648,40 @@
 [INFO ] Island/Game [Engine] Acknowledging results [explorer.acknowledgeResults(...)]
 [INFO ] Explorer ** Response received:
 {
-  "cost": 3,
+  "cost": 6,
   "extras": {},
   "status": "OK"
 }
-[INFO ] Explorer The cost of the action was 3
+[INFO ] Explorer The cost of the action was 6
 [INFO ] Explorer The status of the drone is OK
 [INFO ] Explorer Additional information received: {}
-[INFO ] ExploreTurn **Battery69625
+[INFO ] ExploreTurn **Battery69632
 [INFO ] Controller ***SwitchPhase:false
-[INFO ] Controller ***Drone: Location: (45,-28) Direction: W
+[INFO ] Controller ***Drone: Location: (24,-49) Direction: E
 [INFO ] Controller Phase: UTURN
 [INFO ] Island/Game [Engine] Asking for user's decision [explorer.takeDecision()]
+[INFO ] Explorer ** Decisions: {"action":"echo","parameters":{"direction":"N"}}
+[INFO ] Island/Game [Engine] Applying user's decision to the board
+[INFO ] Island/Game [Engine] Acknowledging results [explorer.acknowledgeResults(...)]
+[INFO ] Explorer ** Response received:
+{
+  "cost": 4,
+  "extras": {
+    "found": "GROUND",
+    "range": 2
+  },
+  "status": "OK"
+}
+[INFO ] Explorer The cost of the action was 4
+[INFO ] Explorer The status of the drone is OK
+[INFO ] Explorer Additional information received: {"found":"GROUND","range":2}
+[INFO ] ExploreTurn **Battery69628
+[INFO ] ExploreTurn DO U EXIST
+[INFO ] Controller ***SwitchPhase:false
+[INFO ] Controller ***Drone: Location: (24,-49) Direction: E
+[INFO ] Controller Phase: UTURN
+[INFO ] Island/Game [Engine] Asking for user's decision [explorer.takeDecision()]
+[INFO ] Drone Compare this btw E
 [INFO ] Explorer ** Decisions: {"action":"heading","parameters":{"direction":"N"}}
 [INFO ] Island/Game [Engine] Applying user's decision to the board
 [INFO ] Island/Game [Engine] Acknowledging results [explorer.acknowledgeResults(...)]
@@ -1606,29 +1694,12 @@
 [INFO ] Explorer The cost of the action was 7
 [INFO ] Explorer The status of the drone is OK
 [INFO ] Explorer Additional information received: {}
-[INFO ] ExploreTurn **Battery69618
+[INFO ] ExploreTurn **Battery69621
 [INFO ] Controller ***SwitchPhase:false
-[INFO ] Controller ***Drone: Location: (44,-27) Direction: N
+[INFO ] Controller ***Drone: Location: (25,-48) Direction: N
 [INFO ] Controller Phase: UTURN
 [INFO ] Island/Game [Engine] Asking for user's decision [explorer.takeDecision()]
-[INFO ] Explorer ** Decisions: {"action":"heading","parameters":{"direction":"E"}}
-[INFO ] Island/Game [Engine] Applying user's decision to the board
-[INFO ] Island/Game [Engine] Acknowledging results [explorer.acknowledgeResults(...)]
-[INFO ] Explorer ** Response received:
-{
-  "cost": 8,
-  "extras": {},
-  "status": "OK"
-}
-[INFO ] Explorer The cost of the action was 8
-[INFO ] Explorer The status of the drone is OK
-[INFO ] Explorer Additional information received: {}
-[INFO ] ExploreTurn **Battery69610
-[INFO ] Controller ***SwitchPhase:false
-[INFO ] Controller ***Drone: Location: (45,-26) Direction: E
-[INFO ] Controller Phase: UTURN
-[INFO ] Island/Game [Engine] Asking for user's decision [explorer.takeDecision()]
-[INFO ] Explorer ** Decisions: {"action":"heading","parameters":{"direction":"S"}}
+[INFO ] Explorer ** Decisions: {"action":"fly"}
 [INFO ] Island/Game [Engine] Applying user's decision to the board
 [INFO ] Island/Game [Engine] Acknowledging results [explorer.acknowledgeResults(...)]
 [INFO ] Explorer ** Response received:
@@ -1640,13 +1711,31 @@
 [INFO ] Explorer The cost of the action was 4
 [INFO ] Explorer The status of the drone is OK
 [INFO ] Explorer Additional information received: {}
-[INFO ] ExploreTurn **Battery69606
+[INFO ] ExploreTurn **Battery69617
 [INFO ] Controller ***SwitchPhase:false
-[INFO ] Controller ***Drone: Location: (46,-27) Direction: S
+[INFO ] Controller ***Drone: Location: (25,-47) Direction: N
 [INFO ] Controller Phase: UTURN
 [INFO ] Island/Game [Engine] Asking for user's decision [explorer.takeDecision()]
-[INFO ] Drone Compare this btw S
-[INFO ] Explorer ** Decisions: {"action":"heading","parameters":{"direction":"E"}}
+[INFO ] Drone Compare this btw N
+[INFO ] Explorer ** Decisions: {"action":"heading","parameters":{"direction":"W"}}
+[INFO ] Island/Game [Engine] Applying user's decision to the board
+[INFO ] Island/Game [Engine] Acknowledging results [explorer.acknowledgeResults(...)]
+[INFO ] Explorer ** Response received:
+{
+  "cost": 5,
+  "extras": {},
+  "status": "OK"
+}
+[INFO ] Explorer The cost of the action was 5
+[INFO ] Explorer The status of the drone is OK
+[INFO ] Explorer Additional information received: {}
+[INFO ] ExploreTurn **Battery69612
+[INFO ] Controller ***SwitchPhase:false
+[INFO ] Controller ***Drone: Location: (24,-46) Direction: W
+[INFO ] Controller Phase: UTURN
+[INFO ] Island/Game [Engine] Asking for user's decision [explorer.takeDecision()]
+[INFO ] Drone Compare this btw W
+[INFO ] Explorer ** Decisions: {"action":"heading","parameters":{"direction":"S"}}
 [INFO ] Island/Game [Engine] Applying user's decision to the board
 [INFO ] Island/Game [Engine] Acknowledging results [explorer.acknowledgeResults(...)]
 [INFO ] Explorer ** Response received:
@@ -1658,13 +1747,13 @@
 [INFO ] Explorer The cost of the action was 6
 [INFO ] Explorer The status of the drone is OK
 [INFO ] Explorer Additional information received: {}
-[INFO ] ExploreTurn **Battery69600
+[INFO ] ExploreTurn **Battery69606
 [INFO ] Controller ***SwitchPhase:false
-[INFO ] Controller ***Drone: Location: (47,-28) Direction: E
+[INFO ] Controller ***Drone: Location: (23,-47) Direction: S
 [INFO ] Controller Phase: UTURN
 [INFO ] Island/Game [Engine] Asking for user's decision [explorer.takeDecision()]
-[INFO ] Drone Compare this btw E
-[INFO ] Explorer ** Decisions: {"action":"heading","parameters":{"direction":"N"}}
+[INFO ] Drone Compare this btw S
+[INFO ] Explorer ** Decisions: {"action":"heading","parameters":{"direction":"E"}}
 [INFO ] Island/Game [Engine] Applying user's decision to the board
 [INFO ] Island/Game [Engine] Acknowledging results [explorer.acknowledgeResults(...)]
 [INFO ] Explorer ** Response received:
@@ -1676,33 +1765,67 @@
 [INFO ] Explorer The cost of the action was 4
 [INFO ] Explorer The status of the drone is OK
 [INFO ] Explorer Additional information received: {}
-[INFO ] ExploreTurn **Battery69596
+[INFO ] ExploreTurn **Battery69602
 [INFO ] Controller ***SwitchPhase:false
-[INFO ] Controller ***Drone: Location: (48,-27) Direction: N
+[INFO ] Controller ***Drone: Location: (24,-48) Direction: E
 [INFO ] Controller Phase: UTURN
 [INFO ] Island/Game [Engine] Asking for user's decision [explorer.takeDecision()]
-[INFO ] Explorer ** Decisions: {"action":"echo","parameters":{"direction":"N"}}
+[INFO ] Explorer ** Decisions: {"action":"heading","parameters":{"direction":"S"}}
 [INFO ] Island/Game [Engine] Applying user's decision to the board
 [INFO ] Island/Game [Engine] Acknowledging results [explorer.acknowledgeResults(...)]
 [INFO ] Explorer ** Response received:
 {
-  "cost": 4,
+  "cost": 6,
+  "extras": {},
+  "status": "OK"
+}
+[INFO ] Explorer The cost of the action was 6
+[INFO ] Explorer The status of the drone is OK
+[INFO ] Explorer Additional information received: {}
+[INFO ] ExploreTurn **Battery69596
+[INFO ] Controller ***SwitchPhase:false
+[INFO ] Controller ***Drone: Location: (25,-49) Direction: S
+[INFO ] Controller Phase: UTURN
+[INFO ] Island/Game [Engine] Asking for user's decision [explorer.takeDecision()]
+[INFO ] Explorer ** Decisions: {"action":"heading","parameters":{"direction":"W"}}
+[INFO ] Island/Game [Engine] Applying user's decision to the board
+[INFO ] Island/Game [Engine] Acknowledging results [explorer.acknowledgeResults(...)]
+[INFO ] Explorer ** Response received:
+{
+  "cost": 5,
+  "extras": {},
+  "status": "OK"
+}
+[INFO ] Explorer The cost of the action was 5
+[INFO ] Explorer The status of the drone is OK
+[INFO ] Explorer Additional information received: {}
+[INFO ] ExploreTurn **Battery69591
+[INFO ] Controller ***SwitchPhase:false
+[INFO ] Controller ***Drone: Location: (24,-50) Direction: W
+[INFO ] Controller Phase: UTURN
+[INFO ] Island/Game [Engine] Asking for user's decision [explorer.takeDecision()]
+[INFO ] Explorer ** Decisions: {"action":"echo","parameters":{"direction":"W"}}
+[INFO ] Island/Game [Engine] Applying user's decision to the board
+[INFO ] Island/Game [Engine] Acknowledging results [explorer.acknowledgeResults(...)]
+[INFO ] Explorer ** Response received:
+{
+  "cost": 8,
   "extras": {
     "found": "OUT_OF_RANGE",
-    "range": 30
+    "range": 24
   },
   "status": "OK"
 }
-[INFO ] Explorer The cost of the action was 4
+[INFO ] Explorer The cost of the action was 8
 [INFO ] Explorer The status of the drone is OK
-[INFO ] Explorer Additional information received: {"found":"OUT_OF_RANGE","range":30}
-[INFO ] ExploreTurn **Battery69592
+[INFO ] Explorer Additional information received: {"found":"OUT_OF_RANGE","range":24}
+[INFO ] ExploreTurn **Battery69583
 [INFO ] Controller ***SwitchPhase:false
-[INFO ] Controller ***Drone: Location: (48,-27) Direction: N
+[INFO ] Controller ***Drone: Location: (24,-50) Direction: W
 [INFO ] Controller Phase: UTURN
 [INFO ] Island/Game [Engine] Asking for user's decision [explorer.takeDecision()]
 [INFO ] Island/Game [Engine] Game is over
-[INFO ] Island/Arena  --> Execution time: 2905ms
+[INFO ] Island/Arena  --> Execution time: 1651ms
 [INFO ] Island/Viewer [FogOfWarViewer] Building an SVG document
 [INFO ] Island/Viewer [PoiJSONViewer] Building POI JSON File
 ```
