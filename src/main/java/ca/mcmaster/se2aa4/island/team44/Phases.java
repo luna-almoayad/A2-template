@@ -1,6 +1,7 @@
 package ca.mcmaster.se2aa4.island.team44;
 
 public enum Phases {
+    SPIN,
     SPAWN,
     GROUND,
     GRIDSEARCH,
@@ -9,7 +10,10 @@ public enum Phases {
 
 
     public Phases switchPhase() {
-        if(this == SPAWN){
+        if(this==SPIN){
+            return SPAWN;
+        }
+        else if(this == SPAWN){
             return GROUND;
         }
         else if (this == GROUND){

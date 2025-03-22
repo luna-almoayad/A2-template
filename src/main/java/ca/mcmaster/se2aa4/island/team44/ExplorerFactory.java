@@ -3,8 +3,10 @@ package ca.mcmaster.se2aa4.island.team44;
 public class ExplorerFactory{
 
     public ExplorerPhase getPhase(Phases phase, Drone d){
-
-        if( phase == Phases.GRIDSEARCH){
+        if(phase ==Phases.SPIN){
+            return new ExploreSpin(d);
+        }
+        else if( phase == Phases.GRIDSEARCH){
             return new ExploreForward(d);
 
         }else if( phase == Phases.GROUND){
