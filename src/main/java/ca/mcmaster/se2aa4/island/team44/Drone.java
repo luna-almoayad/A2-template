@@ -20,7 +20,8 @@ public class Drone{
         this.direction = direction;
         phase = Phases.GROUND;
         POI = new POI();
-        this.startDir = Compass.E;
+        this.startDir =direction;
+        logger.info("startDIRRRRRRRRR"+startDir);
     }
 
     public Compass getStartDir(){
@@ -34,7 +35,6 @@ public class Drone{
     public void switchPhase(){
         phase.switchPhase();
     }
-
 
     public Location getLocation(){
         return this.location;

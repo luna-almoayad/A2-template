@@ -105,7 +105,6 @@ public class ExploreGround implements ExplorerPhase{
             return translate.heading(d.getDirection());
 
         }else if(this.state == State.UTURN3) {
-
             if(this.groundDirection==start.right()) d.right();
             else d.left();
 
@@ -165,7 +164,6 @@ public class ExploreGround implements ExplorerPhase{
 
     public boolean getEchoResponse(JSONObject response){
         if(this.state == State.R_ECHO){
-
             this.echoRightResponse = response;
             if(translate.getFound(response).equals("GROUND")){
                 this.state = State.UTURN1;
@@ -174,7 +172,6 @@ public class ExploreGround implements ExplorerPhase{
             }else this.state = State.L_ECHO;
 
         } else if( this.state ==State.L_ECHO ) {
-
             this.echoLeftResponse = response;
             if(translate.getFound(response).equals("GROUND")){
                 this.state = State.UTURN1;
@@ -182,11 +179,9 @@ public class ExploreGround implements ExplorerPhase{
                 
             } else this.state = State.F_ECHO;
         }else if(this.state == State.F_ECHO ) {
-
             if(translate.getFound(response).equals("GROUND")){
                 this.state = State.FINDGROUND;
                 this.groundDistance = translate.getRange(response);
-
             }else if(translate.getFound(response).equals("OUT_OF_RANGE") && translate.getRange(response)<3 ){            
                     if( translate.getRange(this.echoLeftResponse) > translate.getRange(this.echoRightResponse) ) this.state = State.TURN_L_1;
                     else this.state = State.TURN_R_1; 
@@ -204,7 +199,7 @@ public class ExploreGround implements ExplorerPhase{
         
         return false;
     }
-//Change state of Utunr
+//Change state of Uturn
     public boolean uTurnGetResponse(){
 
             if( this.state == State.UTURN1) this.state = State.UTURN2;

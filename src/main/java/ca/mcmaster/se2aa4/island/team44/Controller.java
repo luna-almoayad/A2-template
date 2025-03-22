@@ -21,6 +21,7 @@ public class Controller{
     private final ExplorerFactory exploreFactory = new ExplorerFactory();
     MissionReport report; 
     private final Logger logger = LogManager.getLogger();
+    private MissionReport report;
 
 
 
