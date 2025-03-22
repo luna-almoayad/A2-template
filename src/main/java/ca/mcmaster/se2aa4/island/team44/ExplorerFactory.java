@@ -8,7 +8,7 @@ public class ExplorerFactory{
             return new ExploreForward(d);
 
         }else if( phase == Phases.GROUND){
-             return new ExploreGround(d); 
+            return new ExploreGround(d); 
 
         }else if( phase == Phases.SPAWN){
             return new ExploreSpawn(d);

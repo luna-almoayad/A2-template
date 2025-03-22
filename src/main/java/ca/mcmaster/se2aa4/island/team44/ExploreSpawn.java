@@ -27,8 +27,9 @@ public class ExploreSpawn implements ExplorerPhase{
 
 
     private Translator translator = new Translator();
-    int distance=0;
+    private int distance=0;
     private final Logger logger = LogManager.getLogger();
+    private boolean finalturn=false;
 
 
 
@@ -48,6 +49,7 @@ public class ExploreSpawn implements ExplorerPhase{
 //ECHO ALL DIRECTION
     @Override
     public boolean getResponse(JSONObject response){
+        logger.info("**ExploreSpawn Staceyy: "+ state);
         d.deductCost(translator.getCost(response));
         logger.info("**Battery" + d.checkBattery());
 
@@ -76,7 +78,10 @@ public class ExploreSpawn implements ExplorerPhase{
     public Boolean getEchoResponse(JSONObject response){
         if(state == States.ECHO_F){
             echof=response;
-            if (translator.getFound(echof).equals("OUT_OF_RANGE") && translator.getRange(echof)==0 ){
+            if(finalturn){
+                state = States.ECHO_R;
+            }
+            else if (translator.getFound(echof).equals("OUT_OF_RANGE") && translator.getRange(echof)==0 ){
                 state = States.END;
             }else if( (translator.getFound(echof).equals("OUT_OF_RANGE") && translator.getRange(echof)<2 ) || (translator.getFound(echof).equals("GROUND") ) ){
                 state = States.TURN_RIGHT; //if the front is out of range <2 or ground, turn right
@@ -89,10 +94,17 @@ public class ExploreSpawn implements ExplorerPhase{
             state=States.ECHO_L;
        
         }else if(state==States.ECHO_L){
-
-
             echol=response;
-            if(translator.getFound(echor).equals("GROUND")&&translator.getFound(echol).equals("GROUND"))
+            if(finalturn){
+                if(translator.getRange(echof) >5&&(translator.getRange(echor)<=3||translator.getRange(echol)<=3))
+                    return true;
+                else{
+                    if(translator.getRange(echor)>translator.getRange(echol))
+                        state=States.TURN_RIGHT;
+                    else if(translator.getRange(echor)<translator.getRange(echol))
+                        state=States.TURN_LEFT;
+                }
+            }else if(translator.getFound(echor).equals("GROUND")&&translator.getFound(echol).equals("GROUND"))
                 state=States.FLY; //ensures no ground in forward direction
             else if((translator.getRange(echol)>3&&translator.getRange(echor)>3)){ //translator.getRange(echof)<2&&
                 if(translator.getRange(echor)<translator.getRange(echol)){
@@ -100,8 +112,14 @@ public class ExploreSpawn implements ExplorerPhase{
                 }else {
                     state=States.TURN_LEFT;
                 }
-            }else
-                return true;
+            }else { //when at a corner, facing it
+                if(translator.getRange(echor)>translator.getRange(echol))
+                    state=States.TURN_RIGHT;
+                else if(translator.getRange(echor)<translator.getRange(echol)){
+                    state=States.TURN_LEFT;
+                }
+                finalturn=true;
+            }
                
         }
         return false;
@@ -145,4 +163,10 @@ public class ExploreSpawn implements ExplorerPhase{
     }
    
 }
+
+
+
+
+
+
 

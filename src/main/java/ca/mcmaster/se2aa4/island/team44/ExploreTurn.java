@@ -42,8 +42,8 @@ public class ExploreTurn implements ExplorerPhase{
    public String getDecision(){
        //Stop if Battery Low
        if(!d.sufficientBattery()){
-       logger.info("**Low Battery: Returning to Base");
-       return translator.stop();
+        logger.info("**Low Battery: Returning to Base");
+        return translator.stop();
        }
         logger.info("**Step" + step);
 
@@ -72,7 +72,7 @@ public class ExploreTurn implements ExplorerPhase{
                logger.info("R" + RCount);
                return translator.heading( d.getDirection());
            }case Steps.ECHOR ->{
-               if(d.getDirection()==Compass.N)
+               if((d.getDirection()==Compass.N&&startDir==Compass.W)||(d.getDirection()==Compass.S&&startDir==Compass.E))
                    return translator.echo(d.getDirection().right());
                else
                    return translator.echo(d.getDirection().left());
@@ -134,7 +134,7 @@ public class ExploreTurn implements ExplorerPhase{
            case Steps.L3-> {
                if (LCount==3){
                    step= Steps.R1;
-               }else if (0<LCount && LCount <2){
+               }else if (0< LCount && LCount <2){
                    step = Steps.L3;
                }
                break;
@@ -154,7 +154,7 @@ public class ExploreTurn implements ExplorerPhase{
            }
            case Steps.ECHOR->{
                logger.info("DO U EXIST");
-               if(translator.getRange(response)>=1)
+               if(translator.getRange(response)>1)
                    step=Steps.L; //safe to do uturn
                else
                    step=Steps.FR;

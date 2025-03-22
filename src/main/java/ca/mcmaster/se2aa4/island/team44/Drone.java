@@ -21,6 +21,7 @@ public class Drone{
         phase = Phases.GROUND;
         POI = new POI();
         this.startDir =direction;
+        logger.info("startDIRRRRRRRRR"+startDir);
     }
 
     public Compass getStartDir(){
