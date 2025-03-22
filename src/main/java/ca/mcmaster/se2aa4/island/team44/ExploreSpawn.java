@@ -1,172 +1,107 @@
 package ca.mcmaster.se2aa4.island.team44;
-
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.json.JSONObject;
 
-
-
-
 enum States{
-    ECHO_L,
-    ECHO_R,
-    ECHO_F,
+    ECHO_EDGE,
+    ECHO_CORNER,
     FLY,
     TURN_RIGHT,
-    TURN_LEFT,
-    END;
+    TURN_LEFT;
 }
 
-
-
-
 public class ExploreSpawn implements ExplorerPhase{
-
-
-
-
     private Translator translator = new Translator();
     private int distance=0;
     private final Logger logger = LogManager.getLogger();
     private boolean finalturn=false;
-
-
-
-
     private Drone d;
     private States state;
     public ExploreSpawn(Drone d){
         this.d =d;
-        state= States.ECHO_F; //echor, echol, echof
+        if(d.getDirection()!=Compass.W)
+            state= States.TURN_LEFT;
+        else
+            state= States.ECHO_EDGE; //echor, echol, echof
     }
-
-
-    private JSONObject echof;
-    private JSONObject echol;
-    private JSONObject echor;
+//set startdir
 //echof,echor,echol --> fly determines turn or continue echoing
 //ECHO ALL DIRECTION
     @Override
     public boolean getResponse(JSONObject response){
-        logger.info("**ExploreSpawn Staceyy: "+ state);
-        d.deductCost(translator.getCost(response));
-        logger.info("**Battery" + d.checkBattery());
-
-
-        if(this.state == States.FLY){
-            distance--;
-            if(distance<=2)
-                this.state=States.ECHO_R;//go to echor then echol to see which is less
-            //else stay in fly until u echoR
-            else this.state = States.FLY;
-        }
-        //goes f, r, l
-        else if(this.state == States.ECHO_F || state == States.ECHO_R ||state == States.ECHO_L){
-            return getEchoResponse(response);
-        }else if(this.state==States.TURN_LEFT){
-            this.state=States.ECHO_F;
-        }else if(this.state == States.TURN_RIGHT){
-            state = States.ECHO_F;
-        }
-
-
-        return false;
-    }
-
-
-    public Boolean getEchoResponse(JSONObject response){
-        if(state == States.ECHO_F){
-            echof=response;
-            if(finalturn){
-                state = States.ECHO_R;
+        logger.info("mees"+state);
+        switch(state){
+            case ECHO_EDGE -> { //flies to edge
+                if(translator.getRange(response) >= 3){ //if range in front of you is greater than 3, travel there
+                    distance = translator.getRange(response);
+                    state = States.FLY;
+                } else {
+                    state = States.TURN_RIGHT;
+                }
             }
-            else if (translator.getFound(echof).equals("OUT_OF_RANGE") && translator.getRange(echof)==0 ){
-                state = States.END;
-            }else if( (translator.getFound(echof).equals("OUT_OF_RANGE") && translator.getRange(echof)<2 ) || (translator.getFound(echof).equals("GROUND") ) ){
-                state = States.TURN_RIGHT; //if the front is out of range <2 or ground, turn right
-            } else {
-                distance = translator.getRange(response);
-                state = States.FLY; //else fly in that direction until out of range
+            case FLY -> {
+                if(distance == 2) {
+                    state = States.ECHO_EDGE;
+                } else {
+                    distance--;
+                }
             }
-        }else if (state == States.ECHO_R) {
-            echor=response;
-            state=States.ECHO_L;
-       
-        }else if(state==States.ECHO_L){
-            echol=response;
-            if(finalturn){
-                if(translator.getRange(echof) >5&&(translator.getRange(echor)<=3||translator.getRange(echol)<=3))
+            case TURN_RIGHT -> {
+                if(finalturn) {
                     return true;
-                else{
-                    if(translator.getRange(echor)>translator.getRange(echol))
-                        state=States.TURN_RIGHT;
-                    else if(translator.getRange(echor)<translator.getRange(echol))
-                        state=States.TURN_LEFT;
                 }
-            }else if(translator.getFound(echor).equals("GROUND")&&translator.getFound(echol).equals("GROUND"))
-                state=States.FLY; //ensures no ground in forward direction
-            else if((translator.getRange(echol)>3&&translator.getRange(echor)>3)){ //translator.getRange(echof)<2&&
-                if(translator.getRange(echor)<translator.getRange(echol)){
-                    state=States.TURN_RIGHT;
-                }else {
-                    state=States.TURN_LEFT;
-                }
-            }else { //when at a corner, facing it
-                if(translator.getRange(echor)>translator.getRange(echol))
-                    state=States.TURN_RIGHT;
-                else if(translator.getRange(echor)<translator.getRange(echol)){
-                    state=States.TURN_LEFT;
-                }
-                finalturn=true;
+                state = States.ECHO_CORNER;
             }
-               
+            case ECHO_CORNER -> {
+                if(translator.getRange(response) >= 3){ //if range in front of you is greater than 3, travel there
+                    distance = translator.getRange(response);
+                    state = States.FLY;
+                } else {
+                    state = States.TURN_RIGHT;
+                    finalturn = true;
+                }
+            }
+            case TURN_LEFT -> {
+                if(d.getDirection() == Compass.W) {
+                    state = States.ECHO_EDGE;
+                }
+            }
+            default -> {
+                return false;
+            }
         }
         return false;
     }
-
-
-
 
     @Override
     public String getDecision(){
         if(!d.sufficientBattery()){
-        logger.info("**Low Battery: Returning to Base");
-        return translator.stop();
-        }
-
-
-        if(state == States.ECHO_F)  
-            return translator.echo(d.getDirection() );
-
-
-        else if(state == States.ECHO_R)
-            return translator.echo(d.getDirection().right());
-        else if(state == States.ECHO_L)
-             return translator.echo(d.getDirection().left());
-        else if(state == States.FLY){
-            d.fly();
-            return translator.fly();
-        }
-        else if (state == States.TURN_RIGHT){
-            d.right();
-            return translator.heading(d.getDirection());
-        }
-        else if(state == States.TURN_LEFT){
-            d.left();
-            return translator.heading(d.getDirection());
-        }else if(state == States.END){
+            logger.info("**Low Battery: Returning to Base");
             return translator.stop();
         }
-        d.fly();
-        return translator.fly();
+        switch(state){
+            case ECHO_EDGE -> {
+                return translator.echo(d.getDirection());
+            }
+            case FLY -> {
+                d.fly();
+                return translator.fly();
+            }
+            case TURN_RIGHT -> {
+                d.right();
+                return translator.heading(d.getDirection());
+            }
+            case TURN_LEFT -> {
+                d.left();
+                return translator.heading(d.getDirection());
+            }
+            case ECHO_CORNER -> {
+                return translator.echo(d.getDirection());
+            }
+            default -> {
+                return "No";
+            }
+        }
     }
-   
 }
-
-
-
-
-
-
-

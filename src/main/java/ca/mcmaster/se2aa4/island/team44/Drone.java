@@ -20,7 +20,7 @@ public class Drone{
         this.direction = direction;
         phase = Phases.GROUND;
         POI = new POI();
-        this.startDir =direction;
+        this.startDir =Compass.E;
         logger.info("startDIRRRRRRRRR"+startDir);
     }
 
