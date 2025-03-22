@@ -26,8 +26,8 @@ public class Controller{
 
     public Controller(int battery, Compass direction){
         this.d = new Drone(battery, direction);
-        actionPhase = new ExploreSpawn(d);
-        dronePhase = Phases.SPAWN;
+        actionPhase = new ExploreSpin(d);
+        dronePhase = Phases.SPIN;
         report= new MissionReport(d);
     }
 

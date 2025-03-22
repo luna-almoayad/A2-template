@@ -1,0 +1,16 @@
+{
+	"folders": [
+		{
+			"path": "maps"
+		},
+		{
+			"path": "outputs"
+		},
+		{
+			"path": "src"
+		},
+		{
+			"path": "target"
+		}
+	]
+}

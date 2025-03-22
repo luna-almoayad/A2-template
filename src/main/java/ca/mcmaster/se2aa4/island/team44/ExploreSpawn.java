@@ -7,8 +7,7 @@ enum States{
     ECHO_EDGE,
     ECHO_CORNER,
     FLY,
-    TURN_RIGHT,
-    TURN_LEFT;
+    TURN_RIGHT;
 }
 
 public class ExploreSpawn implements ExplorerPhase{
@@ -21,10 +20,7 @@ public class ExploreSpawn implements ExplorerPhase{
     private States state;
     public ExploreSpawn(Drone d){
         this.d =d;
-        if(d.getDirection()!=Compass.W)
-            state= States.TURN_LEFT;
-        else
-            state= States.ECHO_EDGE; //echor, echol, echof
+        state= States.ECHO_EDGE; //echor, echol, echof
     }
 
     @Override
@@ -63,11 +59,6 @@ public class ExploreSpawn implements ExplorerPhase{
                 }
                 logger.info("dooch"+finalturn);
             }
-            else if(state==States.TURN_LEFT) {
-                if(d.getDirection() == Compass.W) {
-                    state = States.ECHO_EDGE;
-                }
-            }
         return false;
     }
 
@@ -86,10 +77,6 @@ public class ExploreSpawn implements ExplorerPhase{
             }
             else if(state==States.TURN_RIGHT) {
                 d.right();
-                return translator.heading(d.getDirection());
-            }
-            else if(state==States.TURN_LEFT) {
-                d.left();
                 return translator.heading(d.getDirection());
             }
             else {
