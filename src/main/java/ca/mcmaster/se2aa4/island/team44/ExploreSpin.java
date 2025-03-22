@@ -5,9 +5,11 @@ import org.json.JSONObject;
 
 enum Spins{
     FLY,
+    ECHO_F,
     TURN_RIGHT,
     TURN_LEFT,
-    ECHO_R;
+    ECHO_R,
+    END;
 }
 
 
@@ -21,20 +23,26 @@ public class ExploreSpin implements ExplorerPhase{
     private Spins state;
 
     public ExploreSpin(Drone d){
-        state=Spins.FLY;
+        state=Spins.ECHO_F;
         this.d=d;
     }
 
     @Override
     public boolean getResponse(JSONObject response){
-        if(d.getDirection()==Compass.W)
-            return true;
-        if(state==Spins.ECHO_R){
+        if(state==Spins.ECHO_F){
+            if(translator.getFound(response).equals("OUT_OF_RANGE")&&translator.getRange(response)<2)
+                state=Spins.END;
+            else
+                state=Spins.FLY;
+        }
+        else if(d.getDirection()==Compass.W)  return true;
+        else if(state==Spins.ECHO_R){
             if(translator.getFound(response).equals("OUT_OF_RANGE")&&translator.getRange(response)<10)
                 state=Spins.TURN_LEFT;
             else
                 state=Spins.TURN_RIGHT;
         }else if(state==Spins.FLY) state=Spins.ECHO_R;
+        else if(state==Spins.END) return true; 
         else state=Spins.ECHO_R;
         return false;
     }
@@ -47,7 +55,9 @@ public class ExploreSpin implements ExplorerPhase{
         }else if(state==Spins.TURN_LEFT){
             d.left();
             return translator.heading(d.getDirection());
-        }else return translator.fly();
+        }else if(state==Spins.ECHO_F) return translator.echo(d.getDirection());
+        else if(state==Spins.END) return translator.stop();
+        else return translator.fly();
 
     }
 }
