@@ -19,7 +19,7 @@ public class Controller{
     ExplorerPhase actionPhase;
     Phases dronePhase;
     private final ExplorerFactory exploreFactory = new ExplorerFactory();
-
+    MissionReport report; 
     private final Logger logger = LogManager.getLogger();
 
 

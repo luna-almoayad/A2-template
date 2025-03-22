@@ -159,10 +159,11 @@ public class ExploreTurn implements ExplorerPhase{
    
            case Steps.FG->{
                if(groundDistance==1 || groundDistance==0){
-                   return true;
+                   return true;// go back to explore forward 
                }
                groundDistance--;
            break;
+
            }case Steps.ECHOT->{
                if( translator.getFound(response).equals("OUT_OF_RANGE") ) step = Steps.END;
                else{
