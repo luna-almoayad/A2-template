@@ -25,14 +25,11 @@ public class ExploreSpawn implements ExplorerPhase{
         else
             state= States.ECHO_EDGE; //echor, echol, echof
     }
-//set startdir
-//echof,echor,echol --> fly determines turn or continue echoing
-//ECHO ALL DIRECTION
+
     @Override
     public boolean getResponse(JSONObject response){
         logger.info("mees"+state);
-        switch(state){
-            case ECHO_EDGE -> { //flies to edge
+            if(state==States.ECHO_EDGE){ //flies to edge
                 if(translator.getRange(response) >= 3){ //if range in front of you is greater than 3, travel there
                     distance = translator.getRange(response);
                     state = States.FLY;
@@ -40,21 +37,21 @@ public class ExploreSpawn implements ExplorerPhase{
                     state = States.TURN_RIGHT;
                 }
             }
-            case FLY -> {
+            else if(state==States.FLY) {
                 if(distance == 2) {
                     state = States.ECHO_EDGE;
                 } else {
                     distance--;
                 }
             }
-            case TURN_RIGHT -> {
+            else if(state==States.TURN_RIGHT) {
                 if(finalturn) {
                     d.setLocation(0,0);
                     return true;
                 }
                 state = States.ECHO_CORNER;
             }
-            case ECHO_CORNER -> {
+            else if(state==States.ECHO_CORNER) {
                 if(translator.getRange(response) >= 3){ //if range in front of you is greater than 3, travel there
                     distance = translator.getRange(response);
                     state = States.FLY;
@@ -63,15 +60,11 @@ public class ExploreSpawn implements ExplorerPhase{
                     finalturn = true;
                 }
             }
-            case TURN_LEFT -> {
+            else if(state==States.TURN_LEFT) {
                 if(d.getDirection() == Compass.W) {
                     state = States.ECHO_EDGE;
                 }
             }
-            default -> {
-                return false;
-            }
-        }
         return false;
     }
 
@@ -81,28 +74,23 @@ public class ExploreSpawn implements ExplorerPhase{
             logger.info("**Low Battery: Returning to Base");
             return translator.stop();
         }
-        switch(state){
-            case ECHO_EDGE -> {
+            if(state==States.ECHO_EDGE || state==States.ECHO_CORNER) {
                 return translator.echo(d.getDirection());
             }
-            case FLY -> {
+            else if(state==States.FLY) {
                 d.fly();
                 return translator.fly();
             }
-            case TURN_RIGHT -> {
+            else if(state==States.TURN_RIGHT) {
                 d.right();
                 return translator.heading(d.getDirection());
             }
-            case TURN_LEFT -> {
+            else if(state==States.TURN_LEFT) {
                 d.left();
                 return translator.heading(d.getDirection());
             }
-            case ECHO_CORNER -> {
-                return translator.echo(d.getDirection());
-            }
-            default -> {
+            else {
                 return "No";
             }
-        }
     }
 }
