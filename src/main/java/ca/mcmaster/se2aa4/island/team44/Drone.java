@@ -40,13 +40,13 @@ public class Drone{
         return this.location;
     }
 
-    public void setLocation(Location location){
-        this.location = location;
+    public void setLocation(int x, int y){
+        this.location = new Location(x,y);
     }
 
     public void fly(){
         this.location = this.location.makeMove(this.direction);
-        this.setLocation(this.location);
+        this.setLocation(this.location.getXCoord(), this.location.getYCoord());
     }
 
     public void deductCost(int cost){

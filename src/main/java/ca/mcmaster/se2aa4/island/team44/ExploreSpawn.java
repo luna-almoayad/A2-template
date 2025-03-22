@@ -49,6 +49,7 @@ public class ExploreSpawn implements ExplorerPhase{
             }
             case TURN_RIGHT -> {
                 if(finalturn) {
+                    d.setLocation(0,0);
                     return true;
                 }
                 state = States.ECHO_CORNER;

@@ -166,7 +166,10 @@ public class ExploreGround implements ExplorerPhase{
         if(this.state == State.R_ECHO){
             this.echoRightResponse = response;
             if(translate.getFound(response).equals("GROUND")){
-                this.state = State.UTURN1;
+                if(d.getLocation().getXCoord()<3)
+                    state=State.FINDGROUND;
+                else
+                    this.state = State.UTURN1;
                 this.groundDistance = translate.getRange(response);
 
             }else this.state = State.L_ECHO;
@@ -174,7 +177,10 @@ public class ExploreGround implements ExplorerPhase{
         } else if( this.state ==State.L_ECHO ) {
             this.echoLeftResponse = response;
             if(translate.getFound(response).equals("GROUND")){
-                this.state = State.UTURN1;
+                if(d.getLocation().getXCoord()<3)
+                    state=State.FINDGROUND;
+                else
+                    this.state = State.UTURN1;
                 this.groundDistance = translate.getRange(response);
                 
             } else this.state = State.F_ECHO;
