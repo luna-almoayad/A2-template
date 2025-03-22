@@ -41,7 +41,7 @@ public class Explorer implements IExplorerRaid {
             deliverFinalReport();
         }
         return decision;
-       // return translate.scan();
+       //translate.scan();
  
     }
 
