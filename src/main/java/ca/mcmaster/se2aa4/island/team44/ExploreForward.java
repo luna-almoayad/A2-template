@@ -7,10 +7,7 @@ import org.json.JSONObject;
 enum forwardPhases{
     SCAN,
     FLY,
-    FLY2,
-    SCAN2;
 }
-//FLY2 and SCAN 2 is unreachable ask sama.
 
 public class ExploreForward implements ExplorerPhase{
     private forwardPhases phase = forwardPhases.SCAN;
@@ -49,12 +46,10 @@ public class ExploreForward implements ExplorerPhase{
             else
                     phase = forwardPhases.FLY;
 
-        }else if(this.phase == forwardPhases.FLY)
+        }else if(this.phase == forwardPhases.FLY){
             phase = forwardPhases.SCAN;
-
-        
+        }  
         return false;
-
     } 
 
     public String getDecision(){
@@ -73,7 +68,5 @@ public class ExploreForward implements ExplorerPhase{
         return translator.stop();
 
     }
-
-    
 
 }
