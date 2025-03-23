@@ -24,9 +24,10 @@ public class ExploreSpin implements ExplorerPhase{
 
     @Override
     public boolean getResponse(JSONObject response){
-        if(state==Spins.SCAN) state=Spins.ECHO_F;
-        else if(state==Spins.ECHO_F){
-            if(translator.getFound(response).equals("OUT_OF_RANGE")&&translator.getRange(response)<2)
+        if(state==Spins.SCAN){
+            state=Spins.ECHO_F;
+        }else if(state==Spins.ECHO_F){
+            if(!d.isGround(response) &&translator.getRange(response)<2)
                 state=Spins.END;
             else{
                 state=Spins.FLY;
@@ -36,7 +37,7 @@ public class ExploreSpin implements ExplorerPhase{
             return true;
         }
         else if(state==Spins.ECHO_R){
-            if(!d.isGround(response) &&translator.getRange(response)<10){
+            if(!d.isGround(response)&&translator.getRange(response)<10){
                 state=Spins.TURN_LEFT;
             }else{
                 state=Spins.TURN_RIGHT;
@@ -58,12 +59,14 @@ public class ExploreSpin implements ExplorerPhase{
          }else if(state==Spins.TURN_RIGHT){
             return d.right();
         }else if(state==Spins.TURN_LEFT){
-            d.left();
-            return translator.heading(d.getDirection());
-        }else if(state==Spins.ECHO_F) return translator.echo(d.getDirection());
-        else if(state==Spins.END) return translator.stop();
-        else if(state==Spins.SCAN) return translator.scan();
-        else return translator.fly();
+            return d.left();
+        }else if(state==Spins.ECHO_F){
+            return d.echo("F");
+        }else if(state==Spins.END){ 
+            return translator.stop();
+        }else if(state==Spins.SCAN){
+            return translator.scan();
+        }else return d.fly();
 
     }
 }
