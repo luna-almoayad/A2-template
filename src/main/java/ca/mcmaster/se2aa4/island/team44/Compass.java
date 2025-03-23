@@ -45,11 +45,21 @@ public enum Compass{
 
     @SuppressWarnings("ConvertToStringSwitch")
     public static Compass toEnum(String direction){
-        if(direction.equals("N")) return N;
-        else if (direction.equals("E"))  return E;
-         else if (direction.equals("S")) return S;
-         else if (direction.equals("W")) return W;
-         else   return  null;
+        if("N".equals(direction)){
+            return N;
+        } 
+        else if ("E".equals(direction)){
+            return E;
+        }
+        else if ("S".equals(direction)){
+            return S;
+        } 
+        else if ("W".equals(direction)) {
+            return W;
+        }
+        else{
+            return  null;
+        }  
     }
     
     

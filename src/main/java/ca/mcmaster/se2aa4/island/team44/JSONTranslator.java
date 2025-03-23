@@ -1,36 +1,32 @@
 package ca.mcmaster.se2aa4.island.team44;
-
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-import org.json.JSONArray;
 import org.json.JSONObject;
 
 
 public interface JSONTranslator{
 
     //Methods to acquire basic information
-    public String getHeading(JSONObject info);
-    public int getCost(JSONObject info);
-    public String getStatus(JSONObject info);
-    public JSONObject getExtraInfo(JSONObject info);
+    String getHeading(JSONObject info);
+    int getCost(JSONObject info);
+    String getStatus(JSONObject info);
+    JSONObject getExtraInfo(JSONObject info);
 
     //Methods for Echo Response
-    public int getRange(JSONObject info);
-    public String getFound(JSONObject info);
+    int getRange(JSONObject info);
+    String getFound(JSONObject info);
 
     //Methods for Scan Response
-    public String getBiomes(JSONObject info);
-    public String getSiteIDs(JSONObject info);
-    public String getCreekIDs(JSONObject info);
-    public boolean hasCreek(JSONObject info);
-    public boolean hasESite(JSONObject info);
-    public boolean hasOcean(JSONObject info);
+    String getBiomes(JSONObject info);
+    String getSiteIDs(JSONObject info);
+    String getCreekIDs(JSONObject info);
+    boolean hasCreek(JSONObject info);
+    boolean hasESite(JSONObject info);
+    boolean hasOcean(JSONObject info);
 
     //Methods for Actions
-    public String stop();
-    public String fly();
-    public String echo(Compass direction);
-    public String heading(Compass direction);
-    public String scan();
+    String stop();
+    String fly();
+    String echo(Compass direction);
+    String heading(Compass direction);
+    String scan();
 
 }

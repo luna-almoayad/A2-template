@@ -41,11 +41,11 @@ public class ExploreForward implements ExplorerPhase{
                     d.addCreek(creek);
                 }
                 
-            if(translator.hasOcean(response))
+            if(translator.hasOcean(response)){
                     return true;    
-            else
+            }else{
                     phase = forwardPhases.FLY;
-
+            }
         }else if(this.phase == forwardPhases.FLY){
             phase = forwardPhases.SCAN;
         }  

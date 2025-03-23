@@ -1,5 +1,5 @@
 package ca.mcmaster.se2aa4.island.team44;
-import java.util.ArrayList;
+import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -89,10 +89,11 @@ public class Drone{
         POI.addCreek(creek);
     }
 
-    public ArrayList<Creeks> getCreek(){
+    public List<Creeks> getCreek(){
        return POI.getCreeks();
     }
 
+    @Override
     public String toString(){
         return "Location: "+location.toString() + " Direction: "+this.direction;
     }
@@ -103,7 +104,7 @@ public class Drone{
 
     public boolean ifPossiblyFound(){
         logger.info ("here in found");
-        return (POI.getEmergencySites()!=null&&POI.getCreeks().size()>0);
+        return POI.getEmergencySites()!=null&&POI.getCreeks().size()>0;
     }
     public boolean sufficientBattery(){
         return this.battery.sufficientBattery();

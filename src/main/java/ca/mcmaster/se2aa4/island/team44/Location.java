@@ -2,8 +2,8 @@ package ca.mcmaster.se2aa4.island.team44;
 import java.util.Objects;
 
 public class Location {
-    private int x;
-    private int y;
+    private final int x; //immutable objects
+    private final int y;
 
     public Location(int x, int y ){
         this.x= x;
@@ -44,19 +44,13 @@ public class Location {
    
     
     public int getYDist(Location target){
-        return (target.y - this.y);
+        return target.y - this.y;
     }
 
     public int getXDist(Location target){
-        return (target.x - this.x);
+        return target.x - this.x;
     }
 
-    /*public int findClosest (Location start, Location target){
-        int x= Math.abs(start.x - target.x);
-        int y= Math.abs(start.y - target.y);
-        return x+y;
-    
-    }*/
     @Override
     public boolean equals(Object o){
         if (this == o){

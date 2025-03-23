@@ -20,7 +20,6 @@ enum Steps{
 
 public class ExploreTurn implements ExplorerPhase{
    Drone d;
-   private Explorer explorer;
    private final Logger logger = LogManager.getLogger();
    JSONTranslator translator = new Translator();
    Compass startTurn;
@@ -47,46 +46,46 @@ public class ExploreTurn implements ExplorerPhase{
        }
         logger.info("**Step" + step);
 
-
-       switch(step){
-           case Steps.ECHOF ->{
-               return translator.echo(d.getDirection());
-           }
-           case Steps.L ->{
-               turnLeft(startTurn, d);
-               return translator.heading(d.getDirection());
-           }
-           case Steps.F -> {
-               d.fly();
-               return translator.fly();
-           }
-           case Steps.L3 ->{
-               turnLeft(startTurn, d);
-               LCount ++;
-               logger.info("l" + LCount);
-               return translator.heading( d.getDirection());
-           }
-           case Steps.R1 ->{
-               turnRight(startTurn, d);
-               RCount++;
-               logger.info("R" + RCount);
-               return translator.heading( d.getDirection());
-           }case Steps.ECHOR ->{
-               if((d.getDirection()==Compass.N&&startDir==Compass.W)||(d.getDirection()==Compass.S&&startDir==Compass.E))
-                   return translator.echo(d.getDirection().right());
-               else
-                   return translator.echo(d.getDirection().left());
-           }
-           case Steps.FR->{
-               d.fly();
-               return translator.fly();
-           }
-           default ->{
-               d.fly();
-               return translator.fly();
-           }
+       if (step== Steps.ECHOF){
+        return translator.echo(d.getDirection());
        }
-   }
+       else if (step== Steps.L){
+        turnLeft(startTurn, d);
+        return translator.heading(d.getDirection());
+       }
+       else if (step==Steps.F){
+        d.fly();
+        return translator.fly();
+       }
+       else if (step == Steps.L3){
+        turnLeft(startTurn, d);
+        LCount ++;
+        logger.info("l" + LCount);
+        return translator.heading( d.getDirection());
+       }
+       else if (step == Steps.R1){
+        turnRight(startTurn, d);
+        RCount++;
+        logger.info("R" + RCount);
+        return translator.heading( d.getDirection());
+       }
+       else if (step == Steps.ECHOR){
+        if((d.getDirection()==Compass.N&&startDir==Compass.W)||(d.getDirection()==Compass.S&&startDir==Compass.E)){
+            return translator.echo(d.getDirection().right());
+        }else{
+            return translator.echo(d.getDirection().left());
+        }
+       }
+       else if (step == Steps.FR){
+        d.fly();
+        return translator.fly();
+       }else{
+        d.fly();
+        return translator.fly();
+       }
+      
+}
+   
 
 
    private void turnLeft(Compass startTurn,Drone d){
@@ -105,64 +104,49 @@ public class ExploreTurn implements ExplorerPhase{
            d.left();
        }
    }
+
    public boolean getResponse(JSONObject response){
        d.deductCost(translator.getCost(response));
        logger.info("**Battery" + d.checkBattery());
-       switch(step){
-           case Steps.ECHOF -> {
-               if(translator.getFound(response).equals("GROUND")){
-                   return true;        
-               }else if(translator.getFound(response).equals("OUT_OF_RANGE")){
-                   if(translator.getRange(response)<=2)
-                       step=Steps.L; //skip to uturn uturn
-                   else
-                       step=Steps.FR; //fly until no longer have ground to the right then uturn
-               }
-               break;
-           }
 
-
-           case Steps.L -> {
-               step=Steps.F;
-               break;
-               }
-           case Steps.F->{
-               step=Steps.L3;
-               break;
-           }
-
-           case Steps.L3-> {
-               if (LCount==3){
-                   step= Steps.R1;
-               }else if (0< LCount && LCount <2){
-                   step = Steps.L3;
-               }
-               break;
-           }
-     
-           case Steps.R1-> {
-               if (RCount == 2){
-                   return true;
-               }else if(0 < RCount && RCount< 2 ){
-                   step=Steps.R1;
-               }
-               break;
-           }
-           case Steps.FR->{
-               step=Steps.ECHOR;
-               break;
-           }
-           case Steps.ECHOR->{
-               logger.info("DO U EXIST");
-               if(translator.getRange(response)>1)
-                   step=Steps.L; //safe to do uturn
-               else
-                   step=Steps.FR;
-               break;
-           }
-
-       }
-   return false;
-   }
+       if (step == Steps.ECHOF){
+        if(translator.getFound(response).equals("GROUND")){
+            return true;        
+        }else if(translator.getFound(response).equals("OUT_OF_RANGE")){
+            if(translator.getRange(response)<=2){
+                step=Steps.L; //skip to uturn uturn
+            }else{
+                step=Steps.FR; //fly until no longer have ground to the right then uturn
+            }
+        }
+        } else if (step == Steps.L){
+            step=Steps.F;
+        } else if (step == Steps.F){
+            step=Steps.L3;
+        } else if (step == Steps.L3){
+            if (LCount==3){
+                step= Steps.R1;
+            }else if (0< LCount && LCount <2){
+                step = Steps.L3;
+            }
+        }else if (step == Steps.R1){
+            if (RCount == 2){
+                return true;
+            }else if(0 < RCount && RCount< 2 ){
+                step=Steps.R1;
+            }
+        }else if (step == Steps.FR){
+            step=Steps.ECHOR;
+        }else if (step == Steps.ECHOR){
+            logger.info("DO U EXIST");
+            if(translator.getRange(response)>1){
+                step=Steps.L; //safe to do uturn
+            }else{
+                step=Steps.FR;
+            }
+        }
+      
+    return false;
+    }
  
 }
