@@ -18,7 +18,6 @@ public class ExploreSpawn implements ExplorerPhase{
     private int right_turns =0;
     private Drone d;
     private States state;
-    
     public ExploreSpawn(Drone d){
         this.d =d;
         state= States.ECHO_EDGE; //echor, echol, echof
@@ -28,8 +27,8 @@ public class ExploreSpawn implements ExplorerPhase{
     public boolean getResponse(JSONObject response){
         logger.info("ayo "+state);
             if(state==States.ECHO_EDGE){ //flies to edge
-                if((translator.getRange(response) > 3&&!d.isGround(response))||d.isGround(response)){ //if range in front of you is greater than 3, travel there
-                    distance = translator.getRange(response)-3;
+                if((translator.getRange(response) > 3&&translator.getFound(response).equals("OUT_OF_RANGE"))||translator.getFound(response).equals("GROUND")){ //if range in front of you is greater than 3, travel there
+                    distance = translator.getRange(response)-5;
                     state = States.FLY;
                 } else {
                     state = States.TURN_RIGHT;
@@ -51,8 +50,11 @@ public class ExploreSpawn implements ExplorerPhase{
                 if(right_turns==2) {
                     d.setLocation(0,0);
                     return true;
-                }
-                if(translator.getRange(response) > 3){ //if range in front of you is greater than 3, travel there
+            }else if(state==States.ECHO_R){
+                if(translator.getRange(response) < 3&&translator.getFound(response).equals("OUT_OF_RANGE"))
+                    state=States.TURN_LEFT;
+                else {
+                    state=States.TURN_RIGHT;
                     distance = translator.getRange(response)-3;
                     state = States.FLY;
                 } else {
@@ -70,13 +72,19 @@ public class ExploreSpawn implements ExplorerPhase{
             return translator.stop();
         }
             if(state==States.ECHO_EDGE || state==States.ECHO_CORNER) {
-                return d.echo("F");
+                return translator.echo(d.getDirection());
             }
             else if(state==States.FLY) {
-                return d.fly();
-            }
-            else if(state==States.TURN_RIGHT) {
-                return d.right();
+                d.fly();
+                return translator.fly();
+            }else if(state==States.ECHO_R){
+                return translator.echo(d.getDirection().right());
+            }else if(state==States.TURN_RIGHT) {
+                d.right();
+                return translator.heading(d.getDirection());
+            }else if(state==States.TURN_LEFT) {
+                d.left();
+                return translator.heading(d.getDirection());
             }
             else {
                 return "No";
