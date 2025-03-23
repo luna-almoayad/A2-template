@@ -21,6 +21,10 @@ public class EmergencySite extends POI {
    public String getID(){
       return this.id;
    }
+
+   public String toString(){
+      return this.location.toString();
+   }
 }
 
 

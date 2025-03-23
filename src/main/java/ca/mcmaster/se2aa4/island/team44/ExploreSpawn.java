@@ -7,7 +7,9 @@ enum States{
     ECHO_EDGE,
     ECHO_CORNER,
     FLY,
-    TURN_RIGHT;
+    TURN_RIGHT, 
+    TURN_LEFT,
+    ECHO_R;
 }
 
 public class ExploreSpawn implements ExplorerPhase{
@@ -15,7 +17,7 @@ public class ExploreSpawn implements ExplorerPhase{
     private int distance=0;
     private final Logger logger = LogManager.getLogger();
     private boolean finalturn=false;
-    private int right_turns =0;
+    private int turns =0;
     private Drone d;
     private States state;
     public ExploreSpawn(Drone d){
@@ -28,10 +30,10 @@ public class ExploreSpawn implements ExplorerPhase{
         logger.info("ayo "+state);
             if(state==States.ECHO_EDGE){ //flies to edge
                 if((translator.getRange(response) > 3&&translator.getFound(response).equals("OUT_OF_RANGE"))||translator.getFound(response).equals("GROUND")){ //if range in front of you is greater than 3, travel there
-                    distance = translator.getRange(response)-3;
+                    distance = translator.getRange(response)-5;
                     state = States.FLY;
                 } else {
-                    state = States.TURN_RIGHT;
+                    state = States.ECHO_R;
                 }
             }
             else if(state==States.FLY) {
@@ -42,22 +44,17 @@ public class ExploreSpawn implements ExplorerPhase{
                     distance--;
                 }
             }
-            else if(state==States.TURN_RIGHT) {
-                right_turns++;
-                state = States.ECHO_CORNER;
-            }
-            else if(state==States.ECHO_CORNER) {
-                if(right_turns==2) {
-                    d.setLocation(0,0);
+            else if(state==States.TURN_RIGHT||state==States.TURN_LEFT) {
+                turns++;
+                if(turns==2)
                     return true;
-                }
-                if(translator.getRange(response) > 3){ //if range in front of you is greater than 3, travel there
+            }else if(state==States.ECHO_R){
+                if(translator.getRange(response) < 3&&translator.getFound(response).equals("OUT_OF_RANGE"))
+                    state=States.TURN_LEFT;
+                else {
+                    state=States.TURN_RIGHT;
                     distance = translator.getRange(response)-3;
-                    state = States.FLY;
-                } else {
-                    state = States.TURN_RIGHT;
                 }
-                logger.info("dooch"+finalturn);
             }
         return false;
     }
@@ -74,9 +71,13 @@ public class ExploreSpawn implements ExplorerPhase{
             else if(state==States.FLY) {
                 d.fly();
                 return translator.fly();
-            }
-            else if(state==States.TURN_RIGHT) {
+            }else if(state==States.ECHO_R){
+                return translator.echo(d.getDirection().right());
+            }else if(state==States.TURN_RIGHT) {
                 d.right();
+                return translator.heading(d.getDirection());
+            }else if(state==States.TURN_LEFT) {
+                d.left();
                 return translator.heading(d.getDirection());
             }
             else {
@@ -84,3 +85,17 @@ public class ExploreSpawn implements ExplorerPhase{
             }
     }
 }
+
+/*else if(state==States.ECHO_CORNER) {
+                if(turns==2) {
+                    d.setLocation(0,0);
+                    return true;
+                }
+                if(translator.getRange(response) > 3){ //if range in front of you is greater than 3, travel there
+                    distance = translator.getRange(response)-3;
+                    state = States.FLY;
+                } else {
+                    state = States.TURN_RIGHT;
+                }
+                logger.info("dooch"+finalturn);
+            } */

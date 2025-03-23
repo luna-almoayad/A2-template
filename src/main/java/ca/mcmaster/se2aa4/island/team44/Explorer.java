@@ -35,6 +35,7 @@ public class Explorer implements IExplorerRaid {
 
     @Override
     public String takeDecision() {
+        
         String decision = control.getDecision();
         logger.info("** Decisions: {}", decision);
         if (decision.toLowerCase().contains("stop")){

@@ -4,6 +4,7 @@ import org.apache.logging.log4j.Logger;
 import org.json.JSONObject;
 
 enum Spins{
+    SCAN,
     FLY,
     ECHO_F,
     TURN_RIGHT,
@@ -23,13 +24,14 @@ public class ExploreSpin implements ExplorerPhase{
     private Spins state;
 
     public ExploreSpin(Drone d){
-        state=Spins.ECHO_F;
+        state=Spins.SCAN;
         this.d=d;
     }
 
     @Override
     public boolean getResponse(JSONObject response){
-        if(state==Spins.ECHO_F){
+        if(state==Spins.SCAN) state=Spins.ECHO_F;
+        else if(state==Spins.ECHO_F){
             if(translator.getFound(response).equals("OUT_OF_RANGE")&&translator.getRange(response)<2)
                 state=Spins.END;
             else
@@ -57,6 +59,7 @@ public class ExploreSpin implements ExplorerPhase{
             return translator.heading(d.getDirection());
         }else if(state==Spins.ECHO_F) return translator.echo(d.getDirection());
         else if(state==Spins.END) return translator.stop();
+        else if(state==Spins.SCAN) return translator.scan();
         else return translator.fly();
 
     }
