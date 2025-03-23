@@ -28,7 +28,7 @@ public class ExploreSpin implements ExplorerPhase{
         else if(state==Spins.ECHO_F){
             if(translator.getFound(response).equals("OUT_OF_RANGE")&&translator.getRange(response)<2)
                 state=Spins.END;
-            }else{
+            else{
                 state=Spins.FLY;
             }
         }
