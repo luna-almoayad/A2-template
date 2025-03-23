@@ -6,46 +6,18 @@ import org.apache.logging.log4j.Logger;
 import org.json.JSONObject;
 
 
-public class Drone{
+public class Drone extends DroneInfo{
     private Location location;
     private Battery battery;
     private Compass direction;
-    private Phases phase;
     private JSONDataAdapter translator= new JSONDataParser(); 
     private DroneCommandAdapter command= new DroneCommandTranslator();
     private POI POI;
     private final Logger logger = LogManager.getLogger();
-    private Compass startDir;
 
 
     public Drone(int battery, Compass direction){
-        this.location = new Location(0,0);
-        this.battery = new Battery(battery);
-        this.direction = direction;
-        phase = Phases.GROUND;
-        POI = new POI();
-        this.startDir =Compass.E;
-        logger.info("startDIRRRRRRRRR"+startDir);
-    }
-
-    public Compass getStartDir(){
-        return this.startDir;
-    }
-
-    public void setStartDir(Compass dir){
-        this.startDir=dir;
-    }
-
-    public void switchPhase(){
-        phase.switchPhase();
-    }
-
-    public Location getLocation(){
-        return this.location;
-    }
-
-    public void setLocation(int x, int y){
-        this.location = new Location(x,y);
+        super(battery, direction);
     }
 
     public String fly(){
@@ -54,17 +26,6 @@ public class Drone{
         return command.fly(); 
     }
 
-    public void deductCost(int cost){
-        battery.useBudget(cost);
-    }
-
-    public int checkBattery(){
-        return battery.getCurrentBudget();
-    }
-
-    public Compass getDirection(){
-        return this.direction;
-    }
     public String right() {
         this.fly(); 
         this.direction = this.direction.right();

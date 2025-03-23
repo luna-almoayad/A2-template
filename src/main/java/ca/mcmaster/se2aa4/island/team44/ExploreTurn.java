@@ -27,15 +27,12 @@ public class ExploreTurn implements ExplorerPhase{
    Steps step=Steps.ECHOF;
    int LCount =0;
    int RCount=0;
-   Compass startDir;
 
 
    public ExploreTurn(Drone d){
        this.d=d;
        this.startTurn=d.getDirection();
        logger.info("startTurning phase at"+startTurn);
-       this.startDir=d.getStartDir();
-       logger.info("startDIR phase at"+startDir);
    }
 
    public String getDecision(){
@@ -66,7 +63,7 @@ public class ExploreTurn implements ExplorerPhase{
         return turnRight(startTurn, d);
        }
        else if (step == Steps.ECHOR){
-        if((d.getDirection()==Compass.N&&startDir==Compass.W)||(d.getDirection()==Compass.S&&startDir==Compass.E)){
+        if((d.getDirection()==Compass.N)){
             return d.echo("R");
         }else{
             return d.echo("L");
@@ -83,7 +80,7 @@ public class ExploreTurn implements ExplorerPhase{
 
 
    private String turnLeft(Compass startTurn,Drone d){
-       if((startTurn==Compass.N &&startDir==Compass.E) || (startTurn==Compass.S &&startDir==Compass.W)){
+       if((startTurn==Compass.N )){
            return d.left();               
        }else{
            return d.right();
@@ -92,7 +89,7 @@ public class ExploreTurn implements ExplorerPhase{
 
 
    private String turnRight(Compass startTurn,Drone d){
-       if((startTurn==Compass.N &&startDir==Compass.E) || (startTurn==Compass.S &&startDir==Compass.W)){
+       if((startTurn==Compass.N)){
            return d.right();               
        }else{
            return d.left();
