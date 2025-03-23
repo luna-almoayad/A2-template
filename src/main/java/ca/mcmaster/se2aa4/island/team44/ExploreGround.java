@@ -14,10 +14,8 @@ enum State{
     TURN_R,
     UTURN1,
     UTURN2,
-    UTURN3,
     UTURN4;
 }
-
 
 public class ExploreGround implements ExplorerPhase{
 
@@ -29,7 +27,8 @@ public class ExploreGround implements ExplorerPhase{
     private Drone d;
     private Compass start;
     private int LCount =0; 
-    private int RCount =0; 
+    private int RCount =0;
+    private int turn=0; 
 
     private JSONObject echoRightResponse;
     private JSONObject echoLeftResponse;
@@ -53,7 +52,7 @@ public class ExploreGround implements ExplorerPhase{
             return d.fly();
         }else if(state == State.F_ECHO || state == State.L_ECHO || state == State.R_ECHO){ 
             return echoPhase();
-        }else if(state == State.UTURN1 || state == State.UTURN2 || state == State.UTURN3 || state == State.UTURN4){  
+        }else if(state == State.UTURN1 || state == State.UTURN2 || state == State.UTURN4){  
             return uTurnPhase();
         }else if(state == State.TURN_L|| state == State.TURN_R){  
             return turnPhase();
@@ -84,17 +83,10 @@ public class ExploreGround implements ExplorerPhase{
             start=d.getDirection();
             return d.fly();
         }else if(state == State.UTURN2){
+            turn++;
             if(groundDirection==start.right()){  
                 return d.right();
             }else{
-                return d.left();
-            }
-
-        }else if(state == State.UTURN3) {
-
-            if(groundDirection==start.right()){
-                return d.right();
-            }else{ 
                 return d.left();
             }
         }else if (state == State.UTURN4) {
@@ -135,14 +127,11 @@ public class ExploreGround implements ExplorerPhase{
 
         if(state == State.FINDGROUND ){
            if(groundDistance ==0) return true;
-
         }else if(state == State.FLY){
             state = State.R_ECHO;
-
         }else if(state == State.F_ECHO || state == State.L_ECHO || state == State.R_ECHO){ 
             return getEchoResponse(response);
-        }
-        else if(state == State.UTURN1 || state == State.UTURN2 || state == State.UTURN3 || state == State.UTURN4 ){  
+        }else if(state == State.UTURN1 || state == State.UTURN2 || state == State.UTURN4 ){  
             return uTurnGetResponse();
         }else if(state == State.TURN_L || this.state == State.TURN_R){ 
             return turnGetResponse();
@@ -154,12 +143,10 @@ public class ExploreGround implements ExplorerPhase{
 
     public boolean getEchoResponse(JSONObject response){
         if(state == State.R_ECHO){
-
             echoRightResponse = response;
-            if(translate.getFound(response).equals("GROUND")){
+            if(d.isGround(response)){
                 state = State.UTURN1;
                 groundDistance = translate.getRange(response);
-
             }else{
                 state = State.L_ECHO;
             }
@@ -217,10 +204,9 @@ public class ExploreGround implements ExplorerPhase{
     public boolean uTurnGetResponse(){
         if( state == State.UTURN1){ 
             state = State.UTURN2;
-        }else if(state== State.UTURN2){   
-            state = State.UTURN3;
-        }else if(state == State.UTURN3){  
-            state = State.UTURN4;
+        }else if(state== State.UTURN2){
+            if (turn!=2){ state =State.UTURN2 ;}
+            else{ state = State.UTURN4;}   
         }else if(state == State.UTURN4){  
             state = State.FINDGROUND;
         }

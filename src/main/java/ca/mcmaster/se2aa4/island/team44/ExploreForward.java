@@ -56,11 +56,11 @@ public class ExploreForward implements ExplorerPhase{
         //Stop if Battery Low
         if(!d.sufficientBattery()){
         logger.info("**Low Battery: Returning to Base");
-        return translator.stop();
+            return translator.stop();
         }
-        if (this.phase == forwardPhases.SCAN) {
+        if (phase == forwardPhases.SCAN) {
              return translator.scan();
-        } else if (this.phase == forwardPhases.FLY) {
+        } else if (phase == forwardPhases.FLY) {
             return d.fly();
         }
         return translator.stop();
