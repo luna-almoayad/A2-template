@@ -2,9 +2,8 @@ package ca.mcmaster.se2aa4.island.team44;
 import java.util.*;
 
 public class POI { //shouldnt be abstract
-    private ArrayList<Creeks> creeks;
+    private List<Creeks> creeks;
     private EmergencySite esite;
-    private Location location; 
     Creeks closest= null; 
 
     public POI(){
@@ -21,7 +20,7 @@ public class POI { //shouldnt be abstract
         this.esite= emergencySite;
     }
 
-    public ArrayList<Creeks> getCreeks(){
+    public List<Creeks> getCreeks(){
         return this.creeks;
     }
 

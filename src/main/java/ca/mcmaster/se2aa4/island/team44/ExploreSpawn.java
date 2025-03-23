@@ -18,6 +18,7 @@ public class ExploreSpawn implements ExplorerPhase{
     private int right_turns =0;
     private Drone d;
     private States state;
+    
     public ExploreSpawn(Drone d){
         this.d =d;
         state= States.ECHO_EDGE; //echor, echol, echof

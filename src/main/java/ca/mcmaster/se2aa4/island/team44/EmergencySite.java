@@ -1,6 +1,6 @@
 package ca.mcmaster.se2aa4.island.team44;
 
-public class EmergencySite extends POI {
+public class EmergencySite{
 
     Location location;
     String id;

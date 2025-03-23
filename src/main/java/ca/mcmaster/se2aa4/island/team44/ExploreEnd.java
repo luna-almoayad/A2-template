@@ -38,12 +38,14 @@ public class ExploreEnd implements ExplorerPhase {
 
     public boolean getResponse(JSONObject response){
         if(step == steps.FG) {
-               if(groundDistance==1 || groundDistance==0){
-                   return true;
-               }
+            if(groundDistance==1 || groundDistance==0){
+                return true;
+            }
                groundDistance--;
         }else if(step == steps.ECHOT) {
-               if( translator.getFound(response).equals("OUT_OF_RANGE") ) step = steps.END;
+            if( translator.getFound(response).equals("OUT_OF_RANGE") ){
+                step = steps.END;
+               } 
                else{
                    this.groundDistance=translator.getRange(response);
                    step = steps.FG;

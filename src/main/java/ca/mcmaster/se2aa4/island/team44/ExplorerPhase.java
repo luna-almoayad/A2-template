@@ -4,9 +4,8 @@ import org.json.JSONObject;
 
 public interface ExplorerPhase{
 
-    public String getDecision();
+    String getDecision();
 
-    public boolean getResponse(JSONObject response); 
-
+    boolean getResponse(JSONObject response); 
 
 }

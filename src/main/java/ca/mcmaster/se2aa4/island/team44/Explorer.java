@@ -12,7 +12,6 @@ import eu.ace_design.island.bot.IExplorerRaid;
 public class Explorer implements IExplorerRaid {
 
     private final Logger logger = LogManager.getLogger();
-    private MissionReport missionReport;
     protected JSONTranslator translate = new Translator();
     Controller control;
 
@@ -28,8 +27,6 @@ public class Explorer implements IExplorerRaid {
 
         control = new Controller(batteryLevel, Compass.toEnum(direction) );
         logger.info(Compass.toEnum(direction));
-        //this.missionReport = new MissionReport();
-
     }
 
 
@@ -41,7 +38,7 @@ public class Explorer implements IExplorerRaid {
             deliverFinalReport();
         }
         return decision;
-       //translate.scan();
+        //return translate.scan();
  
     }
 

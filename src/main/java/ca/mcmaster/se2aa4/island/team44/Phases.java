@@ -21,7 +21,6 @@ public enum Phases {
         }
         else if(this == GRIDSEARCH){
             return UTURN;
-
         }
         else if(this == UTURN){
             return CHECKCONTINUE; 

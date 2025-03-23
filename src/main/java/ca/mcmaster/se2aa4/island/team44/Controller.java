@@ -23,20 +23,17 @@ public class Controller{
     private MissionReport report;
 
 
-
     public Controller(int battery, Compass direction){
         this.d = new Drone(battery, direction);
         actionPhase = new ExploreSpin(d);
         dronePhase = Phases.SPIN;
         report= new MissionReport(d);
     }
-
     
 
     public String getDecision(){
         return actionPhase.getDecision();
     }
-
 
     //Implements Factory Pattern
     public void getResponse(JSONObject response){
@@ -57,5 +54,4 @@ public class Controller{
         return report.generateReport();
     }
 
-
-    }
+}
