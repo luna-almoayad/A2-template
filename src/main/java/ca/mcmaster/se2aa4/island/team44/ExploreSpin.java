@@ -13,7 +13,7 @@ enum Spins{
 
 
 public class ExploreSpin implements ExplorerPhase{
-    private Translator translator = new Translator();
+    private JSONDataAdapter translator = new JSONDataParser();
     private Drone d;
     private Spins state;
 
@@ -63,9 +63,9 @@ public class ExploreSpin implements ExplorerPhase{
         }else if(state==Spins.ECHO_F){
             return d.echo("F");
         }else if(state==Spins.END){ 
-            return translator.stop();
+            return d.stop();
         }else if(state==Spins.SCAN){
-            return translator.scan();
+            return d.scan();
         }else return d.fly();
 
     }

@@ -21,7 +21,7 @@ enum Steps{
 public class ExploreTurn implements ExplorerPhase{
    Drone d;
    private final Logger logger = LogManager.getLogger();
-   JSONTranslator translator = new Translator();
+   JSONDataAdapter translator = new JSONDataParser();
    Compass startTurn;
    int groundDistance = -1;
    Steps step=Steps.ECHOF;
@@ -42,7 +42,7 @@ public class ExploreTurn implements ExplorerPhase{
        //Stop if Battery Low
        if(!d.sufficientBattery()){
         logger.info("**Low Battery: Returning to Base");
-        return translator.stop();
+        return d.stop();
        }
         logger.info("**Step" + step);
 

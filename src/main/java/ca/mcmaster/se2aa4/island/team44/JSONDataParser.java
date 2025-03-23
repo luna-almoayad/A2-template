@@ -6,7 +6,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 //Implement adapter for target interface JSONTranslator that clients will use 
-public class Translator implements JSONTranslator{
+public class JSONDataParser implements JSONDataAdapter{
 
     private final Logger logger = LogManager.getLogger();
 
@@ -159,46 +159,7 @@ public class Translator implements JSONTranslator{
     }
 
 
-    @Override
-    public String stop(){
-        JSONObject decision = new JSONObject();
-        decision.put("action", "stop");
-
-        return decision.toString();
-
-    }
-
-    @Override
-    public String fly(){
-        JSONObject decision = new JSONObject();
-        decision.put("action", "fly");
-        return decision.toString();
-
-    }
-
-    @Override
-    public String echo(Compass direction){
-       JSONObject decision = new JSONObject();
-       decision.put("action", "echo");
-       decision.put("parameters", new JSONObject().put("direction", direction.toString()) );
-       return decision.toString();
-    }
-
-
-    @Override
-    public String heading(Compass direction){
-        JSONObject decision = new JSONObject();
-        decision.put("action", "heading");
-        decision.put( "parameters", new JSONObject().put("direction", direction.toString() ));
-        return decision.toString();
-    }
-
-    @Override
-    public String scan(){
-       JSONObject decision = new JSONObject();
-       decision.put("action", "scan");
-       return decision.toString();
-    }
+   
 
     public boolean ground(JSONObject response){
         if (getFound(response).equals("OUT_OF_RANGE")){

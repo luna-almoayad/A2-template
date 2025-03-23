@@ -11,7 +11,7 @@ enum forwardPhases{
 
 public class ExploreForward implements ExplorerPhase{
     private forwardPhases phase = forwardPhases.SCAN;
-    private Translator translator = new Translator();
+    private JSONDataAdapter translator = new JSONDataParser();
     private final Logger logger = LogManager.getLogger();
     private Drone d;
 
@@ -56,14 +56,14 @@ public class ExploreForward implements ExplorerPhase{
         //Stop if Battery Low
         if(!d.sufficientBattery()){
         logger.info("**Low Battery: Returning to Base");
-            return translator.stop();
+            return d.stop();
         }
         if (phase == forwardPhases.SCAN) {
-             return translator.scan();
+             return d.scan();
         } else if (phase == forwardPhases.FLY) {
             return d.fly();
         }
-        return translator.stop();
+        return d.stop();
     }
 
 }

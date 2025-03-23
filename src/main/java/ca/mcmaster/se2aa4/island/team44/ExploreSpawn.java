@@ -13,7 +13,7 @@ enum States{
 }
 
 public class ExploreSpawn implements ExplorerPhase{
-    private Translator translator = new Translator();
+    private JSONDataAdapter translator = new JSONDataParser();
     private int distance=0;
     private final Logger logger = LogManager.getLogger();
     private int turns =0;
@@ -64,7 +64,7 @@ public class ExploreSpawn implements ExplorerPhase{
     public String getDecision(){
         if(!d.sufficientBattery()){
             logger.info("**Low Battery: Returning to Base");
-            return translator.stop();
+            return d.stop();
         }
             if(state==States.ECHO_EDGE || state==States.ECHO_CORNER) {
                 return d.echo("F");

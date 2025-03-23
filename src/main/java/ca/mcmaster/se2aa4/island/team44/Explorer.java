@@ -12,7 +12,7 @@ import eu.ace_design.island.bot.IExplorerRaid;
 public class Explorer implements IExplorerRaid {
 
     private final Logger logger = LogManager.getLogger();
-    protected JSONTranslator translate = new Translator();
+    protected JSONDataAdapter translate = new JSONDataParser();
     Controller control;
 
     @Override

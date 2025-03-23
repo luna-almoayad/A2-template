@@ -20,7 +20,7 @@ enum State{
 public class ExploreGround implements ExplorerPhase{
 
     private State state = State.R_ECHO;
-    protected JSONTranslator translate = new Translator();
+    protected JSONDataAdapter translate = new JSONDataParser();
     private int groundDistance;
     private Compass groundDirection;
     private final Logger logger = LogManager.getLogger();
@@ -45,7 +45,7 @@ public class ExploreGround implements ExplorerPhase{
         //Stop if Battery Low
         if(!d.sufficientBattery()){
             logger.info("**Low Battery: Returning to Base");
-            return translate.stop();
+            return d.stop();
         }else if(state == State.FINDGROUND )  
              return findGroundPhase();//Fly to Ground
         else if(state == State.FLY){
@@ -57,7 +57,7 @@ public class ExploreGround implements ExplorerPhase{
         }else if(state == State.TURN_L|| state == State.TURN_R){  
             return turnPhase();
         }
-        return translate.stop();
+        return d.stop();
     }
 
     public String findGroundPhase(){
@@ -98,7 +98,7 @@ public class ExploreGround implements ExplorerPhase{
                 return d.right();
             }
         }
-        return translate.stop();
+        return d.stop();
     }
 
     public String echoPhase(){
@@ -114,7 +114,7 @@ public class ExploreGround implements ExplorerPhase{
             groundDirection = d.getDirection().right();
             return d.echo("R");
         }
-        return translate.stop();
+        return d.stop();
     }
 
 

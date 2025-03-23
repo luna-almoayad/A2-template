@@ -11,7 +11,8 @@ public class Drone{
     private Battery battery;
     private Compass direction;
     private Phases phase;
-    private JSONTranslator translator= new Translator(); 
+    private JSONDataAdapter translator= new JSONDataParser(); 
+    private DroneCommandAdapter command= new DroneCommandTranslator();
     private POI POI;
     private final Logger logger = LogManager.getLogger();
     private Compass startDir;
@@ -50,7 +51,7 @@ public class Drone{
     public String fly(){
         this.location = this.location.makeMove(this.direction);
         this.setLocation(this.location.getXCoord(), this.location.getYCoord());
-        return translator.fly(); 
+        return command.fly(); 
     }
 
     public void deductCost(int cost){
@@ -68,7 +69,7 @@ public class Drone{
         this.fly(); 
         this.direction = this.direction.right();
         this.fly();
-        return translator.heading(this.getDirection());
+        return command.heading(this.getDirection());
     }
 
     public String left(){
@@ -76,25 +77,27 @@ public class Drone{
         this.fly();
         this.direction = this.direction.left();
         this.fly();
-        return translator.heading(this.getDirection());
+        return command.heading(this.getDirection());
     }
 
-
+    public String scan(){
+        return command.scan();
+    }
 
     public String echo(String dir){
         if (dir.equals("F")){
-            return translator.echo(this.direction);
+            return command.echo(this.direction);
         }else if (dir.equals("R")){
-            return translator.echo(this.direction.right());
+            return command.echo(this.direction.right());
         }else{
-            return translator.echo(this. direction.left());
+            return command.echo(this. direction.left());
         }
         
     }
 
     public String setDirection(Compass direction){
         this.direction = direction;
-        return translator.heading(this.direction);
+        return command.heading(this.direction);
     }
 
     public void addEmergencySite(EmergencySite emergencySite){
@@ -133,6 +136,10 @@ public class Drone{
     public boolean isGround(JSONObject response){
         return translator.ground(response);
 
+    }
+
+    public String stop(){
+        return command.stop();
     }
 
 }

@@ -11,7 +11,7 @@ public class ExploreEnd implements ExplorerPhase {
         END; 
     }
     private Drone d; 
-    private Translator translator = new Translator(); 
+    private JSONDataAdapter translator = new JSONDataParser(); 
     private final Logger logger = LogManager.getLogger();
     steps step = steps.ECHOT;
     private int groundDistance;
@@ -27,7 +27,7 @@ public class ExploreEnd implements ExplorerPhase {
         }else if(step == steps.ECHOT) {
             return d.echo("F");
         }else {
-            return translator.stop();
+            return d.stop();
         }
     }
 
