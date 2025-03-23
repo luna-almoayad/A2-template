@@ -21,6 +21,7 @@ public interface JSONTranslator{
     boolean hasCreek(JSONObject info);
     boolean hasESite(JSONObject info);
     boolean hasOcean(JSONObject info);
+    boolean ground(JSONObject info);
 
     //Methods for Actions
     String stop();

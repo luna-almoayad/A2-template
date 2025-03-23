@@ -10,10 +10,8 @@ enum State{
     F_ECHO,
     FLY,
     FINDGROUND,
-    TURN_L_1,
-    TURN_L_2,
-    TURN_R_1,
-    TURN_R_2,
+    TURN_L,
+    TURN_R,
     UTURN1,
     UTURN2,
     UTURN3,
@@ -30,6 +28,8 @@ public class ExploreGround implements ExplorerPhase{
     private final Logger logger = LogManager.getLogger();
     private Drone d;
     private Compass start;
+    private int LCount =0; 
+    private int RCount =0; 
 
     private JSONObject echoRightResponse;
     private JSONObject echoLeftResponse;
@@ -47,99 +47,80 @@ public class ExploreGround implements ExplorerPhase{
         if(!d.sufficientBattery()){
             logger.info("**Low Battery: Returning to Base");
             return translate.stop();
-        }else if(this.state == State.FINDGROUND )  
-             return this.findGroundPhase();//Fly to Ground
-        else if(this.state == State.FLY){
-                d.fly();
-                return translate.fly();
-
-        }else if(this.state == State.F_ECHO || this.state == State.L_ECHO || this.state == State.R_ECHO){ 
-            return this.echoPhase();
-        }else if(this.state == State.UTURN1 || this.state == State.UTURN2 || this.state == State.UTURN3 || this.state == State.UTURN4){  
-            return this.uTurnPhase();
-        }else if(this.state == State.TURN_L_1 || this.state == State.TURN_L_2 || this.state == State.TURN_R_1 ||this.state == State.TURN_R_2 ){  
-            return this.turnPhase();
+        }else if(state == State.FINDGROUND )  
+             return findGroundPhase();//Fly to Ground
+        else if(state == State.FLY){
+            return d.fly();
+        }else if(state == State.F_ECHO || state == State.L_ECHO || state == State.R_ECHO){ 
+            return echoPhase();
+        }else if(state == State.UTURN1 || state == State.UTURN2 || state == State.UTURN3 || state == State.UTURN4){  
+            return uTurnPhase();
+        }else if(state == State.TURN_L|| state == State.TURN_R){  
+            return turnPhase();
         }
         return translate.stop();
     }
 
-
     public String findGroundPhase(){
-        if(this.groundDirection != d.getDirection()){
-                d.setDirection(this.groundDirection);
-                return translate.heading(this.groundDirection); 
+        if(groundDirection != d.getDirection()){
+            return d.setDirection(groundDirection); 
             }
-            this.groundDistance = this.groundDistance - 1;
-            d.fly();
-            return translate.fly();
+            groundDistance --;
+            return d.fly();
     }
 
     public String turnPhase(){
-        if(this.state == State.TURN_L_1) {
-                d.left();
-                return translate.heading(d.getDirection());
+        if(state == State.TURN_L) {
+                LCount ++;
+                return d.left();
+        }else{
+                RCount ++;
+                return d.right();
         }
-        else if(this.state == State.TURN_L_2){
-                d.left();
-                return translate.heading(d.getDirection());
-        }else if(this.state == State.TURN_R_1){
-                d.right();
-                return translate.heading(d.getDirection());
-        }else if(this.state == State.TURN_R_2){
-                d.right();
-                return translate.heading(d.getDirection());
-        }
-        return translate.stop();
     }
 
     public String uTurnPhase(){
-        if(this.state == State.UTURN1) {
+        if(state == State.UTURN1) {
             start=d.getDirection();
-            d.fly();
-            return translate.fly();
-
-        }else if(this.state == State.UTURN2){
+            return d.fly();
+        }else if(state == State.UTURN2){
             if(groundDirection==start.right()){  
-                d.right();
+                return d.right();
             }else{
-                d.left();
+                return d.left();
             }
-            return translate.heading(d.getDirection());
 
-        }else if(this.state == State.UTURN3) {
+        }else if(state == State.UTURN3) {
 
-            if(this.groundDirection==start.right()){
-                d.right();
+            if(groundDirection==start.right()){
+                return d.right();
             }else{ 
-                d.left();
+                return d.left();
             }
-            return translate.heading(d.getDirection());
-        }else if (this.state == State.UTURN4) {
-            this.groundDistance-=3;
+        }else if (state == State.UTURN4) {
+            groundDistance-=3;
             // we repeat this many times can we maybe fo helper method or an opposite dir?
-            if(this.groundDirection==start.right()){ 
-                d.left();
+            if(groundDirection==start.right()){ 
+               return d.left();
             }else{
-                d.right();
+                return d.right();
             }
-            return translate.heading(d.getDirection());
         }
         return translate.stop();
     }
 
     public String echoPhase(){
-        if(this.state == State.F_ECHO ){
-            this.groundDirection = d.getDirection();
-            return translate.echo(d.getDirection());
+        if(state == State.F_ECHO ){
+            groundDirection = d.getDirection();
+            return d.echo("F");
 
-        }else if( this.state == State.L_ECHO){
-
-            this.groundDirection = d.getDirection().left();
-            return translate.echo(d.getDirection().left());
+        }else if(state == State.L_ECHO){
+            groundDirection = d.getDirection().left();
+            return d.echo("L");
 
         }else if( this.state == State.R_ECHO ) {
-            this.groundDirection = d.getDirection().right();
-            return translate.echo(d.getDirection().right());
+            groundDirection = d.getDirection().right();
+            return d.echo("R");
         }
         return translate.stop();
     }
@@ -152,19 +133,19 @@ public class ExploreGround implements ExplorerPhase{
         d.deductCost(translate.getCost(response));
         logger.info("**Battery" + d.checkBattery());
 
-        if(this.state == State.FINDGROUND ){
-           if(this.groundDistance ==0) return true;
+        if(state == State.FINDGROUND ){
+           if(groundDistance ==0) return true;
 
-        }else if(this.state == State.FLY){
-            this.state = State.R_ECHO;
+        }else if(state == State.FLY){
+            state = State.R_ECHO;
 
-        }else if(this.state == State.F_ECHO || this.state == State.L_ECHO || this.state == State.R_ECHO){ 
-            return this.getEchoResponse(response);
+        }else if(state == State.F_ECHO || state == State.L_ECHO || state == State.R_ECHO){ 
+            return getEchoResponse(response);
         }
-        else if(this.state == State.UTURN1 || this.state == State.UTURN2 || this.state == State.UTURN3 || this.state == State.UTURN4 ){  
-            return this.uTurnGetResponse();
-        }else if(this.state == State.TURN_L_1 || this.state == State.TURN_L_2 || this.state == State.TURN_R_1 ||this.state == State.TURN_R_2 ){ 
-            return this.turnGetResponse();
+        else if(state == State.UTURN1 || state == State.UTURN2 || state == State.UTURN3 || state == State.UTURN4 ){  
+            return uTurnGetResponse();
+        }else if(state == State.TURN_L || this.state == State.TURN_R){ 
+            return turnGetResponse();
         }
         return false;
          
@@ -172,41 +153,41 @@ public class ExploreGround implements ExplorerPhase{
 
 
     public boolean getEchoResponse(JSONObject response){
-        if(this.state == State.R_ECHO){
+        if(state == State.R_ECHO){
 
-            this.echoRightResponse = response;
+            echoRightResponse = response;
             if(translate.getFound(response).equals("GROUND")){
-                this.state = State.UTURN1;
-                this.groundDistance = translate.getRange(response);
+                state = State.UTURN1;
+                groundDistance = translate.getRange(response);
 
             }else{
-                this.state = State.L_ECHO;
+                state = State.L_ECHO;
             }
 
-        } else if( this.state ==State.L_ECHO ) {
+        } else if(state ==State.L_ECHO ) {
 
-            this.echoLeftResponse = response;
-            if(translate.getFound(response).equals("GROUND")){
-                this.state = State.UTURN1;
-                this.groundDistance = translate.getRange(response);
+            echoLeftResponse = response;
+            if(d.isGround(response)){
+                state = State.UTURN1;
+                groundDistance = translate.getRange(response);
                 
             } else{
-                this.state = State.F_ECHO;
+                state = State.F_ECHO;
             }
-        }else if(this.state == State.F_ECHO ) {
+        }else if(state == State.F_ECHO ) {
 
-            if(translate.getFound(response).equals("GROUND")){
-                this.state = State.FINDGROUND;
-                this.groundDistance = translate.getRange(response);
+            if(d.isGround(response)){
+                state = State.FINDGROUND;
+                groundDistance = translate.getRange(response);
 
-            }else if(translate.getFound(response).equals("OUT_OF_RANGE") && translate.getRange(response)<3 ){            
-                    if( translate.getRange(this.echoLeftResponse) > translate.getRange(this.echoRightResponse) ){ 
-                        this.state = State.TURN_L_1;
+            }else if(d.isGround(response) && translate.getRange(response)<3 ){            
+                    if(translate.getRange(this.echoLeftResponse) > translate.getRange(this.echoRightResponse) ){ 
+                        state = State.TURN_L;
                     }else{
-                        this.state = State.TURN_R_1; 
+                        state = State.TURN_R; 
                     }
             }else{ 
-                this.state = State.FLY;
+                state = State.FLY;
             }
          }
         return false;
@@ -214,30 +195,35 @@ public class ExploreGround implements ExplorerPhase{
 
 //Change state of turn
     public boolean turnGetResponse(){
-        if(this.state == State.TURN_L_1 ){
-            this.state = State.TURN_L_2;
-        }else if(this.state == State.TURN_L_2){
-            this.state = State.F_ECHO;
-        }else if(this.state ==  State.TURN_R_1){
-            this.state = State.TURN_R_2;
-        }else if(this.state ==  State.TURN_R_2 ){ 
-            this.state = State.F_ECHO;
+        if(state == State.TURN_L ){
+            if (LCount == 2){
+                LCount =0;
+                state = State.F_ECHO;
+            }else if(0< LCount && LCount <2){
+                state = State.TURN_L;
+            }
+   
+        }else if(state ==  State.TURN_R){
+            if (RCount == 2){
+                RCount =0;
+                state = State.F_ECHO;
+            }else if(0< RCount && RCount <2){
+                state = State.TURN_R;
+            }
         }
         return false;
     }
 //Change state of Utunr
     public boolean uTurnGetResponse(){
-
-        if( this.state == State.UTURN1){ 
-            this.state = State.UTURN2;
-        }else if(this.state== State.UTURN2){   
-            this.state = State.UTURN3;
-        }else if(this.state == State.UTURN3){  
-            this.state = State.UTURN4;
-        }else if(this.state == State.UTURN4){  
-            this.state = State.FINDGROUND;
+        if( state == State.UTURN1){ 
+            state = State.UTURN2;
+        }else if(state== State.UTURN2){   
+            state = State.UTURN3;
+        }else if(state == State.UTURN3){  
+            state = State.UTURN4;
+        }else if(state == State.UTURN4){  
+            state = State.FINDGROUND;
         }
         return false;
     }
-        
 }

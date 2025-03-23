@@ -47,61 +47,55 @@ public class ExploreTurn implements ExplorerPhase{
         logger.info("**Step" + step);
 
        if (step== Steps.ECHOF){
-        return translator.echo(d.getDirection());
+        return d.echo("F");
        }
        else if (step== Steps.L){
-        turnLeft(startTurn, d);
-        return translator.heading(d.getDirection());
+        return turnLeft(startTurn, d);
        }
        else if (step==Steps.F){
-        d.fly();
-        return translator.fly();
+        return d.fly();
        }
        else if (step == Steps.L3){
-        turnLeft(startTurn, d);
         LCount ++;
         logger.info("l" + LCount);
-        return translator.heading( d.getDirection());
+        return turnLeft(startTurn, d);
        }
        else if (step == Steps.R1){
-        turnRight(startTurn, d);
         RCount++;
         logger.info("R" + RCount);
-        return translator.heading( d.getDirection());
+        return turnRight(startTurn, d);
        }
        else if (step == Steps.ECHOR){
         if((d.getDirection()==Compass.N&&startDir==Compass.W)||(d.getDirection()==Compass.S&&startDir==Compass.E)){
-            return translator.echo(d.getDirection().right());
+            return d.echo("R");
         }else{
-            return translator.echo(d.getDirection().left());
+            return d.echo("L");
         }
        }
        else if (step == Steps.FR){
-        d.fly();
-        return translator.fly();
+        return d.fly();
        }else{
-        d.fly();
-        return translator.fly();
+        return d.fly();
        }
       
 }
    
 
 
-   private void turnLeft(Compass startTurn,Drone d){
+   private String turnLeft(Compass startTurn,Drone d){
        if((startTurn==Compass.N &&startDir==Compass.E) || (startTurn==Compass.S &&startDir==Compass.W)){
-           d.left();               
+           return d.left();               
        }else{
-           d.right();
+           return d.right();
        }
    }
 
 
-   private void turnRight(Compass startTurn,Drone d){
+   private String turnRight(Compass startTurn,Drone d){
        if((startTurn==Compass.N &&startDir==Compass.E) || (startTurn==Compass.S &&startDir==Compass.W)){
-           d.right();               
+           return d.right();               
        }else{
-           d.left();
+           return d.left();
        }
    }
 
@@ -110,9 +104,9 @@ public class ExploreTurn implements ExplorerPhase{
        logger.info("**Battery" + d.checkBattery());
 
        if (step == Steps.ECHOF){
-        if(translator.getFound(response).equals("GROUND")){
+        if(d.isGround(response)){
             return true;        
-        }else if(translator.getFound(response).equals("OUT_OF_RANGE")){
+        }else if(!d.isGround(response)){
             if(translator.getRange(response)<=2){
                 step=Steps.L; //skip to uturn uturn
             }else{

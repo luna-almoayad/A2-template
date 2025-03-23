@@ -3,12 +3,15 @@ import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.json.JSONObject;
+
 
 public class Drone{
     private Location location;
     private Battery battery;
     private Compass direction;
     private Phases phase;
+    private JSONTranslator translator= new Translator(); 
     private POI POI;
     private final Logger logger = LogManager.getLogger();
     private Compass startDir;
@@ -44,9 +47,10 @@ public class Drone{
         this.location = new Location(x,y);
     }
 
-    public void fly(){
+    public String fly(){
         this.location = this.location.makeMove(this.direction);
         this.setLocation(this.location.getXCoord(), this.location.getYCoord());
+        return translator.fly(); 
     }
 
     public void deductCost(int cost){
@@ -60,21 +64,37 @@ public class Drone{
     public Compass getDirection(){
         return this.direction;
     }
-    public void right() {
+    public String right() {
         this.fly(); 
         this.direction = this.direction.right();
         this.fly();
+        return translator.heading(this.getDirection());
     }
 
-    public void left(){
+    public String left(){
         logger.info("Compare this btw "+this.direction);
         this.fly();
         this.direction = this.direction.left();
         this.fly();
+        return translator.heading(this.getDirection());
     }
 
-    public void setDirection(Compass direction){
+
+
+    public String echo(String dir){
+        if (dir.equals("F")){
+            return translator.echo(this.direction);
+        }else if (dir.equals("R")){
+            return translator.echo(this.direction.right());
+        }else{
+            return translator.echo(this. direction.left());
+        }
+        
+    }
+
+    public String setDirection(Compass direction){
         this.direction = direction;
+        return translator.heading(this.direction);
     }
 
     public void addEmergencySite(EmergencySite emergencySite){
@@ -108,6 +128,11 @@ public class Drone{
     }
     public boolean sufficientBattery(){
         return this.battery.sufficientBattery();
+    }
+
+    public boolean isGround(JSONObject response){
+        return translator.ground(response);
+
     }
 
 }

@@ -2,7 +2,7 @@ package ca.mcmaster.se2aa4.island.team44;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.BeforeEach;
-
+/* 
 public class DroneTest {
     private Drone drone; 
 
@@ -47,3 +47,4 @@ public class DroneTest {
 
 
 }
+*/

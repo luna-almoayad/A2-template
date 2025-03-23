@@ -58,15 +58,12 @@ public class ExploreForward implements ExplorerPhase{
         logger.info("**Low Battery: Returning to Base");
         return translator.stop();
         }
-
         if (this.phase == forwardPhases.SCAN) {
              return translator.scan();
         } else if (this.phase == forwardPhases.FLY) {
-            d.fly();
-            return translator.fly();
+            return d.fly();
         }
         return translator.stop();
-
     }
 
 }

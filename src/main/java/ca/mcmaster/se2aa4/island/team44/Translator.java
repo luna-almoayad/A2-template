@@ -200,4 +200,12 @@ public class Translator implements JSONTranslator{
        return decision.toString();
     }
 
+    public boolean ground(JSONObject response){
+        if (getFound(response).equals("OUT_OF_RANGE")){
+            return false; 
+        }else{
+            return true; 
+        }
+    }
+
 }

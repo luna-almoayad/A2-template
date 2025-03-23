@@ -28,7 +28,7 @@ public class ExploreSpawn implements ExplorerPhase{
     public boolean getResponse(JSONObject response){
         logger.info("ayo "+state);
             if(state==States.ECHO_EDGE){ //flies to edge
-                if((translator.getRange(response) > 3&&translator.getFound(response).equals("OUT_OF_RANGE"))||translator.getFound(response).equals("GROUND")){ //if range in front of you is greater than 3, travel there
+                if((translator.getRange(response) > 3&&!d.isGround(response))||d.isGround(response)){ //if range in front of you is greater than 3, travel there
                     distance = translator.getRange(response)-3;
                     state = States.FLY;
                 } else {
@@ -70,15 +70,13 @@ public class ExploreSpawn implements ExplorerPhase{
             return translator.stop();
         }
             if(state==States.ECHO_EDGE || state==States.ECHO_CORNER) {
-                return translator.echo(d.getDirection());
+                return d.echo("F");
             }
             else if(state==States.FLY) {
-                d.fly();
-                return translator.fly();
+                return d.fly();
             }
             else if(state==States.TURN_RIGHT) {
-                d.right();
-                return translator.heading(d.getDirection());
+                return d.right();
             }
             else {
                 return "No";

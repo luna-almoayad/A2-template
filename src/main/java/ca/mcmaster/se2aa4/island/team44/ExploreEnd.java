@@ -22,18 +22,13 @@ public class ExploreEnd implements ExplorerPhase {
     }
     public String getDecision(){
         if(step == steps.FG) {
-            d.fly();
-            return translator.fly();
+            return d.fly();
                
         }else if(step == steps.ECHOT) {
-            return translator.echo(d.getDirection());
-        
-        }
-        else if(step == steps.END){
+            return d.echo("F");
+        }else {
             return translator.stop();
         }
-
-        return translator.stop();
     }
 
     public boolean getResponse(JSONObject response){
@@ -43,11 +38,11 @@ public class ExploreEnd implements ExplorerPhase {
             }
                groundDistance--;
         }else if(step == steps.ECHOT) {
-            if( translator.getFound(response).equals("OUT_OF_RANGE") ){
+            if(!d.isGround(response)){
                 step = steps.END;
                } 
                else{
-                   this.groundDistance=translator.getRange(response);
+                   groundDistance=translator.getRange(response);
                    step = steps.FG;
                }
 
