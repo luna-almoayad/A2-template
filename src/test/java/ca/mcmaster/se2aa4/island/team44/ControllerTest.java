@@ -53,7 +53,13 @@ class ControllerTest {
  
     @Test
     void testFinishMissionNoneFound() {
-        JSONObject response = new JSONObject().put("cost", 5);
+        JSONObject response = new JSONObject()
+        .put("cost", 5)
+        .put("status", "OK")
+        .put("heading", "N")
+        .put("extras", new JSONObject()
+            .put("found", "GROUND") 
+            .put("range", 3));
         controller.getResponse(response);
 
         String report = controller.finishMission();

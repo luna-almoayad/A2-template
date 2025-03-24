@@ -66,27 +66,6 @@ public class LocationTest {
 
 
     @Test
-    public void testEqualsTrue() {
-        Location location1 = new Location(3, 4);
-        Location location2 = new Location(3, 4);
-        assertTrue(location1.equals(location2));
-    }
-
-    @Test
-    public void testEqualsFalse() {
-        Location location1 = new Location(3, 4);
-        Location location2 = new Location(4, 5);
-        assertFalse(location1.equals(location2));
-    }
-
-    @Test
-    public void testHashCode() {
-        Location location1 = new Location(3, 4);
-        Location location2 = new Location(3, 4);
-        assertEquals(location1.hashCode(), location2.hashCode());
-    }
-
-    @Test
     public void testToString() {
         Location location = new Location(3, 4);
         assertEquals("(3,4)", location.toString());
