@@ -13,6 +13,14 @@ public class Drone extends DroneInfo{
         super(battery, direction);
     }
 
+    public boolean ifSafeRange(int range){
+        return range>3;
+    }
+
+    public int getSafeRange(){
+        return 3;
+    }
+
     public String fly(){
         this.location = this.location.makeMove(this.direction);
         this.setLocation(this.location.getXCoord(), this.location.getYCoord());

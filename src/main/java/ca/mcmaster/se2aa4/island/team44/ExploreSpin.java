@@ -2,7 +2,6 @@ package ca.mcmaster.se2aa4.island.team44;
 import org.json.JSONObject;
 
 enum Spins{
-    SCAN, //remove
     FLY,
     ECHO_F,
     TURN_RIGHT,
@@ -18,15 +17,13 @@ public class ExploreSpin implements ExplorerPhase{
     private Spins state;
 
     public ExploreSpin(Drone d){
-        state=Spins.SCAN;
+        state=Spins.ECHO_F;
         this.d=d;
     }
 
     @Override
     public boolean getResponse(JSONObject response){
-        if(state==Spins.SCAN){
-            state=Spins.ECHO_F;
-        }else if(state==Spins.ECHO_F){
+        if(state==Spins.ECHO_F){
             if(!d.isGround(response) &&translator.getRange(response)<2)
                 state=Spins.END;
             else{
@@ -37,7 +34,7 @@ public class ExploreSpin implements ExplorerPhase{
             return true;
         }
         else if(state==Spins.ECHO_R){
-            if(!d.isGround(response)&&translator.getRange(response)<3){//it shouldnt ever echof, should only echor, make sure its at top right
+            if(!d.isGround(response) && !d.ifSafeRange(translator.getRange(response))){//it shouldnt ever echof, should only echor, make sure its at top right
                 state=Spins.TURN_LEFT;
             }else{
                 state=Spins.TURN_RIGHT;
@@ -64,8 +61,6 @@ public class ExploreSpin implements ExplorerPhase{
             return d.echo("F");
         }else if(state==Spins.END){ 
             return d.stop();
-        }else if(state==Spins.SCAN){
-            return d.scan();
         }else return d.fly();
 
     }

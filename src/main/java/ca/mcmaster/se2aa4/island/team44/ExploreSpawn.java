@@ -24,7 +24,7 @@ public class ExploreSpawn implements ExplorerPhase{
     @Override
     public boolean getResponse(JSONObject response){
             if(state==States.ECHO_EDGE){ //flies to edge
-                if((translator.getRange(response) > 3&&!d.isGround(response))||d.isGround(response)){ //if range in front of you is greater than 3, travel there
+                if((d.ifSafeRange(translator.getRange(response)) &&!d.isGround(response))||d.isGround(response)){ //if range in front of you is greater than 3, travel there
                     distance = translator.getRange(response)-5;
                     state = States.FLY;
                 } else {
@@ -44,11 +44,11 @@ public class ExploreSpawn implements ExplorerPhase{
                     return true;
                 }
             }else if(state==States.ECHO_R){
-                if(translator.getRange(response) < 3&& !d.isGround(response))
+                if(!d.ifSafeRange(translator.getRange(response)) && !d.isGround(response))
                     state=States.TURN_LEFT;
                 else {
                     state=States.TURN_RIGHT;
-                    distance = translator.getRange(response)-3;
+                    distance = translator.getRange(response)-d.getSafeRange();
                 }
             }
         return false;
