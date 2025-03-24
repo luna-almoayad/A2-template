@@ -47,7 +47,7 @@ public class POITest {
     @Test
     public void testFindClosestCreek() {
         // We have already set up creeks and emergency site
-        Creeks closestCreek = poi.findClosestCreek();
+        Creeks closestCreek = poi.getClosestCreek();
         assertEquals(creek1, closestCreek);
     }
 

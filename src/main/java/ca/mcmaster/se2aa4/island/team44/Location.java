@@ -18,10 +18,6 @@ public class Location {
         return this.y;
     }
 
-    public Location getLocation(){
-        return this;
-    }
-
     public Location makeMove(Compass compass){
         if (compass == Compass.N){
             return new Location(x, y+1);
@@ -49,24 +45,6 @@ public class Location {
 
     public int getXDist(Location target){
         return target.x - this.x;
-    }
-
-    @Override
-    public boolean equals(Object o){
-        if (this == o){
-            return true;
-        } 
-        if (o == null || this.getClass() != o.getClass()){
-            return false;
-        }
-        Location other = (Location) o;
-        return this.x == other.x && this.y == other.y;
-
-    }
-
-    @Override 
-    public int hashCode(){
-        return Objects.hash(this.x, this.y);
     }
 
     @Override 

@@ -28,7 +28,7 @@ public class POI { //shouldnt be abstract
         return this.esite;
     }
 
-    public Creeks findClosestCreek(){
+    private Creeks findClosestCreek(){
         Creeks closest= creeks.get(0); 
         for (Creeks creek : creeks){
             if (esite.getLocation().calculateDistance(creek.getLocation()) < esite.getLocation().calculateDistance(closest.getLocation())){

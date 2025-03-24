@@ -45,7 +45,7 @@ public class ExploreEnd implements ExplorerPhase {
                if(d.ifPossiblyFound()){
                    Location closest = d.getClosestCreek().getLocation();
                    Location site= d.getESite().getLocation();
-                   if(Math.abs(d.getLocation().getXCoord()-site.getLocation().getXCoord())>(Math.abs(closest.getLocation().getXCoord()-site.getLocation().getXCoord()))){
+                   if(Math.abs(d.getLocation().getXCoord()-site.getXCoord())>(Math.abs(closest.getXCoord()-site.getXCoord()))){
                        step = steps.END;
                    }
 
