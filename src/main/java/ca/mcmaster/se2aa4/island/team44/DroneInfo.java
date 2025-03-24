@@ -22,10 +22,17 @@ public class DroneInfo{
         this.location = new Location(x,y);
     }
 
+    public void deductCost(int cost){
+        battery.useBudget(cost);
+    }
+
+    public int checkBattery(){
+        return battery.getCurrentBudget();
+    }
+
     public Compass getDirection(){
         return this.direction;
     }
-
 
     public void addEmergencySite(EmergencySite emergencySite){
         POI.addEmergencySite(emergencySite);
@@ -42,6 +49,7 @@ public class DroneInfo{
     public List<Creeks> getCreek(){
        return POI.getCreeks();
     }
+
 
     public Creeks getClosestCreek(){
         return POI.getClosestCreek();

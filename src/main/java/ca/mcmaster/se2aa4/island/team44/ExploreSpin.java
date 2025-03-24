@@ -2,7 +2,7 @@ package ca.mcmaster.se2aa4.island.team44;
 import org.json.JSONObject;
 
 enum Spins{
-    SCAN,
+    SCAN, //remove
     FLY,
     ECHO_F,
     TURN_RIGHT,
@@ -37,7 +37,7 @@ public class ExploreSpin implements ExplorerPhase{
             return true;
         }
         else if(state==Spins.ECHO_R){
-            if(!d.isGround(response)&&translator.getRange(response)<10){
+            if(!d.isGround(response)&&translator.getRange(response)<3){//it shouldnt ever echof, should only echor, make sure its at top right
                 state=Spins.TURN_LEFT;
             }else{
                 state=Spins.TURN_RIGHT;
