@@ -1,7 +1,4 @@
 package ca.mcmaster.se2aa4.island.team44;
-
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.json.JSONObject;
 
 enum forwardPhases{
@@ -12,7 +9,6 @@ enum forwardPhases{
 public class ExploreForward implements ExplorerPhase{
     private forwardPhases phase = forwardPhases.SCAN;
     private JSONDataAdapter translator = new JSONDataParser();
-    private final Logger logger = LogManager.getLogger();
     private Drone d;
 
     
@@ -27,9 +23,7 @@ public class ExploreForward implements ExplorerPhase{
         
         //Deduct cost from battery 
         d.deductCost(translator.getCost(response));
-        logger.info("**Battery" + d.checkBattery());
-
-
+    
         if(this.phase == forwardPhases.SCAN){
             if(translator.getSiteIDs(response)!=null){
                     EmergencySite esite= new EmergencySite(translator.getSiteIDs(response), d.getLocation());
@@ -55,7 +49,6 @@ public class ExploreForward implements ExplorerPhase{
     public String getDecision(){
         //Stop if Battery Low
         if(!d.sufficientBattery()){
-        logger.info("**Low Battery: Returning to Base");
             return d.stop();
         }
         if (phase == forwardPhases.SCAN) {

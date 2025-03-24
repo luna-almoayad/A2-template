@@ -4,46 +4,98 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.BeforeEach;
 
 public class DroneTest {
-    private Drone drone; 
+    
+    private Drone drone;
 
     @BeforeEach
-    public void setUp(){
-        drone = new Drone(100, Compass.E); //fake battery val
-    }
-    
-    @Test 
-    public void testInitial(){
-        assertEquals(new Location(0,0), drone.getLocation());
-        assertEquals(100, drone.checkBattery());
-        assertEquals(Compass.E,drone.getDirection());
+    void setup() {
+        drone = new Drone(150, Compass.N);
     }
 
-    @Test 
-    public void testFly(){
-        Location start = drone.getLocation();
+    @Test
+    void testInitialLocation() {
+        Location location = drone.getLocation();
+        assertEquals(0, location.getXCoord());
+        assertEquals(0, location.getYCoord());
+    }
+
+    @Test
+    void testInitialDirection() {
+        assertEquals(Compass.N, drone.getDirection());
+    }
+
+    @Test
+    void testFlyMovesNorth() {
         drone.fly();
-        assertNotEquals(start, drone.getLocation());
+        Location newLocation = drone.getLocation();
+        assertEquals(0, newLocation.getXCoord());
+        assertEquals(1, newLocation.getYCoord());
     }
 
-    @Test 
-    public void testChangeCost(){
+    @Test
+    void testRight() {
+        drone.right(); 
+        assertEquals(Compass.E, drone.getDirection());
+    }
+
+    @Test
+    void testLeft() {
+        drone.left();  
+        assertEquals(Compass.W, drone.getDirection());
+    }
+
+    @Test
+    void testSetDirection() {
+        drone.setDirection(Compass.S);
+        assertEquals(Compass.S, drone.getDirection());
+    }
+
+    @Test
+    void testBatteryDeductCost() {
+        int initialBattery = drone.checkBattery();
         drone.deductCost(20);
-        assertEquals(80, drone.checkBattery());
+        assertEquals(initialBattery - 20, drone.checkBattery());
     }
 
     @Test
-    public void testRight(){
-        drone.right();
-        assertEquals(Compass.S, drone.getDirection());
+    void testSufficientBatteryTrue() {
+        assertTrue(drone.sufficientBattery());
     }
 
     @Test
-    public void testLeft(){
-        drone.left();
-        drone.left();
-        drone.left();
-        assertEquals(Compass.S, drone.getDirection());
+    void testSufficientBatteryFalse() {
+        drone.deductCost(1000);
+        assertFalse(drone.sufficientBattery());
     }
 
+    @Test
+    void testAddAndGetEmergency() {
+        EmergencySite site = new EmergencySite("ABCD", new Location(5, 5));
+        drone.addEmergencySite(site);
+        assertEquals(site, drone.getESite());
+    }
 
+    @Test
+    void testAddAndRetrieveCreek() {
+        Creeks creek = new Creeks("ABCD", new Location(2, 2));
+        drone.addCreek(creek);
+        assertTrue(drone.getCreek().contains(creek));
+    }
+
+    @Test
+    void testIfPossiblyFound() {
+        EmergencySite site = new EmergencySite("ABCD", new Location(1, 1));
+        Creeks creek = new Creeks("EFG", new Location(2, 2));
+        drone.addEmergencySite(site);
+        drone.addCreek(creek);
+
+        assertTrue(drone.ifPossiblyFound());
+    }
+
+    @Test
+    void testToStringContainsLocationAndDirection() {
+        String output = drone.toString();
+        assertTrue(output.contains("Location"));
+        assertTrue(output.contains("Direction"));
+    }
 }

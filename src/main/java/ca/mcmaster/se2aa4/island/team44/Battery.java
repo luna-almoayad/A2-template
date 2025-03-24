@@ -6,7 +6,6 @@ public class Battery {
 
     public Battery (int budget){
         this.currentBudget=budget;
-
     }
 
     public void useBudget(int cost){
