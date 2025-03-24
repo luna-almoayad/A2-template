@@ -83,17 +83,3 @@ public class ExploreSpawn implements ExplorerPhase{
             }
     }
 }
-
-/*else if(state==States.ECHO_CORNER) {
-                if(turns==2) {
-                    d.setLocation(0,0);
-                    return true;
-                }
-                if(translator.getRange(response) > 3){ //if range in front of you is greater than 3, travel there
-                    distance = translator.getRange(response)-3;
-                    state = States.FLY;
-                } else {
-                    state = States.TURN_RIGHT;
-                }
-                logger.info("dooch"+finalturn);
-            } */
