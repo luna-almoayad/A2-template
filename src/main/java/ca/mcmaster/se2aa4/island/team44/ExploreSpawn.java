@@ -59,7 +59,6 @@ public class ExploreSpawn implements ExplorerPhase{
         if(!d.sufficientBattery()){
             return d.stop();
         }
-        
         if(state==States.ECHO_EDGE) {
             return d.echo("F");
         }else if(state==States.FLY) {
@@ -71,7 +70,7 @@ public class ExploreSpawn implements ExplorerPhase{
         }else if(state==States.TURN_LEFT) {
             return d.left();
         }else {
-            return "No";
+            return null;
         }
     }
 }

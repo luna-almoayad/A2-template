@@ -42,16 +42,16 @@ public class DroneInfo{
         return POI.getEmergencySites();
     }
 
-    public void addCreek(Creeks creek){
+    public void addCreek(Creek creek){
         POI.addCreek(creek);
     }
 
-    public List<Creeks> getCreek(){
+    public List<Creek> getCreeks(){
        return POI.getCreeks();
     }
 
 
-    public Creeks getClosestCreek(){
+    public Creek getClosestCreek(){
         return POI.getClosestCreek();
     }
 

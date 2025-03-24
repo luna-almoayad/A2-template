@@ -10,8 +10,8 @@ public class POITest {
     private POI poi;
     private Location esiteLocation;
     private EmergencySite esite;
-    private Creeks creek1;
-    private Creeks creek2;
+    private Creek creek1;
+    private Creek creek2;
 
     @BeforeEach
     public void setUp() {
@@ -24,8 +24,8 @@ public class POITest {
         // Create creeks with different locations
         Location creekLocation1 = new Location(1, 1);
         Location creekLocation2 = new Location(4, 4);
-        creek1 = new Creeks("C1", creekLocation1);
-        creek2 = new Creeks("C2", creekLocation2);
+        creek1 = new Creek("C1", creekLocation1);
+        creek2 = new Creek("C2", creekLocation2);
 
         // Add creeks to POI
         poi.addCreek(creek1);
@@ -47,20 +47,20 @@ public class POITest {
     @Test
     public void testFindClosestCreek() {
         // We have already set up creeks and emergency site
-        Creeks closestCreek = poi.getClosestCreek();
+        Creek closestCreek = poi.getClosestCreek();
         assertEquals(creek1, closestCreek);
     }
 
     @Test
     public void testGetClosestCreek() {
-        Creeks closestCreek = poi.getClosestCreek();
+        Creek closestCreek = poi.getClosestCreek();
         assertEquals(creek1, closestCreek);
     }
 
     @Test
-    public void testGetCreeks() {
+    public void testGetCreek() {
         // We have already set up creeks
-        List<Creeks> creeks = poi.getCreeks();
+        List<Creek> creeks = poi.getCreeks();
         assertEquals(2, creeks.size());
         assertTrue(creeks.contains(creek1));
         assertTrue(creeks.contains(creek2));

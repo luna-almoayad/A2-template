@@ -31,7 +31,7 @@ public class ExploreForward implements ExplorerPhase{
                 }
 
             if(translator.getCreekIDs(response)!=null){
-                    Creeks creek = new Creeks(translator.getCreekIDs(response), d.getLocation());
+                    Creek creek = new Creek(translator.getCreekIDs(response), d.getLocation());
                     d.addCreek(creek);
                 }
                 

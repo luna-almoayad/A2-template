@@ -2,16 +2,16 @@ package ca.mcmaster.se2aa4.island.team44;
 import java.util.*;
 
 public class POI { //shouldnt be abstract
-    private List<Creeks> creeks;
+    private List<Creek> creeks;
     private EmergencySite esite;
-    Creeks closest= null; 
+    Creek closest= null; 
 
     public POI(){
-        creeks=new ArrayList<Creeks>();
+        creeks=new ArrayList<Creek>();
         this.esite = null;  
     }
     
-    public void addCreek(Creeks creek){
+    public void addCreek(Creek creek){
         creeks.add(creek);
         closest=creek;
     }
@@ -20,7 +20,7 @@ public class POI { //shouldnt be abstract
         this.esite= emergencySite;
     }
 
-    public List<Creeks> getCreeks(){
+    public List<Creek> getCreeks(){
         return this.creeks;
     }
 
@@ -28,9 +28,9 @@ public class POI { //shouldnt be abstract
         return this.esite;
     }
 
-    private Creeks findClosestCreek(){
-        Creeks closest= creeks.get(0); 
-        for (Creeks creek : creeks){
+    private Creek findClosestCreek(){
+        Creek closest= creeks.get(0); 
+        for (Creek creek : creeks){
             if (esite.getLocation().calculateDistance(creek.getLocation()) < esite.getLocation().calculateDistance(closest.getLocation())){
                 closest = creek;
             }
@@ -38,7 +38,7 @@ public class POI { //shouldnt be abstract
         return closest; 
     }
 
-    public Creeks getClosestCreek(){
+    public Creek getClosestCreek(){
         return findClosestCreek();
     }
 

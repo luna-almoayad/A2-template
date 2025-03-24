@@ -84,7 +84,7 @@ public class ExploreTurn implements ExplorerPhase{
                 return true;        
             }else if(!d.isGround(response)){
                 if(translator.getRange(response)<=2){
-                    step=Steps.L; //skip to uturn uturn
+                    step=Steps.L; //skip to uturn 
                 }else{
                     step=Steps.FR; //fly until no longer have ground to the right then uturn
                 }

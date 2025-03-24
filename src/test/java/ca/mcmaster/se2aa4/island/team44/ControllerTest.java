@@ -64,7 +64,7 @@ class ControllerTest {
     void testFinishMissionValid() {
         Drone customDrone = new Drone(200, Compass.N);
         EmergencySite site = new EmergencySite("site", new Location(0, 0));
-        Creeks creek = new Creeks("creek", new Location(1, 1));
+        Creek creek = new Creek("creek", new Location(1, 1));
         customDrone.addEmergencySite(site);
         customDrone.addCreek(creek);
 

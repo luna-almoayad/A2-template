@@ -77,15 +77,15 @@ public class DroneTest {
 
     @Test
     void testAddAndRetrieveCreek() {
-        Creeks creek = new Creeks("ABCD", new Location(2, 2));
+        Creek creek = new Creek("ABCD", new Location(2, 2));
         drone.addCreek(creek);
-        assertTrue(drone.getCreek().contains(creek));
+        assertTrue(drone.getCreeks().contains(creek));
     }
 
     @Test
     void testIfPossiblyFound() {
         EmergencySite site = new EmergencySite("ABCD", new Location(1, 1));
-        Creeks creek = new Creeks("EFG", new Location(2, 2));
+        Creek creek = new Creek("EFG", new Location(2, 2));
         drone.addEmergencySite(site);
         drone.addCreek(creek);
 

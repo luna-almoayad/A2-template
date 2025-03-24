@@ -20,7 +20,7 @@ class MissionReportTest {
     @Test
     void testGenerateReport() {
         EmergencySite site = new EmergencySite("site", new Location(3, 3));
-        Creeks creek = new Creeks("creek", new Location(4, 4));
+        Creek creek = new Creek("creek", new Location(4, 4));
 
         when(drone.sufficientBattery()).thenReturn(true);
         when(drone.ifPossiblyFound()).thenReturn(true);
