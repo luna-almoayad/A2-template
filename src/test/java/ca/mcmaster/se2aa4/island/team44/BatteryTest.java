@@ -23,6 +23,19 @@ public class BatteryTest {
         assertEquals(80, battery.getCurrentBudget());
     }
 
+    @Test
+    public void testSufficientBatteryTrue() {
+        // sufficient battery is 100
+        Battery battery = new Battery(120);
+        assertTrue(battery.sufficientBattery());
+    }
+
+    @Test
+    public void testSufficientBatteryFalse() {
+        // sufficient battery is 100
+        Battery battery = new Battery(80);
+        assertFalse(battery.sufficientBattery());
+    }
 
 
 }

@@ -14,7 +14,6 @@ public class Drone{
     private JSONDataAdapter translator= new JSONDataParser(); 
     private DroneCommandAdapter command= new DroneCommandTranslator();
     private POI POI;
-    private final Logger logger = LogManager.getLogger();
     private Compass startDir;
 
 
@@ -25,7 +24,6 @@ public class Drone{
         phase = Phases.GROUND;
         POI = new POI();
         this.startDir =Compass.E;
-        logger.info("startDIRRRRRRRRR"+startDir);
     }
 
     public Compass getStartDir(){
@@ -73,7 +71,6 @@ public class Drone{
     }
 
     public String left(){
-        logger.info("Compare this btw "+this.direction);
         this.fly();
         this.direction = this.direction.left();
         this.fly();
@@ -126,7 +123,6 @@ public class Drone{
     }
 
     public boolean ifPossiblyFound(){
-        logger.info ("here in found");
         return POI.getEmergencySites()!=null&&POI.getCreeks().size()>0;
     }
     public boolean sufficientBattery(){
@@ -137,7 +133,6 @@ public class Drone{
         return translator.ground(response);
 
     }
-
     public String stop(){
         return command.stop();
     }

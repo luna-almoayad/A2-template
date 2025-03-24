@@ -1,11 +1,8 @@
 package ca.mcmaster.se2aa4.island.team44;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.json.JSONObject;
 
 enum States{
     ECHO_EDGE,
-    ECHO_CORNER,
     FLY,
     TURN_RIGHT, 
     TURN_LEFT,
@@ -15,7 +12,6 @@ enum States{
 public class ExploreSpawn implements ExplorerPhase{
     private JSONDataAdapter translator = new JSONDataParser();
     private int distance=0;
-    private final Logger logger = LogManager.getLogger();
     private int turns =0;
     private Drone d;
     private States state;
@@ -27,7 +23,6 @@ public class ExploreSpawn implements ExplorerPhase{
 
     @Override
     public boolean getResponse(JSONObject response){
-        logger.info("ayo "+state);
             if(state==States.ECHO_EDGE){ //flies to edge
                 if((translator.getRange(response) > 3&&!d.isGround(response))||d.isGround(response)){ //if range in front of you is greater than 3, travel there
                     distance = translator.getRange(response)-5;
@@ -37,7 +32,6 @@ public class ExploreSpawn implements ExplorerPhase{
                 }
             }
             else if(state==States.FLY) {
-                logger.info("mees"+distance);
                 if(distance <=0) {
                     state = States.ECHO_EDGE;
                 } else {
@@ -63,37 +57,21 @@ public class ExploreSpawn implements ExplorerPhase{
     @Override
     public String getDecision(){
         if(!d.sufficientBattery()){
-            logger.info("**Low Battery: Returning to Base");
             return d.stop();
         }
-            if(state==States.ECHO_EDGE || state==States.ECHO_CORNER) {
-                return d.echo("F");
-            }
-            else if(state==States.FLY) {
-                return d.fly();
-            }else if(state==States.ECHO_R){
-                return d.echo("R");
-            }else if(state==States.TURN_RIGHT) {
-               return d.right();
-            }else if(state==States.TURN_LEFT) {
-                return d.left();
-            }
-            else {
-                return "No";
-            }
+        
+        if(state==States.ECHO_EDGE) {
+            return d.echo("F");
+        }else if(state==States.FLY) {
+            return d.fly();
+        }else if(state==States.ECHO_R){
+            return d.echo("R");
+        }else if(state==States.TURN_RIGHT) {
+            return d.right();
+        }else if(state==States.TURN_LEFT) {
+            return d.left();
+        }else {
+            return "No";
+        }
     }
 }
-
-/*else if(state==States.ECHO_CORNER) {
-                if(turns==2) {
-                    d.setLocation(0,0);
-                    return true;
-                }
-                if(translator.getRange(response) > 3){ //if range in front of you is greater than 3, travel there
-                    distance = translator.getRange(response)-3;
-                    state = States.FLY;
-                } else {
-                    state = States.TURN_RIGHT;
-                }
-                logger.info("dooch"+finalturn);
-            } */

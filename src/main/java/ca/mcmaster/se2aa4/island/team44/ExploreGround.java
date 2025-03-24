@@ -1,7 +1,4 @@
 package ca.mcmaster.se2aa4.island.team44;
-
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.json.JSONObject;
 
 enum State{
@@ -23,7 +20,6 @@ public class ExploreGround implements ExplorerPhase{
     protected JSONDataAdapter translate = new JSONDataParser();
     private int groundDistance;
     private Compass groundDirection;
-    private final Logger logger = LogManager.getLogger();
     private Drone d;
     private Compass start;
     private int LCount =0; 
@@ -40,11 +36,8 @@ public class ExploreGround implements ExplorerPhase{
 
     @Override
     public String getDecision(){
-        logger.info("***ExploreGround State: "+ state);
-
         //Stop if Battery Low
         if(!d.sufficientBattery()){
-            logger.info("**Low Battery: Returning to Base");
             return d.stop();
         }else if(state == State.FINDGROUND )  
              return findGroundPhase();//Fly to Ground
@@ -123,7 +116,6 @@ public class ExploreGround implements ExplorerPhase{
     {   
         //Deduct Cost
         d.deductCost(translate.getCost(response));
-        logger.info("**Battery" + d.checkBattery());
 
         if(state == State.FINDGROUND ){
            if(groundDistance ==0) return true;
