@@ -1,15 +1,12 @@
 package ca.mcmaster.se2aa4.island.team44;
 import java.util.List;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.json.JSONObject;
 
 
 public class Drone extends DroneInfo{
     private JSONDataAdapter translator= new JSONDataParser(); 
     private DroneCommandAdapter command= new DroneCommandTranslator();
-    private final Logger logger = LogManager.getLogger();
 
 
     public Drone(int battery, Compass direction){

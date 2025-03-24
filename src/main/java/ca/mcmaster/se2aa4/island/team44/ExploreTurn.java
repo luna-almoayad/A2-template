@@ -27,45 +27,36 @@ public class ExploreTurn implements ExplorerPhase{
    public ExploreTurn(Drone d){
        this.d=d;
        this.startTurn=d.getDirection();
-       logger.info("startTurning phase at"+startTurn);
    }
 
    public String getDecision(){
        if(!d.sufficientBattery()){ 
             return d.stop();  
-
-       if (step== Steps.ECHOF){
-        return d.echo("F");
-       }
-       else if (step== Steps.L){
-        return turnLeft(startTurn, d);
-       }
-       else if (step==Steps.F){
-        return d.fly();
-       }
-       else if (step == Steps.L3){
-        LCount ++;
-        logger.info("l" + LCount);
-        return turnLeft(startTurn, d);
-       }
-       else if (step == Steps.R1){
-        RCount++;
-        logger.info("R" + RCount);
-        return turnRight(startTurn, d);
-       }
-       else if (step == Steps.ECHOR){
-        if((d.getDirection()==Compass.N)){
-            return d.echo("R");
-        }else{
-            return d.echo("L");
-        }
-       }
-       else if (step == Steps.FR){
-        return d.fly();
+       }if (step== Steps.ECHOF){
+            return d.echo("F");
+       }else if (step== Steps.L){
+            return turnLeft(startTurn, d);
+       }else if (step==Steps.F){
+            return d.fly();
+       }else if (step == Steps.L3){
+            LCount ++;
+            return turnLeft(startTurn, d);
+       }else if (step == Steps.R1){
+            RCount++;
+            return turnRight(startTurn, d);
+       }else if (step == Steps.ECHOR){
+            if((d.getDirection()==Compass.N)){
+                return d.echo("R");
+            }else{
+                return d.echo("L");
+            }
+       }else if (step == Steps.FR){
+            return d.fly();
        }else{
             return d.fly();
        } 
-}
+    }   
+
    
 
    private String turnLeft(Compass startTurn,Drone d){
