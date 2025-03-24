@@ -1,12 +1,21 @@
-package ca.mcmaster.se2aa4.island.team44;
+package ca.mcmaster.se2aa4.island.team44.control;
+
+
 import org.json.JSONObject;
 
+import ca.mcmaster.se2aa4.island.team44.drones.Drone;
+import ca.mcmaster.se2aa4.island.team44.explorer.ExploreSpin;
+import ca.mcmaster.se2aa4.island.team44.explorer.ExplorerFactory;
+import ca.mcmaster.se2aa4.island.team44.explorer.ExplorerPhase;
+import ca.mcmaster.se2aa4.island.team44.explorer.Phases;
+import ca.mcmaster.se2aa4.island.team44.navigation.Compass;
+
 public class Controller{
-    Drone d;
-    ExplorerPhase actionPhase;
-    Phases dronePhase;
+    public Drone d;
+    public ExplorerPhase actionPhase;
+    public Phases dronePhase;
     private final ExplorerFactory exploreFactory = new ExplorerFactory();
-    MissionReport report;
+    public MissionReport report;
 
 
     public Controller(int battery, Compass direction){

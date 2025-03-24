@@ -6,6 +6,14 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
+import ca.mcmaster.se2aa4.island.team44.control.*;
+import ca.mcmaster.se2aa4.island.team44.navigation.Compass;
+import ca.mcmaster.se2aa4.island.team44.explorer.*;
+import ca.mcmaster.se2aa4.island.team44.site.*;
+import ca.mcmaster.se2aa4.island.team44.drones.*;
+import ca.mcmaster.se2aa4.island.team44.navigation.Location;
+
+
 class ControllerTest {
 
     private Controller controller;
@@ -53,7 +61,13 @@ class ControllerTest {
  
     @Test
     void testFinishMissionNoneFound() {
-        JSONObject response = new JSONObject().put("cost", 5);
+        JSONObject response = new JSONObject()
+        .put("cost", 5)
+        .put("status", "OK")
+        .put("heading", "N")
+        .put("extras", new JSONObject()
+            .put("found", "GROUND") 
+            .put("range", 3));
         controller.getResponse(response);
 
         String report = controller.finishMission();

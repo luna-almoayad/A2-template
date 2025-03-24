@@ -1,4 +1,4 @@
-package ca.mcmaster.se2aa4.island.team44;
+package ca.mcmaster.se2aa4.island.team44.control;
 
 import java.io.File;
 

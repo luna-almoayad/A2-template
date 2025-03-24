@@ -1,7 +1,10 @@
 package ca.mcmaster.se2aa4.island.team44;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 import org.junit.Before;
 import org.junit.Test;
+
+import ca.mcmaster.se2aa4.island.team44.navigation.Location;
+import ca.mcmaster.se2aa4.island.team44.site.EmergencySite;
 
 public class EmergencySiteTest {
     private EmergencySite emergencySite;

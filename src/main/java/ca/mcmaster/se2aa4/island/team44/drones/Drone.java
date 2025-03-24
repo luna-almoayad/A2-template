@@ -1,4 +1,9 @@
-package ca.mcmaster.se2aa4.island.team44;
+package ca.mcmaster.se2aa4.island.team44.drones;
+
+import ca.mcmaster.se2aa4.island.team44.json.*;
+import ca.mcmaster.se2aa4.island.team44.navigation.*;
+
+
 import java.util.List;
 
 import org.json.JSONObject;

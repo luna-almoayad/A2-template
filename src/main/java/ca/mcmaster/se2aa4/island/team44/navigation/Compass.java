@@ -1,4 +1,4 @@
-package ca.mcmaster.se2aa4.island.team44;
+package ca.mcmaster.se2aa4.island.team44.navigation;
 
 public enum Compass{
     N,

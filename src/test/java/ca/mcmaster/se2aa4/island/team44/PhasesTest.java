@@ -2,6 +2,8 @@ package ca.mcmaster.se2aa4.island.team44;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
+import ca.mcmaster.se2aa4.island.team44.explorer.Phases;
+
 class PhasesTest {
 
     @Test

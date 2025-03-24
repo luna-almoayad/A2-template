@@ -2,6 +2,9 @@ package ca.mcmaster.se2aa4.island.team44;
 import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
+import ca.mcmaster.se2aa4.island.team44.site.Creeks;
+import ca.mcmaster.se2aa4.island.team44.navigation.Location;
+
 
 public class CreeksTest {
     private Creeks creek;

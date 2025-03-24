@@ -1,5 +1,10 @@
-package ca.mcmaster.se2aa4.island.team44;
+package ca.mcmaster.se2aa4.island.team44.explorer;
 import org.json.JSONObject;
+
+import ca.mcmaster.se2aa4.island.team44.drones.Drone;
+import ca.mcmaster.se2aa4.island.team44.json.JSONDataAdapter;
+import ca.mcmaster.se2aa4.island.team44.json.JSONDataParser;
+import ca.mcmaster.se2aa4.island.team44.navigation.Compass;
 
 enum State{
     R_ECHO,

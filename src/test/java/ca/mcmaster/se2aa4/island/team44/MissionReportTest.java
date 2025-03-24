@@ -1,9 +1,18 @@
 package ca.mcmaster.se2aa4.island.team44;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
+
+import ca.mcmaster.se2aa4.island.team44.control.MissionReport;
+import ca.mcmaster.se2aa4.island.team44.drones.Drone;
+import ca.mcmaster.se2aa4.island.team44.navigation.Location;
+import ca.mcmaster.se2aa4.island.team44.site.Creeks;
+import ca.mcmaster.se2aa4.island.team44.site.EmergencySite;
+
 
 class MissionReportTest {
 
