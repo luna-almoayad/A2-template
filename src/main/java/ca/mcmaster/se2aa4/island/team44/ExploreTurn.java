@@ -23,42 +23,45 @@ public class ExploreTurn implements ExplorerPhase{
    Steps step=Steps.ECHOF;
    int LCount =0;
    int RCount=0;
-   Compass startDir;
 
    public ExploreTurn(Drone d){
        this.d=d;
        this.startTurn=d.getDirection();
-       this.startDir=d.getStartDir();
+       logger.info("startTurning phase at"+startTurn);
    }
 
    public String getDecision(){
        if(!d.sufficientBattery()){ 
             return d.stop();  
 
-       }if (step== Steps.ECHOF){
-            return d.echo("F");
-
-       }else if (step== Steps.L){
-            return turnLeft(startTurn, d);
-       }else if (step==Steps.F){
-            return d.fly();
-
-       }else if (step == Steps.L3){
-            LCount ++;
-            return turnLeft(startTurn, d);
-
-       }else if (step == Steps.R1){
-            RCount++;
-            return turnRight(startTurn, d);
-
-       }else if (step == Steps.ECHOR){
-            if((d.getDirection()==Compass.N&&startDir==Compass.W)||(d.getDirection()==Compass.S&&startDir==Compass.E)){
-                return d.echo("R");
-            }else{
-                return d.echo("L");
-            }
-       }else if (step == Steps.FR){
-            return d.fly();
+       if (step== Steps.ECHOF){
+        return d.echo("F");
+       }
+       else if (step== Steps.L){
+        return turnLeft(startTurn, d);
+       }
+       else if (step==Steps.F){
+        return d.fly();
+       }
+       else if (step == Steps.L3){
+        LCount ++;
+        logger.info("l" + LCount);
+        return turnLeft(startTurn, d);
+       }
+       else if (step == Steps.R1){
+        RCount++;
+        logger.info("R" + RCount);
+        return turnRight(startTurn, d);
+       }
+       else if (step == Steps.ECHOR){
+        if((d.getDirection()==Compass.N)){
+            return d.echo("R");
+        }else{
+            return d.echo("L");
+        }
+       }
+       else if (step == Steps.FR){
+        return d.fly();
        }else{
             return d.fly();
        } 
@@ -66,7 +69,7 @@ public class ExploreTurn implements ExplorerPhase{
    
 
    private String turnLeft(Compass startTurn,Drone d){
-       if((startTurn==Compass.N &&startDir==Compass.E) || (startTurn==Compass.S &&startDir==Compass.W)){
+       if((startTurn==Compass.N )){
            return d.left();               
        }else{
            return d.right();
@@ -75,7 +78,7 @@ public class ExploreTurn implements ExplorerPhase{
 
 
    private String turnRight(Compass startTurn,Drone d){
-       if((startTurn==Compass.N &&startDir==Compass.E) || (startTurn==Compass.S &&startDir==Compass.W)){
+       if((startTurn==Compass.N)){
            return d.right();               
        }else{
            return d.left();
