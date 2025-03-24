@@ -1,9 +1,16 @@
 package ca.mcmaster.se2aa4.island.team44;
-import static org.junit.jupiter.api.Assertions.*;
+import java.util.List;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import java.util.List;
+
+import ca.mcmaster.se2aa4.island.team44.navigation.Location;
+import ca.mcmaster.se2aa4.island.team44.site.Creeks;
+import ca.mcmaster.se2aa4.island.team44.site.EmergencySite;
+import ca.mcmaster.se2aa4.island.team44.site.POI;
+
 public class POITest {
     
   

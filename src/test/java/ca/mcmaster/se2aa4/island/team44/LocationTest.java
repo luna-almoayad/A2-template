@@ -2,6 +2,8 @@ package ca.mcmaster.se2aa4.island.team44;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
+import ca.mcmaster.se2aa4.island.team44.navigation.Location;
+import ca.mcmaster.se2aa4.island.team44.navigation.Compass;
 
 public class LocationTest {
     @Test

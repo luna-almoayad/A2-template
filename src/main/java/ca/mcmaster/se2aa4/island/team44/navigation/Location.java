@@ -1,5 +1,4 @@
-package ca.mcmaster.se2aa4.island.team44;
-import java.util.Objects;
+package ca.mcmaster.se2aa4.island.team44.navigation;
 
 public class Location {
     private final int x; //immutable objects

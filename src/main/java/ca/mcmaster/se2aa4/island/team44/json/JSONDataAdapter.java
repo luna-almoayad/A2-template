@@ -1,4 +1,4 @@
-package ca.mcmaster.se2aa4.island.team44;
+package ca.mcmaster.se2aa4.island.team44.json;
 import org.json.JSONObject;
 
 

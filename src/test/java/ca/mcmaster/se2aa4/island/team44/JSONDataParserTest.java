@@ -2,9 +2,14 @@ package ca.mcmaster.se2aa4.island.team44;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
+
+import ca.mcmaster.se2aa4.island.team44.json.JSONDataParser;
+
 
 class JSONDataParserTest {
 

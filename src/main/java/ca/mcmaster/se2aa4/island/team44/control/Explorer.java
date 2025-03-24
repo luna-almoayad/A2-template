@@ -1,4 +1,7 @@
-package ca.mcmaster.se2aa4.island.team44;
+package ca.mcmaster.se2aa4.island.team44.control;
+
+import ca.mcmaster.se2aa4.island.team44.json.*;
+import ca.mcmaster.se2aa4.island.team44.navigation.*;
 
 import java.io.StringReader;
 
