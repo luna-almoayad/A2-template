@@ -1,8 +1,6 @@
 package ca.mcmaster.se2aa4.island.team44.control;
 
-
 import org.json.JSONObject;
-
 import ca.mcmaster.se2aa4.island.team44.drones.Drone;
 import ca.mcmaster.se2aa4.island.team44.explorer.ExploreSpin;
 import ca.mcmaster.se2aa4.island.team44.explorer.ExplorerFactory;
@@ -10,6 +8,7 @@ import ca.mcmaster.se2aa4.island.team44.explorer.ExplorerPhase;
 import ca.mcmaster.se2aa4.island.team44.explorer.Phases;
 import ca.mcmaster.se2aa4.island.team44.navigation.Compass;
 
+// Controller class to handle switching between exploration phases 
 public class Controller{
     public Drone d;
     public ExplorerPhase actionPhase;
@@ -17,7 +16,7 @@ public class Controller{
     private final ExplorerFactory exploreFactory = new ExplorerFactory();
     public MissionReport report;
 
-
+    // constructor to initialize necessary objects 
     public Controller(int battery, Compass direction){
         this.d = new Drone(battery, direction);
         actionPhase = new ExploreSpin(d);
@@ -25,7 +24,7 @@ public class Controller{
         report= new MissionReport(d);
     }
     
-
+    // getDecision method that communicates with 
     public String getDecision(){
         return actionPhase.getDecision();
     }

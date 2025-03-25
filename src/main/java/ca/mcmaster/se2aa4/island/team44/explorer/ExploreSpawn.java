@@ -45,6 +45,7 @@ public class ExploreSpawn implements ExplorerPhase{
             }
             else if(state==States.TURN_RIGHT||state==States.TURN_LEFT) {
                 turns++;
+                state=States.ECHO_EDGE;
                 if(turns==2){
                     return true;
                 }
