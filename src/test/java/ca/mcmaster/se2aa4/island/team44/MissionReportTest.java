@@ -10,7 +10,7 @@ import static org.mockito.Mockito.when;
 import ca.mcmaster.se2aa4.island.team44.control.MissionReport;
 import ca.mcmaster.se2aa4.island.team44.drones.Drone;
 import ca.mcmaster.se2aa4.island.team44.navigation.Location;
-import ca.mcmaster.se2aa4.island.team44.site.Creeks;
+import ca.mcmaster.se2aa4.island.team44.site.Creek;
 import ca.mcmaster.se2aa4.island.team44.site.EmergencySite;
 
 

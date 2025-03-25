@@ -3,7 +3,7 @@ import java.util.List;
 
 import ca.mcmaster.se2aa4.island.team44.navigation.Compass;
 import ca.mcmaster.se2aa4.island.team44.navigation.Location;
-import ca.mcmaster.se2aa4.island.team44.site.Creeks;
+import ca.mcmaster.se2aa4.island.team44.site.Creek;
 import ca.mcmaster.se2aa4.island.team44.site.EmergencySite;
 import ca.mcmaster.se2aa4.island.team44.site.POI;
 public class DroneInfo{

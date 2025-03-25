@@ -7,7 +7,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import ca.mcmaster.se2aa4.island.team44.navigation.Location;
-import ca.mcmaster.se2aa4.island.team44.site.Creeks;
+import ca.mcmaster.se2aa4.island.team44.site.Creek;
 import ca.mcmaster.se2aa4.island.team44.site.EmergencySite;
 import ca.mcmaster.se2aa4.island.team44.site.POI;
 
