@@ -24,21 +24,23 @@ public class Controller{
         report= new MissionReport(d);
     }
     
-    // getDecision method that communicates with 
+    // getDecision method that communicates with each exploration phase 
     public String getDecision(){
         return actionPhase.getDecision();
     }
 
-    //Implements Factory Pattern
+    //getResponse from each of the exploration methods 
     public void getResponse(JSONObject response){
         boolean switchPhases = actionPhase.getResponse(response);
 
+        //Implements Factory Pattern to switch phases 
         if(switchPhases){
             dronePhase = dronePhase.switchPhase();
             actionPhase= exploreFactory.getPhase(dronePhase, d);
         }
     }
 
+    // Once mission is complete, output the mission report 
     public String finishMission(){
         return report.generateReport();
     }

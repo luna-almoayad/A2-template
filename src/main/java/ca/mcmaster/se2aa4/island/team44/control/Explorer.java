@@ -28,6 +28,7 @@ public class Explorer implements IExplorerRaid {
         logger.info("The drone is facing {}", direction);
         logger.info("Battery level is {}", batteryLevel);
 
+        //initialize controller to begin mission 
         control = new Controller(batteryLevel, Compass.toEnum(direction) );
         logger.info(Compass.toEnum(direction));
     }
@@ -38,12 +39,11 @@ public class Explorer implements IExplorerRaid {
         
         String decision = control.getDecision();
         logger.info("** Decisions: {}", decision);
+        //once mission is stopped, return report
         if (decision.toLowerCase().contains("stop")){
             deliverFinalReport();
         }
         return decision;
-        //return translate.scan();
- 
     }
 
     @Override
@@ -59,11 +59,12 @@ public class Explorer implements IExplorerRaid {
 
         control.getResponse(response);
 
-    
+
     }
 
     @Override
     public String deliverFinalReport() {
+        // deliver final report from mission 
         String finalReport= control.finishMission();
         logger.info("Final Info\n" + finalReport);
         return finalReport;

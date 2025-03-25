@@ -7,11 +7,12 @@ import ca.mcmaster.se2aa4.island.team44.json.JSONDataAdapter;
 import ca.mcmaster.se2aa4.island.team44.json.JSONDataParser;
 import ca.mcmaster.se2aa4.island.team44.navigation.Location;
 
+// Class that determines whether mission is complte 
 public class ExploreEnd implements ExplorerPhase {
     enum steps{
-        FG,
-        ECHOT, //change later pls
-        END; 
+        FG, //Fly to ground
+        ECHOT, // terminating echo 
+        END; // end 
     }
     private Drone d; 
     private JSONDataAdapter translator = new JSONDataParser(); 
@@ -22,6 +23,8 @@ public class ExploreEnd implements ExplorerPhase {
     public ExploreEnd(Drone d){
         this.d=d;
     }
+
+    //complete actions depending on state 
     public String getDecision(){
         if(step == steps.FG) {
             return d.fly();
@@ -33,13 +36,16 @@ public class ExploreEnd implements ExplorerPhase {
         }
     }
 
+    // get response of actions 
     public boolean getResponse(JSONObject response){
         if(step == steps.FG) {
+            // found ground if within range 
             if(groundDistance==1 || groundDistance==0){
                 return true;
             }
                groundDistance--;
         }else if(step == steps.ECHOT) {
+            //if not on ground, mission complye 
             if(!d.isGround(response)){
                 step = steps.END;
                } 
@@ -48,6 +54,7 @@ public class ExploreEnd implements ExplorerPhase {
                    step = steps.FG;
                }
 
+                // if esite and creek found, find closest creek 
                if(d.ifPossiblyFound()){
                    Location closest = d.getClosestCreek().getLocation();
                    Location site= d.getESite().getLocation();

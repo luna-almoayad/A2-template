@@ -1,6 +1,7 @@
 package ca.mcmaster.se2aa4.island.team44.json;
 import org.json.JSONObject;
 
+// implements adapter pattern 
 
 public interface JSONDataAdapter{
 
